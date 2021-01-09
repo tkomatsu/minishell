@@ -6,15 +6,33 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/08 21:13:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/09 16:27:28 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av)
+void	minish_loop(void)
 {
-	(void*)ac;
-	(void*)av;
-	return (0);
+	char	*line;
+	char	**args;
+	int		status;
+
+	status = 1;
+	while (status)
+	{
+		ft_putstr_fd("> ", 1);
+		line = minish_read_ine();
+		args = ft_split(line, ' ');
+		status = minish_execute(args);
+
+		free(line);
+		free(args);	// splitのメモリ解放は要確認
+	}
+}
+
+int		main(void)
+{
+	minish_loop();
+	return (EXIT_SUCCESS);
 }
