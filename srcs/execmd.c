@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 14:22:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/11 23:06:39 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ int	msh_pwd(void)
 	return (1);
 }
 
+int	msh_env(void)
+{
+	extern char	**environ;
+	int			i;
+
+	i = 0;
+	while (environ[i])
+		ft_putendl_fd(environ[i++], 1);
+	return (1);
+}
+
 int	execmd(char **args)
 {
 	if (!args[0])
@@ -51,9 +62,9 @@ int	execmd(char **args)
 		return (msh_export(args));
 	else if (!ft_strcmp(args[0], "unset"))
 		return (msh_unset(args));
-	else if (!ft_strcmp(args[0], "env"))
-		return (msh_env(args));
 	*/
+	else if (!ft_strcmp(args[0], "env"))
+		return (msh_env());
 	else if (!ft_strcmp(args[0], "exit"))
 		return (msh_exit());
 	else if (!ft_strcmp(args[0], "help"))
