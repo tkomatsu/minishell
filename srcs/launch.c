@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 12:54:13 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/11 14:00:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**g_env;
+extern char	**environ;
 
 int	launch(char **args)
 {
@@ -22,7 +22,7 @@ int	launch(char **args)
 	pid = fork();
 	if (!pid)
 	{
-		if (execve(args[0], args, g_env) == -1)
+		if (execve(args[0], args, environ) == -1)
 			perror("minish");
 		exit(1);
 	}

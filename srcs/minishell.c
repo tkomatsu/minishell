@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 12:58:12 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/11 13:20:36 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	minish_loop(void)
 		}
 		args = ft_split(line, ' ');
 		status = execmd(args);
-		free(line);
-		free(args);	// splitのメモリ解放は要確認
+		ft_free(line);
+		ft_free_split(args);
 	}
 }
 

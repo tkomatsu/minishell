@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 12:59:41 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/11 14:22:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int	msh_exit(void)
 	return (0);
 }
 
+int	msh_pwd(void)
+{
+	char	*path;
+
+	path = getcwd(NULL, 0);
+	ft_putendl_fd(path, 1);
+	ft_free(path);
+	return (1);
+}
+
 int	execmd(char **args)
 {
 	if (!args[0])
@@ -33,8 +43,10 @@ int	execmd(char **args)
 		return (msh_echo(args));
 	else if (!ft_strcmp(args[0], "cd"))
 		return (msh_cd(args));
+	*/
 	else if (!ft_strcmp(args[0], "pwd"))
-		return (msh_pwd(args));
+		return (msh_pwd());
+	/*
 	else if (!ft_strcmp(args[0], "export"))
 		return (msh_export(args));
 	else if (!ft_strcmp(args[0], "unset"))

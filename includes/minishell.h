@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 12:57:18 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/11 14:02:34 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@
 
 # include "../lib/libft/includes/libft.h"
 
-extern char	**g_env;
-
-int	execmd(char **args);
-int	launch(char **args);
+int		execmd(char **args);
+int		launch(char **args);
 
 #endif
