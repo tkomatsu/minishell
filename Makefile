@@ -6,20 +6,20 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/08 21:11:23 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/11 12:55:40 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Colors
-_GREY	= \x1b[30m
-_RED	= \x1b[31m
-_GREEN	= \x1b[32m
-_YELLOW	= \x1b[33m
-_BLUE	= \x1b[34m
-_PURPLE	= \x1b[35m
-_CYAN	= \x1b[36m
-_WHITE	= \x1b[37m
-_END	= \x1b[0m
+_GREY	= \033[30m
+_RED	= \033[31m
+_GREEN	= \033[32m
+_YELLOW	= \033[33m
+_BLUE	= \033[34m
+_PURPLE	= \033[35m
+_CYAN	= \033[36m
+_WHITE	= \033[37m
+_END	= \033[0m
 
 NAME = minishell
 
@@ -34,7 +34,10 @@ INCLUDE = includes
 SRC_DIR = srcs/
 LIB = lib/
 
-SRC_FILES =	main.c
+
+SRC_FILES =	minishell.c \
+			execmd.c \
+			launch.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -58,14 +61,12 @@ debug: re
 clean:
 	@echo "$(_YELLOW)Removing object files ...$(_END)"
 	@make clean -C $(LIB)libft
-	@make clean -C $(LIB)libvct
 	@rm -f $(OBJS)
 	@rm -fr *.dSYM
 
 fclean:
 	@echo "$(_RED)Removing object files and program ...$(_END)"
 	@make fclean -C $(LIB)libft
-	@make fclean -C $(LIB)libvct
 	@rm -f $(NAME) $(OBJS)
 	@rm -fr *.dSYM
 
