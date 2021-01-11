@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/09 16:27:28 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/01/11 12:54:13 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	minish_loop(void)
+char	**g_env;
+
+int	launch(char **args)
 {
-	char	*line;
-	char	**args;
+	pid_t	pid;
 	int		status;
 
-	status = 1;
-	while (status)
+	pid = fork();
+	if (!pid)
 	{
-		ft_putstr_fd("> ", 1);
-		line = minish_read_ine();
-		args = ft_split(line, ' ');
-		status = minish_execute(args);
-
-		free(line);
-		free(args);	// splitのメモリ解放は要確認
+		if (execve(args[0], args, g_env) == -1)
+			perror("minish");
+		exit(1);
 	}
-}
-
-int		main(void)
-{
-	minish_loop();
-	return (EXIT_SUCCESS);
+	else if (pid < 0)
+		perror("fork");
+	else
+	{
+		if (wait(&status) < 0)
+		{
+			perror("wait");
+			exit(1);
+		}
+	}
+	return (1);
 }
