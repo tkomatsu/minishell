@@ -6,24 +6,64 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 14:00:04 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/17 11:10:11 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern char	**environ;
+int		is_exist(char *path, char *cmd)
+{
+	DIR				*dir;
+	struct dirent	*dent;
+
+	if (!(dir = opendir(path)))
+		return (0);
+	while ((dent = readdir(dir)))
+		if (!strcmp(cmd, dent->d_name))
+			return (1);
+	return (0);
+}
+
+char	*exec_path(char *cmd)
+{
+	char	*ret;
+	char	**path;
+	int		i;
+
+	path = ft_split(getenv("PATH"), ':');
+	i = 0;
+	while (path[i])
+	{
+		if (is_exist(path[i], cmd))
+		{
+			cmd = ft_strjoin("/", cmd);
+			ret = ft_strjoin(path[i], cmd);
+			ft_free(cmd);
+			ft_free_split(path);
+			return (ret);
+		}
+		i++;
+	}
+	ft_free_split(path);
+	return (NULL);
+}
 
 int	launch(char **args)
 {
-	pid_t	pid;
-	int		status;
+	pid_t		pid;
+	int			status;
+	extern char	**environ;
+	char		*cmd_path;
 
 	pid = fork();
 	if (!pid)
 	{
+		if ((cmd_path = exec_path(args[0])))
+			args[0] = cmd_path;
 		if (execve(args[0], args, environ) == -1)
 			perror("minish");
+		ft_free(cmd_path);
 		exit(1);
 	}
 	else if (pid < 0)

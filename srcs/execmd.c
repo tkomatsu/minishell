@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 23:06:39 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/15 21:39:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ int	msh_env(void)
 	return (1);
 }
 
+int	msh_getenv(char **args)
+{
+	ft_putendl_fd(ft_getenv(args[1]), 1);
+	return 1;
+}
+
+int	msh_setenv(char **args)
+{
+	ft_setenv(args[1], args[2], 1);
+	return 1;
+}
+
+int	msh_export(char **args)
+{
+	ft_putenv(args[1]);
+	return (1);
+}
+
 int	execmd(char **args)
 {
 	if (!args[0])
@@ -57,9 +75,9 @@ int	execmd(char **args)
 	*/
 	else if (!ft_strcmp(args[0], "pwd"))
 		return (msh_pwd());
-	/*
 	else if (!ft_strcmp(args[0], "export"))
 		return (msh_export(args));
+	/*
 	else if (!ft_strcmp(args[0], "unset"))
 		return (msh_unset(args));
 	*/
@@ -69,5 +87,9 @@ int	execmd(char **args)
 		return (msh_exit());
 	else if (!ft_strcmp(args[0], "help"))
 		return (msh_help());
+	else if (!ft_strcmp(args[0], "getenv"))
+		return (msh_getenv(args));
+	else if (!ft_strcmp(args[0], "setenv"))
+		return (msh_setenv(args));
 	return (launch(args));
 }

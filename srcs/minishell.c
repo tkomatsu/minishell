@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/11 13:20:36 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/12 22:58:07 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	minish_loop(void)
 
 int		main(void)
 {
-	ft_putendl_fd("Welcome to minishell :)", 1);
+	ft_putendl_fd("WELCOME TO MINISHELL", 1);
 	minish_loop();
 	return (EXIT_SUCCESS);
 }
