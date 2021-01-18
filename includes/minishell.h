@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 19:31:53 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 22:15:26 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <sys/stat.h>
 # include <unistd.h>
 
-# include "../lib/libft/includes/libft.h"
+# include "libft.h"
 
 int	execmd(char **args);
 int	launch(char **args);

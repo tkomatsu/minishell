@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/18 19:27:51 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/18 22:08:47 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,13 @@ NAME = minishell
 
 CC = gcc
 
+INCLUDE = includes
+
 CFLAGS = -Wall -Werror -Wextra -I $(INCLUDE)
 FLAGS = -L $(LIB)libft -lft
 
 DEBUG_CFLAGS = -g3
 
-INCLUDE = includes
 SRC_DIR = srcs/
 LIB = lib/
 
