@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 15:16:20 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 19:31:53 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,5 @@ int	msh_cd(char **args);
 int	msh_env(void);
 int	msh_export(char **args);
 int	msh_unset(char **args);
-
-
-
-
-/*
- * temp
- */
-
-int	msh_getenv(char **args);
-int	msh_setenv(char **args);
 
 #endif

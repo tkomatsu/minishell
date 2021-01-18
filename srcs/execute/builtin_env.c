@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 15:18:03 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 19:31:17 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,4 @@ int	msh_unset(char **args)
 {
 	printf("\033[31mNeed coding!: unset %s\033[39m\n", args[1]);
 	return (1);
-}
-
-int	msh_getenv(char **args)
-{
-	ft_putendl_fd(ft_getenv(args[1]), 1);
-	return 1;
-}
-
-int	msh_setenv(char **args)
-{
-	ft_setenv(args[1], args[2], 1);
-	return 1;
 }

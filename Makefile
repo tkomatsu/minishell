@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/18 15:15:16 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/18 19:27:51 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ LIB = lib/
 
 
 SRC_FILES =	minishell.c \
-			execmd.c \
-			builtin.c \
-			builtin_env.c \
-			launch.c
+			execute/execmd.c \
+			execute/builtin.c \
+			execute/builtin_env.c \
+			execute/launch.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
