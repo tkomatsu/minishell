@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/18 22:08:47 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/18 22:43:00 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ LIB = lib/
 
 
 SRC_FILES =	minishell.c \
+			read/read_arg.c \
 			execute/execmd.c \
 			execute/builtin.c \
 			execute/builtin_env.c \

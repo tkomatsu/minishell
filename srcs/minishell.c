@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 19:29:25 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 22:36:06 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,7 @@ void	minish_loop(void)
 	while (status)
 	{
 		ft_putstr_fd("> ", 1);
-		if (get_next_line(0, &line) < 0)
-		{
-			perror("get_next_line");
-			exit(1);
-		}
+		read_arg(&line);
 		status = split_exec(line);
 		ft_free(line);
 	}

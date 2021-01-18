@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 22:15:26 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 22:42:33 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 int	execmd(char **args);
 int	launch(char **args);
 
+int	read_arg(char **line);
 /*
 ** BUILTIN COMMANDS
 */
