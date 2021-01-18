@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/12 22:58:07 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/18 15:43:03 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	minish_loop(void)
 {
 	char	*line;
+	char	**cmds;
 	char	**args;
 	int		status;
+	int		i;
 
 	status = 1;
 	while (status)
@@ -27,10 +29,17 @@ void	minish_loop(void)
 			perror("get_next_line");
 			exit(1);
 		}
-		args = ft_split(line, ' ');
-		status = execmd(args);
+		cmds = ft_split(line, ';');
+		i = 0;
+		while (cmds[i])
+		{
+			args = ft_split(cmds[i], ' ');
+			status = execmd(args);
+			ft_free_split(args);
+			i++;
+		}
 		ft_free(line);
-		ft_free_split(args);
+		ft_free_split(cmds);
 	}
 }
 
