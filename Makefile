@@ -6,11 +6,13 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/18 22:43:00 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/19 19:41:53 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Colors
+# ****************************************************************************
+
 _GREY	= \033[30m
 _RED	= \033[31m
 _GREEN	= \033[32m
@@ -21,7 +23,12 @@ _CYAN	= \033[36m
 _WHITE	= \033[37m
 _END	= \033[0m
 
+# ****************************************************************************
+
 NAME = minishell
+
+# Config
+# ****************************************************************************
 
 CC = gcc
 
@@ -32,20 +39,57 @@ FLAGS = -L $(LIB)libft -lft
 
 DEBUG_CFLAGS = -g3
 
+# Source files
+# ****************************************************************************
+
+# read
+
+READ_DIR = read/
+READ_FILES = read_arg.c
+
+READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
+
+# parse
+
+PARSE_DIR = parse/
+PARSE_FILES = 
+
+PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
+
+# execute
+
+EXE_DIR = execute/
+EXE_FILES = execmd.c \
+			builtin.c \
+			builtin_env.c \
+			launch.c
+
+EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
+
+# utility
+
+UTIL_DIR = utils/
+UTIL_FILES = 
+
+UTIS_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
+
+# addprefix
+
 SRC_DIR = srcs/
 LIB = lib/
 
-
 SRC_FILES =	minishell.c \
-			read/read_arg.c \
-			execute/execmd.c \
-			execute/builtin.c \
-			execute/builtin_env.c \
-			execute/launch.c
+			$(READ_SRCS) \
+			$(PARSE_SRCS) \
+			$(EXE_SRCS) \
+			$(UTIL_SRCS)
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJS = $(SRCS:.c=.o)
+
+# Recipe
+# ****************************************************************************
 
 all: $(NAME)
 
