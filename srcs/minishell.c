@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 22:36:06 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/19 21:11:23 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,34 @@ int		split_exec(char *line)
 	return (status);
 }
 
+char	**ft_envcpy(void)
+{
+	extern char	**environ;
+	int			i;
+	int			envlen;
+	char		**ft_env;
+
+	envlen = 0;
+	while (environ[envlen])
+		envlen++;
+	if (!(ft_env = ft_calloc(sizeof(char*), envlen + 1)))
+	{
+		perror("envcpy");
+		exit(1);
+	}
+	i = 0;
+	while (environ[i])
+	{
+		if (!(ft_env[i] = ft_strdup(environ[i])))
+		{
+			perror("envcpy");
+			exit(1);
+		}
+		i++;
+	}
+	return (ft_env);
+}
+
 void	minish_loop(void)
 {
 	char	*line;
@@ -49,7 +77,11 @@ void	minish_loop(void)
 
 int		main(void)
 {
-	ft_putendl_fd("WELCOME TO MINISHELL", 1);
+	char	**env;
+
+	env = ft_envcpy();
+	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 1);
 	minish_loop();
+	ft_free_split(env);
 	return (EXIT_SUCCESS);
 }
