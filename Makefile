@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/19 19:41:53 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/19 22:13:23 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,11 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = 
+UTIL_FILES = ft_getenv.c \
+			 ft_putenv.c \
+			 ft_setenv.c
 
-UTIS_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
+UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 
 # addprefix
 
@@ -94,6 +96,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	@echo "$(_END)\nCompiled source files"
 	@make -C $(LIB)libft
 	@$(CC) $(CFLAGS) $(OBJS) $(FLAGS) -o $@
 	@echo "$(_GREEN)Finish compiling $(NAME)!"
@@ -101,6 +104,7 @@ $(NAME): $(OBJS)
 
 .c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@printf "$(_GREEN)█"
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
 debug: re
