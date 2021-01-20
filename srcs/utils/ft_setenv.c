@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 19:44:43 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:44:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	overwrite_setenv(const char *name, const char *value, int index)
+static int	_overwrite(const char *name, const char *value, int index)
 {
 	char	*new;
 	char	*tmp;
@@ -24,7 +24,7 @@ int	overwrite_setenv(const char *name, const char *value, int index)
 	return (0);
 }
 
-int	new_setenv(const char *name, const char *value, int len)
+static int	_reset(const char *name, const char *value, int len)
 {
 	char	**new_env;
 	int		i;
@@ -47,7 +47,7 @@ int	new_setenv(const char *name, const char *value, int len)
 	return (0);
 }
 
-int	ft_setenv(const char *name, const char *value, int overwrite)
+int			ft_setenv(const char *name, const char *value, int overwrite)
 {
 	int			i;
 	int			namelen;
@@ -65,11 +65,11 @@ int	ft_setenv(const char *name, const char *value, int overwrite)
 		if (!ft_strncmp(name, g_env[i], namelen))
 		{
 			if (overwrite)
-				return (overwrite_setenv(name, value, i));
+				return (_overwrite(name, value, i));
 			else
 				return (0);
 		}
 		i++;
 	}
-	return (new_setenv(name, value, i));
+	return (_reset(name, value, i));
 }
