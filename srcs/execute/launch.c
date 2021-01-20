@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/17 11:10:11 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 19:46:02 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	launch(char **args)
 	{
 		if ((cmd_path = exec_path(args[0])))
 			args[0] = cmd_path;
-		if (execve(args[0], args, environ) == -1)
+		if (execve(args[0], args, g_env) == -1)
 			perror("minish");
 		ft_free(cmd_path);
 		exit(1);

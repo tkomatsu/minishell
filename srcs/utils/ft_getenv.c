@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/19 22:30:33 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/01/11 22:54:18 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/01/19 22:31:03 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_env(void)
+char		*ft_getenv(const char *name)
 {
-	int			i;
+	int	i;
+	int	namelen;
 
+	if (!name || !(namelen = ft_strlen(name)) || ft_strchr(name, '='))
+	{
+		errno = EINVAL;
+		return (NULL);
+	}
 	i = 0;
 	while (g_env[i])
-		ft_putendl_fd(g_env[i++], 1);
-	return (1);
-}
-
-int	msh_export(char **args)
-{
-	ft_putenv(args[1]);
-	return (1);
-}
-
-int	msh_unset(char **args)
-{
-	printf("\033[31mNeed coding!: unset %s\033[39m\n", args[1]);
-	return (1);
+	{
+		if (!ft_strncmp(name, g_env[i], namelen))
+			return (&(g_env[i][namelen + sizeof("=") - 1]));
+		i++;
+	}
+	return (NULL);
 }

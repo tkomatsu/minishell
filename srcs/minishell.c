@@ -6,11 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/19 21:11:23 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 19:47:11 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**g_env;
 
 int		split_exec(char *line)
 {
@@ -32,17 +34,16 @@ int		split_exec(char *line)
 	return (status);
 }
 
-char	**ft_envcpy(void)
+void	ft_envcpy(void)
 {
 	extern char	**environ;
 	int			i;
 	int			envlen;
-	char		**ft_env;
 
 	envlen = 0;
 	while (environ[envlen])
 		envlen++;
-	if (!(ft_env = ft_calloc(sizeof(char*), envlen + 1)))
+	if (!(g_env = ft_calloc(sizeof(char*), envlen + 1)))
 	{
 		perror("envcpy");
 		exit(1);
@@ -50,14 +51,13 @@ char	**ft_envcpy(void)
 	i = 0;
 	while (environ[i])
 	{
-		if (!(ft_env[i] = ft_strdup(environ[i])))
+		if (!(g_env[i] = ft_strdup(environ[i])))
 		{
 			perror("envcpy");
 			exit(1);
 		}
 		i++;
 	}
-	return (ft_env);
 }
 
 void	minish_loop(void)
@@ -77,11 +77,9 @@ void	minish_loop(void)
 
 int		main(void)
 {
-	char	**env;
-
-	env = ft_envcpy();
+	ft_envcpy();
 	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 1);
 	minish_loop();
-	ft_free_split(env);
+	ft_free_split(g_env);
 	return (EXIT_SUCCESS);
 }
