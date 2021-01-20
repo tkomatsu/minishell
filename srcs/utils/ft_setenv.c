@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 20:44:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:48:16 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	_reset(const char *name, const char *value, int len)
 		new_env[i] = g_env[i];
 		i++;
 	}
+	ft_free(g_env);
 	g_env = new_env;
 	tmp = ft_strjoin(name, "=");
 	new = ft_strjoin(tmp, value);

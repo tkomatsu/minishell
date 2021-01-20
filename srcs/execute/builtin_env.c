@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/19 22:30:33 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 20:59:06 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	msh_export(char **args)
 
 int	msh_unset(char **args)
 {
-	printf("\033[31mNeed coding!: unset %s\033[39m\n", args[1]);
+	int	i;
+
+	i = 1;
+	while (args[i])
+		ft_unsetenv(args[i++]);
 	return (1);
 }
