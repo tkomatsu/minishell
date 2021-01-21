@@ -6,11 +6,32 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 01:07:35 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/01/22 01:37:34 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	_add_next_line(char **line)
+{
+	int		ret;
+	char	*new;
+	char	*put_nl;
+	char	*tmp;
+
+	ft_putstr_fd("> ", 1);
+	if ((ret = get_next_line(0, &tmp)) < 0)
+	{
+		perror("get_next_line");
+		exit(1);
+	}
+	put_nl = ft_strjoin("\n", tmp);
+	free(tmp);
+	new = ft_strjoin(*line, put_nl);
+	free(put_nl);
+	free(*line);
+	*line = new;
+}
 
 static int	_is_bad_quote(char *line)
 {
@@ -36,7 +57,7 @@ static int	_is_bad_quote(char *line)
 	return (flag);
 }
 
-int	read_arg(char **line)
+int			read_arg(char **line)
 {
 	int	ret;
 
@@ -45,5 +66,7 @@ int	read_arg(char **line)
 		perror("get_next_line");
 		exit(1);
 	}
+	while (_is_bad_quote(*line))
+		_add_next_line(line);
 	return (0);
 }
