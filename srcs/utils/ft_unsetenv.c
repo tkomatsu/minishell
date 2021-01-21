@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 20:58:52 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:10:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	_unsetenv(const char *name, int namelen)
 		else
 			new[j++] = g_env[i++];
 	}
+	ft_free(g_env);
 	g_env = new;
 	return (0);
 }
