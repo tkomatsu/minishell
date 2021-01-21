@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 01:37:34 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/01/22 01:41:49 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	_add_next_line(char **line)
+static void	add_next_line(char **line)
 {
 	int		ret;
 	char	*new;
@@ -33,7 +33,7 @@ static void	_add_next_line(char **line)
 	*line = new;
 }
 
-static int	_is_bad_quote(char *line)
+static int	is_bad_quote(char *line)
 {
 	int	flag;
 
@@ -66,7 +66,7 @@ int			read_arg(char **line)
 		perror("get_next_line");
 		exit(1);
 	}
-	while (_is_bad_quote(*line))
-		_add_next_line(line);
+	while (is_bad_quote(*line))
+		add_next_line(line);
 	return (0);
 }
