@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 19:46:02 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:22:16 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*exec_path(char *cmd)
 	char	**path;
 	int		i;
 
-	path = ft_split(getenv("PATH"), ':');
+	path = ft_split(ft_getenv("PATH"), ':');
 	i = 0;
 	while (path[i])
 	{
