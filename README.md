@@ -20,7 +20,7 @@ make
 
 ### Authors
 * **[Tatsuhiro Komatsu](https://github.com/tkomatsu)**
-* **[kefujiwa](https://github.com/kefujiwa)**
+* **[Kenshi Fujiwara](https://github.com/kefujiwa)**
 
 ### License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
