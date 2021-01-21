@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/21 22:42:14 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/21 23:31:49 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	msh_echo(char **args)
 	}
 	while (args[i])
 	{
-		if (i > 2 || (i == 1 && !noption))
+		if (i > 3 || (i == 2 && !noption))
 			ft_putchar_fd(' ', 1);
 		ft_putstr_fd(args[i], 1);
 		i++;
