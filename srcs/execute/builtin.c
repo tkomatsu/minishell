@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 15:06:12 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:24:14 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int	msh_cd(char	**args)
 {
 	if (chdir(args[1]) < 0)
 		perror("cd");
+	ft_setenv("PWD", getcwd(NULL, 0), 1);
 	return (1);
 }
