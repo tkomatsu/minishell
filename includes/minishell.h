@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 20:36:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/21 23:17:46 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+# define QUOTE 1
+# define DQUOTE 2
 
 extern char	**g_env;
 
