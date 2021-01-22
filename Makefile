@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/21 22:37:41 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/22 18:49:20 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,8 @@ SRC_FILES =	minishell.c \
 			$(EXE_SRCS) \
 			$(UTIL_SRCS)
 
-SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
-
-OBJS = $(SRCS:.c=.o)
+OBJ_DIR = objs/
+OBJS = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
 
 # Recipe
 # ****************************************************************************
@@ -104,9 +103,17 @@ $(NAME): $(OBJS)
 	@echo "$(_GREEN)Finish compiling $(NAME)!"
 	@echo "Try \"./$(NAME)\" to use$(_END)"
 
-.c.o:
+$(OBJS): $(OBJ_DIR)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 	@printf "$(_GREEN)█"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)$(READ_DIR)
+	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
+	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
+	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
 debug: re
@@ -115,13 +122,13 @@ debug: re
 clean:
 	@echo "$(_YELLOW)Removing object files ...$(_END)"
 	@make clean -C $(LIB)libft
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@rm -fr *.dSYM
 
 fclean:
 	@echo "$(_RED)Removing object files and program ...$(_END)"
 	@make fclean -C $(LIB)libft
-	@rm -f $(NAME) $(OBJS)
+	@rm -rf $(NAME) $(OBJ_DIR)
 	@rm -fr *.dSYM
 
 re: fclean all
