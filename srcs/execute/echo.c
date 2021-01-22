@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.c                                          :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/21 22:27:08 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/01/21 23:31:49 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_exit(void)
+int	msh_echo(char **args)
 {
-	return (0);
-}
+	int		i;
+	_Bool	noption;
 
-int	msh_pwd(void)
-{
-	char	*path;
-
-	path = getcwd(NULL, 0);
-	ft_putendl_fd(path, 1);
-	ft_free(path);
-	return (1);
-}
-
-int	msh_cd(char	**args)
-{
-	if (chdir(args[1]) < 0)
-		perror("cd");
-	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	i = 1;
+	noption = false;
+	if (!ft_strcmp(args[i], "-n"))
+	{
+		noption = true;
+		i++;
+	}
+	while (args[i])
+	{
+		if (i > 3 || (i == 2 && !noption))
+			ft_putchar_fd(' ', 1);
+		ft_putstr_fd(args[i], 1);
+		i++;
+	}
+	if (!noption)
+		ft_putchar_fd('\n', 1);
 	return (1);
 }
