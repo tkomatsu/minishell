@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/22 15:46:08 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/01/22 18:49:20 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ SRC_FILES =	minishell.c \
 			$(EXE_SRCS) \
 			$(UTIL_SRCS)
 
-OBJ_DIR = compiled_srcs/
+OBJ_DIR = objs/
 OBJS = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
 
 # Recipe
@@ -110,11 +110,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@printf "$(_GREEN)█"
 
 $(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
-	@mkdir $(OBJ_DIR)$(READ_DIR)
-	@mkdir $(OBJ_DIR)$(PARSE_DIR)
-	@mkdir $(OBJ_DIR)$(EXE_DIR)
-	@mkdir $(OBJ_DIR)$(UTIL_DIR)
+	@mkdir -p $(OBJ_DIR)$(READ_DIR)
+	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
+	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
+	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
 debug: re
