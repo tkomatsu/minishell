@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 20:59:06 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/01/22 23:24:23 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_env(void)
+int	msh_cd(char	**args)
 {
-	int			i;
-
-	i = 0;
-	while (g_env[i])
-		ft_putendl_fd(g_env[i++], 1);
-	return (1);
-}
-
-int	msh_export(char **args)
-{
-	ft_putenv(args[1]);
-	return (1);
-}
-
-int	msh_unset(char **args)
-{
-	int	i;
-
-	i = 1;
-	while (args[i])
-		ft_unsetenv(args[i++]);
+	if (chdir(args[1]) < 0)
+		perror("cd");
+	ft_setenv("PWD", getcwd(NULL, 0), 1);
 	return (1);
 }
