@@ -6,20 +6,23 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 01:41:49 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/01/22 14:39:53 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	add_next_line(char **line)
+static void	add_next_line(char **line, int flag)
 {
 	int		ret;
 	char	*new;
 	char	*put_nl;
 	char	*tmp;
 
-	ft_putstr_fd("> ", 1);
+	if (flag == QUOTE)
+		ft_putstr_fd("quote> ", 1);
+	else if (flag == DQUOTE)
+		ft_putstr_fd("dquote> ", 1);
 	if ((ret = get_next_line(0, &tmp)) < 0)
 	{
 		perror("get_next_line");
@@ -66,7 +69,7 @@ int			read_arg(char **line)
 		perror("get_next_line");
 		exit(1);
 	}
-	while (is_bad_quote(*line))
-		add_next_line(line);
+	while ((ret = is_bad_quote(*line)))
+		add_next_line(line, ret);
 	return (0);
 }
