@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/24 22:51:25 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:56:25 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static char	*ft_strerror(void)
 
 	if (!(str = ft_calloc(sizeof(char*), 100)))
 		return (NULL);
-	if (errno == 201)
+	if (errno == 200)
+		ft_strlcpy(str, "minishell error", 100);
+	else if (errno == 201)
 		ft_strlcpy(str, "command not found", 100);
 	else
 		ft_strlcpy(str, "undefine error", 100);
