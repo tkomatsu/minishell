@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 10:55:47 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/24 16:04:55 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		msh_unset(char **args);
 */
 
 char	*ft_getenv(const char *name);
+void	ft_perror(char *s);
 int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
