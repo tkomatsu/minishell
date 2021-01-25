@@ -30,5 +30,7 @@ int	execmd(char **args)
 		return (msh_env());
 	else if (!ft_strcmp(args[0], "exit"))
 		return (msh_exit());
+	else if (is_ultimate_question(args))
+		return (1);
 	return (launch(args));
 }
