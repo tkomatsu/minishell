@@ -57,4 +57,9 @@ int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
 
+/*
+** EASTER EGG
+*/
+int		is_ultimate_question(char **args);
+
 #endif

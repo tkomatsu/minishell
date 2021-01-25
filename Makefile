@@ -82,6 +82,13 @@ UTIL_FILES = ft_getenv.c \
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 
+# easter egg
+
+EASTER_DIR = easter/
+EASTER_FILES = is_ultimate_question.c
+
+EASTER_SRCS = $(addprefix $(EASTER_DIR), $(EASTER_FILES))
+
 # addprefix
 
 SRC_DIR = srcs/
@@ -91,7 +98,9 @@ SRC_FILES =	minishell.c \
 			$(READ_SRCS) \
 			$(PARSE_SRCS) \
 			$(EXE_SRCS) \
-			$(UTIL_SRCS)
+			$(UTIL_SRCS) \
+			$(EASTER_SRCS)
+
 
 OBJ_DIR = objs/
 OBJS = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
@@ -119,6 +128,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
 	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
 	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
+	@mkdir -p $(OBJ_DIR)$(EASTER_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
 debug: re
