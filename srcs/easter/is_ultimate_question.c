@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/25 10:29:57 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:13:09 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_ultimate_question(char **str)
 {
-	if (ft_strcmp(str[0], "Ansewer"))
+	if (ft_strcmp(str[0], "Answer"))
 		return (0);
 	if (ft_strcmp(str[1], "to"))
 		return (0);
@@ -38,6 +38,6 @@ int	is_ultimate_question(char **str)
 		return (0);
 	if (str[11])
 		return (0);
-	write(1, "42", 2);
+	write(1, "42\n", 3);
 	return (1);
 }
