@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 14:39:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/01/24 18:11:05 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	add_next_line(char **line, int flag)
 		ft_putstr_fd("dquote> ", 1);
 	if ((ret = get_next_line(0, &tmp)) < 0)
 	{
-		perror("get_next_line");
+		ft_perror("get_next_line");
 		exit(1);
 	}
 	put_nl = ft_strjoin("\n", tmp);
@@ -66,7 +66,7 @@ int			read_arg(char **line)
 
 	if ((ret = get_next_line(0, line)) < 0)
 	{
-		perror("get_next_line");
+		ft_perror("get_next_line");
 		exit(1);
 	}
 	while ((ret = is_bad_quote(*line)))

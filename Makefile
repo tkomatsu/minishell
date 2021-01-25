@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/22 23:31:08 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/24 16:05:46 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 
 UTIL_DIR = utils/
 UTIL_FILES = ft_getenv.c \
+			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c

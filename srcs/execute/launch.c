@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 22:22:16 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/25 08:18:07 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ int	launch(char **args)
 		if ((cmd_path = exec_path(args[0])))
 			args[0] = cmd_path;
 		if (execve(args[0], args, g_env) == -1)
-			perror("minish");
+		{
+			errno = 201;
+			ft_putstr_fd("minish: ", 2);
+			ft_perror(args[0]);
+		}
 		ft_free(cmd_path);
 		exit(1);
 	}
