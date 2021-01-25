@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/25 11:10:42 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/25 11:37:52 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = escape.c 
+PARSE_FILES = escape.c \
+			  parse_exec.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 

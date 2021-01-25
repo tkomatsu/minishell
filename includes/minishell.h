@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/25 11:12:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:37:26 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		read_arg(char **line);
 ** PARSE
 */
 
-void	parse_escape(char **argss);
+int		parse_exec(char *line);
+void	convert_esc(char **args);
 
 /*
 ** EXECUTE
