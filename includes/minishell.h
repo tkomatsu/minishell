@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/22 10:55:47 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:12:01 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,24 @@
 
 extern char	**g_env;
 
-int		execmd(char **args);
-int		launch(char **args);
+/*
+** READ
+*/
 
 int		read_arg(char **line);
+
+/*
+** PARSE
+*/
+
+void	parse_escape(char **argss);
+
+/*
+** EXECUTE
+*/
+
+int		execmd(char **args);
+int		launch(char **args);
 
 /*
 ** BUILTIN COMMANDS
