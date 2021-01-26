@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/25 11:37:52 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/26 11:48:10 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,11 +76,19 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 
 UTIL_DIR = utils/
 UTIL_FILES = ft_getenv.c \
+			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
+
+# easter egg
+
+EASTER_DIR = easter/
+EASTER_FILES = is_ultimate_question.c
+
+EASTER_SRCS = $(addprefix $(EASTER_DIR), $(EASTER_FILES))
 
 # addprefix
 
@@ -91,7 +99,9 @@ SRC_FILES =	minishell.c \
 			$(READ_SRCS) \
 			$(PARSE_SRCS) \
 			$(EXE_SRCS) \
-			$(UTIL_SRCS)
+			$(UTIL_SRCS) \
+			$(EASTER_SRCS)
+
 
 OBJ_DIR = objs/
 OBJS = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
@@ -119,6 +129,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
 	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
 	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
+	@mkdir -p $(OBJ_DIR)$(EASTER_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
 debug: re
