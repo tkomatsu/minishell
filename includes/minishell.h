@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 11:47:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/26 18:08:01 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ extern char	**g_env;
 ** READ
 */
 
+typedef struct	s_token
+{
+	char *word;
+	int metachar;
+}				t_token;
+
+# define SPACE		(1<<1)	// ' '
+# define TAB		(1<<2)	// '\t'
+# define NEWLINE	(1<<3)	// '\n'
+# define PIPE		(1<<4)	// '|'
+# define AMPERSAND	(1<<5)	// '&'
+# define SEMICOLON	(1<<6)	// ';'
+# define P_BIGIN	(1<<7)	// '('
+# define P_END		(1<<8)	// ')'
+# define GREATER	(1<<9)	// '>'
+# define LESS		(1<<10)	// '<'
+
+t_list	*read_tokens(void);
 int		read_arg(char **line);
 
 /*
