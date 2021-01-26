@@ -6,33 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 19:47:11 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/25 11:35:43 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 char	**g_env;
-
-int		split_exec(char *line)
-{
-	char	**cmds;
-	char	**args;
-	int		i;
-	int		status;
-
-	cmds = ft_split(line, ';');
-	i = 0;
-	while (cmds[i])
-	{
-		args = ft_split(cmds[i], ' ');
-		status = execmd(args);
-		ft_free_split(args);
-		i++;
-	}
-	ft_free_split(cmds);
-	return (status);
-}
 
 void	ft_envcpy(void)
 {
@@ -70,7 +50,7 @@ void	minish_loop(void)
 	{
 		ft_putstr_fd("> ", 1);
 		read_arg(&line);
-		status = split_exec(line);
+		status = parse_exec(line);
 		ft_free(line);
 	}
 }
