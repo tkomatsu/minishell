@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 18:08:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/26 21:59:55 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_token
 # define PIPE		(1<<4)	// '|'
 # define AMPERSAND	(1<<5)	// '&'
 # define SEMICOLON	(1<<6)	// ';'
-# define P_BIGIN	(1<<7)	// '('
+# define P_BEGIN	(1<<7)	// '('
 # define P_END		(1<<8)	// ')'
 # define GREATER	(1<<9)	// '>'
 # define LESS		(1<<10)	// '<'
@@ -84,6 +84,7 @@ int		msh_unset(char **args);
 ** UTILITY
 */
 
+void	del_token(void *ptr);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
 int		ft_putenv(const char *string);
