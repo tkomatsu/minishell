@@ -6,13 +6,25 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 17:30:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/26 18:12:25 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 char	**g_env;
+
+void	test_tokens(t_list *tokens)
+{
+	t_token	*token;
+
+	for (int i = 0; tokens; i++)
+	{
+		token = (t_token*)tokens->content;
+		printf("[%2d]%s\n", i, token->word);
+		tokens = tokens->next;
+	}
+}
 
 void	ft_envcpy(void)
 {
@@ -50,7 +62,8 @@ void	minish_loop(void)
 	{
 		ft_putstr_fd("> ", 1);
 		tokens = read_tokens();
-		status = parse_exec(tokens);
+		test_tokens(tokens);
+		//status = parse_exec(tokens);
 		//ft_lstclear(&tokens, del);
 	}
 }
