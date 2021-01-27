@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 09:57:50 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 10:23:01 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	split_tokens(t_list **tokens, char *line)
 	t_token	*new;
 
 	begin = 0;
-	end = 0;
 	while (line[begin])
 	{
+		end = begin;
 		if (!(new = ft_calloc(sizeof(t_token), 1)))
 			return;
 		while (!(new->metachar = is_metachar(line[end])))
@@ -68,8 +68,7 @@ t_list	*read_tokens(void)
 	char	*line;
 	t_list	*tokens;
 
-	read_arg(&line);
-	ft_lstclear(&tokens, del_token);
+	read_stdin(&line);
 	split_tokens(&tokens, line);
 	return (tokens);
 }

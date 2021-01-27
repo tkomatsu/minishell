@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/01/26 21:59:41 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/01/27 10:24:03 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ DEBUG_CFLAGS = -g3
 # read
 
 READ_DIR = read/
-READ_FILES = read_arg.c \
+READ_FILES = read_stdin.c \
 			 read_tokens.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))

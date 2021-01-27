@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 21:59:55 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 10:24:34 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct	s_token
 # define LESS		(1<<10)	// '<'
 
 t_list	*read_tokens(void);
-int		read_arg(char **line);
+int		read_stdin(char **line);
 
 /*
 ** PARSE
