@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 21:56:59 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 21:58:53 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/26 22:37:24 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,4 @@ void	del_token(void *ptr)
 
 	token = (t_token*)ptr;
 	ft_free(token->word);
-	ft_free(ptr);
 }
