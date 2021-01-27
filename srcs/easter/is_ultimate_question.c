@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/25 13:13:09 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 15:23:26 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 int	is_ultimate_question(char **str)
 {
-	if (ft_strcmp(str[0], "Answer"))
+	if (ft_strcasecmp(str[0], "Answer"))
 		return (0);
-	if (ft_strcmp(str[1], "to"))
+	if (ft_strcasecmp(str[1], "to"))
 		return (0);
-	if (ft_strcmp(str[2], "the"))
+	if (ft_strcasecmp(str[2], "the"))
 		return (0);
-	if (ft_strcmp(str[3], "Ultimate"))
+	if (ft_strcasecmp(str[3], "Ultimate"))
 		return (0);
-	if (ft_strcmp(str[4], "Question"))
+	if (ft_strcasecmp(str[4], "Question"))
 		return (0);
-	if (ft_strcmp(str[5], "of"))
+	if (ft_strcasecmp(str[5], "of"))
 		return (0);
-	if (ft_strcmp(str[6], "Life,"))
+	if (ft_strcasecmp(str[6], "Life,"))
 		return (0);
-	if (ft_strcmp(str[7], "the"))
+	if (ft_strcasecmp(str[7], "the"))
 		return (0);
-	if (ft_strcmp(str[8], "Universe,"))
+	if (ft_strcasecmp(str[8], "Universe,"))
 		return (0);
-	if (ft_strcmp(str[9], "and"))
+	if (ft_strcasecmp(str[9], "and"))
 		return (0);
-	if (ft_strcmp(str[10], "Everything"))
+	if (ft_strcasecmp(str[10], "Everything"))
 		return (0);
 	if (str[11])
 		return (0);
