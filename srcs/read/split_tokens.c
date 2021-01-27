@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_tokens.c                                      :+:      :+:    :+:   */
+/*   split_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 10:23:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:09:39 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ static int	is_metachar(char c)
 	return (0);
 }
 
-void	split_tokens(t_list **tokens, char *line)
+t_list	*split_tokens(char *line)
 {
+	t_list	*tokens;
 	int	begin;
 	int	end;
 	t_token	*new;
@@ -50,25 +51,16 @@ void	split_tokens(t_list **tokens, char *line)
 	{
 		end = begin;
 		if (!(new = ft_calloc(sizeof(t_token), 1)))
-			return;
+			return (NULL);
 		while (!(new->metachar = is_metachar(line[end])))
 			end++;
 		line[end] = '\0';
 		new->word = ft_strdup(&line[begin]);
-		ft_lstadd_back(tokens, ft_lstnew(new));
+		ft_lstadd_back(&tokens, ft_lstnew(new));
 		if (new->metachar < 0)
 			break;
 		else
 			begin = end + 1;
 	}
-}
-
-t_list	*read_tokens(void)
-{
-	char	*line;
-	t_list	*tokens;
-
-	read_stdin(&line);
-	split_tokens(&tokens, line);
 	return (tokens);
 }

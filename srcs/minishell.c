@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 09:06:42 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 13:08:46 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,19 @@ void	ft_envcpy(void)
 void	minish_loop(void)
 {
 	int		status;
+	char	*line;
 	t_list	*tokens;
 
 	status = 1;
 	while (status)
 	{
 		ft_putstr_fd("> ", 1);
-		tokens = read_tokens();
+		read_stdin(&line);
+		tokens = split_tokens(line);
 		test_tokens(tokens);
 		//status = parse_exec(tokens);
+		ft_free(line);
+		ft_lstclear(&tokens, del_token);
 	}
 }
 
