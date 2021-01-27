@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 09:06:29 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/01/27 09:57:50 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,6 @@ void	split_tokens(t_list **tokens, char *line)
 			begin = end + 1;
 	}
 }
-
-/*
-void	split_tokens(t_list **tokens, char *line)
-{
-	char	*meta;
-	t_token	*token;
-
-	if (!(*line))
-		return;
-	meta = line;
-	if (!(token = ft_calloc(sizeof(t_token), 1)))
-		return;
-	while (!is_metachar(*meta))
-		meta++;
-	if (*meta == ' ')
-		token->metachar = SPACE;
-	*meta = '\0';
-	token->word = ft_strdup(line);
-	ft_lstadd_back(tokens, ft_lstnew(token));
-	if (*(meta + 1))
-		split_tokens(tokens, meta + 1);
-}
-*/
 
 t_list	*read_tokens(void)
 {
