@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/26 11:57:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/01 09:52:20 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 int		parse_exec(char *line)
 {
-	char	**cmds;
+	char	*cmds;
 	char	**args;
-	int		i;
 	int		status;
 
-	cmds = ft_split(line, ';');
-	i = 0;
-	while (cmds[i])
+	cmds = ft_strtok(line, ";|><");
+	while (cmds)
 	{
-		args = ft_split(cmds[i], ' ');
+		args = ft_split(cmds, ' ');
 		status = execmd(args);
 		ft_free_split(args);
-		i++;
+		cmds = ft_strtok(NULL, ";|><");
 	}
-	ft_free_split(cmds);
 	return (status);
 }
