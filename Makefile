@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/01 09:35:22 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/01 11:12:22 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ UTIL_FILES = ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
-			 ft_unsetenv.c
+			 ft_unsetenv.c \
+			 get_token.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 
