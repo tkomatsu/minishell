@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/01 09:52:20 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/01 10:07:54 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ int		parse_exec(char *line)
 	cmds = ft_strtok(line, ";|><");
 	while (cmds)
 	{
+		/* (")を含む分割処理に置き換える */
 		args = ft_split(cmds, ' ');
+
+		/* pipe, redirectの処理を追加 */
+
+		/* $などの展開を追加 */
+
 		status = execmd(args);
 		ft_free_split(args);
 		cmds = ft_strtok(NULL, ";|><");
