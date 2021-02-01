@@ -6,12 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/01 09:35:04 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/01 09:39:08 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 static void	add_next_line(char **line, int flag)
 {
 	int		ret;
@@ -59,6 +60,7 @@ static int	is_bad_quote(char *line)
 	}
 	return (flag);
 }
+*/
 
 int			read_std(char **line)
 {
@@ -69,7 +71,9 @@ int			read_std(char **line)
 		ft_perror("get_next_line");
 		exit(1);
 	}
+	/*
 	while ((ret = is_bad_quote(*line)))
 		add_next_line(line, ret);
+	*/
 	return (0);
 }
