@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_arg.c                                         :+:      :+:    :+:   */
+/*   read_std.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/24 18:11:05 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/01 09:35:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	is_bad_quote(char *line)
 	return (flag);
 }
 
-int			read_arg(char **line)
+int			read_std(char **line)
 {
 	int	ret;
 
