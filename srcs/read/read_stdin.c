@@ -6,12 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 16:54:37 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/04 16:53:42 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 static void	add_next_line(char **line, int flag)
 {
 	int		ret;
@@ -59,6 +60,7 @@ static int	is_bad_quote(char *line)
 	}
 	return (flag);
 }
+*/
 
 int			read_stdin(char **line)
 {
