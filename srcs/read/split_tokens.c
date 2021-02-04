@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/04 17:51:43 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/04 22:17:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,24 @@ static int	is_metachar(char c)
 		return (GREATER);
 	else if (c == '<')
 		return (LESS);
-	else if (c == '\0')
-		return (-1);
 	return (0);
 }
 
+int		get_token(char **dst, char *src, int *index);
+
 t_token	*split_tokens(char *line)
 {
+	t_token *head;
+	char	*str;
+	int		sep;
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		sep = get_token(&str, line, &i);
+		dlist_add_back(&head, dlistnew(str, sep));
+		i++;
+	}
+	return (head);
 }
