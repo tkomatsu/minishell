@@ -38,8 +38,8 @@ typedef struct	s_token
 {
 	char			*word;
 	int				type;
-	struct s_token	*next;
 	struct s_token	*prev;
+	struct s_token	*next;
 }				t_token;
 
 # define WORD 1
