@@ -1,26 +1,26 @@
 # minishell
-### Description
+## Description
 simple shell like bash
 
-### Requirement
-#### MacOS
-* Command Line Tools
+## Requirement
+* GCC
+* GNU Make
 
-### Installation
+## Installation
 ```shell
-git clone --recursive https://github.com/tkomatsu/minishell
+git clone --recursive git@github.com:tkomatsu/minishell.git
 cd minishell
 make
 ```
 
-### Usage
+## Usage
 ```shell
 ./minishell
 ```
 
-### Authors
+## Authors
 * **[Tatsuhiro Komatsu](https://github.com/tkomatsu)**
 * **[Kenshi Fujiwara](https://github.com/kefujiwa)**
 
-### License
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
