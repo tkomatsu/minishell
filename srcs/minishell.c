@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 13:15:13 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 08:41:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 char	**g_env;
 
-void	test_tokens(t_list *tokens)
+void	test_tokens(t_token *tokens)
 {
-	t_token	*token;
+	char *type = {"WORD", "NEWLINE", "PIPE", "AND", "SEMICOLON", "P_OPEN", "P_CLOSE", "GREATER", "LESS"};
 
 	for (int i = 0; tokens; i++)
 	{
-		token = (t_token*)tokens->content;
-		printf("[%2d]%s\n", i, token->word);
+		printf("[%2d]%s, type:%s\n", i, tokens->word, type[(tokens->type - 1)]);
 		tokens = tokens->next;
 	}
 }
@@ -56,7 +55,7 @@ void	minish_loop(void)
 {
 	int		status;
 	char	*line;
-	t_list	*tokens;
+	t_token	*tokens;
 
 	status = 1;
 	while (status)
