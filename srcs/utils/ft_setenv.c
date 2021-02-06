@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 22:08:19 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 10:22:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			ft_setenv(const char *name, const char *value, int overwrite)
 {
 	int			i;
 	int			namelen;
-	int			valuelen;
 
 	if (!name || !(namelen = ft_strlen(name)))
 	{
@@ -61,7 +60,6 @@ int			ft_setenv(const char *name, const char *value, int overwrite)
 		return (-1);
 	}
 	i = 0;
-	valuelen = ft_strlen(value);
 	while (g_env[i])
 	{
 		if (!ft_strncmp(name, g_env[i], namelen))
