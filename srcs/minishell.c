@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 08:41:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 11:54:27 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**g_env;
 
 void	test_tokens(t_token *tokens)
 {
-	char *type = {"WORD", "NEWLINE", "PIPE", "AND", "SEMICOLON", "P_OPEN", "P_CLOSE", "GREATER", "LESS"};
+	char type[10][20] = {"word", "newline", "pipe", "and", "semicolon", "p_open", "p_close", "greater", "less"};
 
 	for (int i = 0; tokens; i++)
 	{
