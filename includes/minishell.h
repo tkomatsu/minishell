@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/04 17:46:33 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 11:55:53 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ void	ft_perror(char *s);
 int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
+
+t_token	*dlistnew(char *src, int sep);
+t_token *dlisthead(t_token *tokens);
+t_token	*dlistlast(t_token *tokens);
+void	dlist_add_back(t_token **list, t_token *new);
 
 /*
 ** EASTER EGG
