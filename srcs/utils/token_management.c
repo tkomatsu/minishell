@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_manegement.c                                 :+:      :+:    :+:   */
+/*   token_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/04 22:17:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 11:59:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	dlist_add_back(t_token **list, t_token *new)
 		*list = new;
 	else
 	{
-		dlistlast(*list)->next = new;
+		end = dlistlast(*list);
+		end->next = new;
 		new->prev = end;
 	}
 }
