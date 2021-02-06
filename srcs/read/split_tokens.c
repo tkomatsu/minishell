@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 13:34:26 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 18:16:30 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,15 @@ t_token	*split_tokens(char *line)
 t_token	*split_tokens(char *line)
 {
 	t_token	*tokens;
+	char	**lines;
 
 	tokens = NULL;
-	dlist_add_back(&tokens, dlistnew(line, is_metachar(' ')));
+	lines = ft_split(line, ' ');
+	ft_free(line);
+	while (*lines)
+	{
+		dlist_add_back(&tokens, dlistnew(*lines, is_metachar(' ')));
+		lines++;
+	}
 	return (tokens);
 }
