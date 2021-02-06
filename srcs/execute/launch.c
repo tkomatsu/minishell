@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/25 08:18:07 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/06 10:21:17 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	launch(char **args)
 {
 	pid_t		pid;
 	int			status;
-	extern char	**environ;
 	char		*cmd_path;
 
 	pid = fork();
