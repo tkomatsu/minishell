@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 18:16:30 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/07 15:45:12 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_metachar(char c)
 {
-	if (c == ' ' || c == '\t')
+	if (c == ' ' || c == '\t' || c == '\0')
 		return (WORD);
 	else if (c == '\n')
 		return (NEWLINE);
@@ -35,61 +35,47 @@ static int	is_metachar(char c)
 	return (0);
 }
 
-/*
-int	get_token(char **dst, char *src, int start)
+int		get_index(char *line, int start)
 {
-	int		i;
-	int		len;
+	int	len;
 
-	i = start;
-	while (src[i])
+	len = start;
+	while (line[len])
 	{
-		if (src[i] == '\'')
+		if (line[len] == '\'')
+		{
+			len++;
+			while (line[len] && line[len] != '\'')
+				len++;
+		}
+		else if (line[len] == '\"')
+		{
+			len++;
+			while (line[len] && line[len] != '\"')
+				len++;
+		}
+		if (!line[len] || is_metachar(line[len]))
 			break;
-//			return (squote(src, index));
-		else if (src[i] == '\"')
-			break;
-//			return (dquote(src, index));
-		i++;
+		len++;
 	}
-	len = i - start;
-	if (!(*dst = ft_calloc(sizeof(char), (len + 1))))
-		return (-1);
-	ft_strlcpy(*dst, (src + i), len);
-	return (i);
+	return (len - start);
 }
-
-t_token	*split_tokens(char *line)
-{
-	t_token *tokens;
-	char	*str;
-	int		sep;
-	int		i;
-
-	i = 0;
-	tokens = NULL;
-	while (line[i])
-	{
-		i = get_token(&str, line, i);
-		sep = is_metachar(line[i]);
-		dlist_add_back(&tokens, dlistnew(str, sep));
-	}
-	return (dlisthead(tokens));
-}
-*/
 
 t_token	*split_tokens(char *line)
 {
 	t_token	*tokens;
-	char	**lines;
+	int		i;
+	int		len;
 
 	tokens = NULL;
-	lines = ft_split(line, ' ');
-	ft_free(line);
-	while (*lines)
+	i = 0;
+	while (line[i])
 	{
-		dlist_add_back(&tokens, dlistnew(*lines, is_metachar(' ')));
-		lines++;
+		len = get_index(line, i);
+		if (line[i] == '\'' || line[i] == '\"')
+			i++;
+		dlist_add_back(&tokens, dlistnew(ft_substr(line, i, len), is_metachar(line[i + len])));
+		i = i + len + 1;
 	}
 	return (tokens);
 }
