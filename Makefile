@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/07 17:54:44 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/08 18:12:57 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ DEBUG_CFLAGS = -g3
 # read
 
 READ_DIR = read/
-READ_FILES = read_arg.c
+READ_FILES = read_stdin.c \
+			 split_tokens.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
@@ -75,12 +76,14 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = ft_getenv.c \
+UTIL_FILES = del_token.c \
+			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
-			 put_prompt.c
+			 put_prompt.c \
+			 token_management.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 

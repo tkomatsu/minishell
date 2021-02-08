@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_arg.c                                         :+:      :+:    :+:   */
+/*   read_stdin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/24 18:11:05 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/04 16:53:42 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 static void	add_next_line(char **line, int flag)
 {
 	int		ret;
@@ -59,8 +60,9 @@ static int	is_bad_quote(char *line)
 	}
 	return (flag);
 }
+*/
 
-int			read_arg(char **line)
+int			read_stdin(char **line)
 {
 	int	ret;
 
@@ -69,7 +71,9 @@ int			read_arg(char **line)
 		ft_perror("get_next_line");
 		exit(1);
 	}
+	/*
 	while ((ret = is_bad_quote(*line)))
 		add_next_line(line, ret);
+	*/
 	return (0);
 }
