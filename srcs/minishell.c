@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/08 18:16:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/09 00:50:55 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	minish_loop(void)
 		read_stdin(&line);
 		tokens = split_tokens(line);
 		test_tokens(tokens);
-		//status = parse_exec(tokens);
+		status = parse_exec(tokens);
 		ft_free(line);
-		//ft_lstclear(&tokens, del_token);
+		clear_tokens(&tokens);
 	}
 }
 

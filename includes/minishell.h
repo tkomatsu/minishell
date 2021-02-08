@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/08 18:13:46 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/09 01:41:42 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_token	*split_tokens(char *line);
 ** PARSE
 */
 
-int		parse_exec(char *line);
+int		parse_exec(t_token *tokens);
 void	convert_esc(char **args);
 
 /*
@@ -85,7 +85,8 @@ int		msh_unset(char **args);
 ** UTILITY
 */
 
-void	del_token(void *ptr);
+void	clear_tokens(t_token **tokens);
+int		token_size(t_token *tokens);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
 int		ft_putenv(const char *string);
