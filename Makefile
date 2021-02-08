@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/08 18:12:57 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/09 01:43:36 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,14 +76,15 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = del_token.c \
+UTIL_FILES = clear_tokens.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
 			 put_prompt.c \
-			 token_management.c
+			 token_management.c \
+			 token_size.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 
