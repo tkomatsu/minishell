@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/08 10:12:46 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/08 16:31:24 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	msh_cd(char	**args)
 {
 	char	*dir;
 
-	if (!args[1])
+	if (!args[1] || !ft_strcmp(args[1], "~"))
 	{
 		if (!(dir = ft_getenv("HOME")))
 		{
@@ -24,7 +24,7 @@ int	msh_cd(char	**args)
 			return (1);
 		}
 	}
-	else if (!strcmp(args[1], "-"))
+	else if (!ft_strcmp(args[1], "-"))
 	{
 		if (!(dir = ft_getenv("OLDPWD")))
 		{
