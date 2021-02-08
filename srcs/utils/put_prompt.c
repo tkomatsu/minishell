@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/07 18:11:15 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:10:30 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ static void	putformat(char c)
 	char	*cwd;
 	int		len;
 
-	if (c == 'u')
+	if (c == 'a')
+		ft_putchar_fd('\a', 1);
+	else if (c == 'n')
+		ft_putchar_fd('\n', 1);
+	else if (c == 's')
+		ft_putstr_fd("minishell", 1);
+	else if (c == 'u')
 		ft_putstr_fd(ft_getenv("USER"), 1);
 	else if (c == 'w')
 	{
@@ -33,6 +39,8 @@ static void	putformat(char c)
 			ft_putstr_fd(cwd + len, 1);
 		}
 	}
+	else if (c == '\\')
+		ft_putchar_fd('\\', 1);
 	else
 	{
 		ft_putchar_fd('\\', 1);
