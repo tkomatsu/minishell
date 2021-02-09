@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/09 00:50:55 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:43:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ void	minish_loop(void)
 	while (status)
 	{
 		put_prompt();
-		ft_putstr_fd("> ", 1);
 		read_stdin(&line);
 		tokens = split_tokens(line);
-		test_tokens(tokens);
+		/* test_tokens(tokens); */
 		status = parse_exec(tokens);
 		ft_free(line);
 		clear_tokens(&tokens);
