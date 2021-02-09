@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/07 17:54:25 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/09 01:41:42 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,32 @@ extern char	**g_env;
 ** READ
 */
 
-int		read_arg(char **line);
+typedef struct	s_token
+{
+	char			*word;
+	int				type;
+	struct s_token	*prev;
+	struct s_token	*next;
+}				t_token;
+
+# define WORD 1
+# define NEWLINE 2
+# define PIPE 3
+# define AND 4
+# define SEMICOLON 5
+# define P_OPEN 6
+# define P_CLOSE 7
+# define GREATER 8
+# define LESS 9
+
+int		read_stdin(char **line);
+t_token	*split_tokens(char *line);
 
 /*
 ** PARSE
 */
 
-int		parse_exec(char *line);
+int		parse_exec(t_token *tokens);
 void	convert_esc(char **args);
 
 /*
@@ -66,13 +85,18 @@ int		msh_unset(char **args);
 ** UTILITY
 */
 
+void	clear_tokens(t_token **tokens);
+int		token_size(t_token *tokens);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
 int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
-
 void	put_prompt(void);
+t_token	*dlistnew(char *src, int sep);
+t_token *dlisthead(t_token *tokens);
+t_token	*dlistlast(t_token *tokens);
+void	dlist_add_back(t_token **list, t_token *new);
 
 /*
 ** EASTER EGG

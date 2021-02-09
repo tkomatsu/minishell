@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/07 20:51:29 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:43:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 char	**g_env;
 
+void	test_tokens(t_token *tokens)
+{
+	char type[10][20] = {"word", "newline", "pipe", "and", "semicolon", "p_open", "p_close", "greater", "less"};
+
+	for (int i = 0; tokens; i++)
+	{
+		printf("[%2d]%s, type:%s\n", i, tokens->word, type[(tokens->type - 1)]);
+		tokens = tokens->next;
+	}
+}
+
 void	ft_envcpy(void)
 {
 	extern char	**environ;
 	int			i;
 	int			envlen;
+	int			shlvl;
 
 	envlen = 0;
 	while (environ[envlen])
@@ -38,20 +50,26 @@ void	ft_envcpy(void)
 		}
 		i++;
 	}
+	shlvl = ft_atoi(ft_getenv("SHLVL")) + 1;
+	ft_setenv("SHLVL", ft_itoa(shlvl), 1);
 }
 
 void	minish_loop(void)
 {
-	char	*line;
 	int		status;
+	char	*line;
+	t_token	*tokens;
 
 	status = 1;
 	while (status)
 	{
 		put_prompt();
-		read_arg(&line);
-		status = parse_exec(line);
+		read_stdin(&line);
+		tokens = split_tokens(line);
+		/* test_tokens(tokens); */
+		status = parse_exec(tokens);
 		ft_free(line);
+		clear_tokens(&tokens);
 	}
 }
 
