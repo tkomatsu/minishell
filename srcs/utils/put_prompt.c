@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/08 17:10:30 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/11 08:23:17 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,32 @@ static void	putformat(char c)
 	int		len;
 
 	if (c == 'a')
-		ft_putchar_fd('\a', 1);
+		ft_putchar_fd('\a', 2);
 	else if (c == 'n')
-		ft_putchar_fd('\n', 1);
+		ft_putchar_fd('\n', 2);
 	else if (c == 's')
-		ft_putstr_fd("minishell", 1);
+		ft_putstr_fd("minishell", 2);
 	else if (c == 'u')
-		ft_putstr_fd(ft_getenv("USER"), 1);
+		ft_putstr_fd(ft_getenv("USER"), 2);
 	else if (c == 'w')
 	{
 		home = ft_getenv("HOME");
 		cwd = ft_getenv("PWD");
 		len = ft_strlen(home);
 		if (ft_strncmp(home, cwd, len))
-			ft_putstr_fd(cwd, 1);
+			ft_putstr_fd(cwd, 2);
 		else
 		{
-			ft_putchar_fd('~', 1);
-			ft_putstr_fd(cwd + len, 1);
+			ft_putchar_fd('~', 2);
+			ft_putstr_fd(cwd + len, 2);
 		}
 	}
 	else if (c == '\\')
-		ft_putchar_fd('\\', 1);
+		ft_putchar_fd('\\', 2);
 	else
 	{
-		ft_putchar_fd('\\', 1);
-		ft_putchar_fd(c, 1);
+		ft_putchar_fd('\\', 2);
+		ft_putchar_fd(c, 2);
 	}
 }
 
@@ -54,7 +54,7 @@ void	put_prompt(void)
 
 	if (!(format = ft_getenv("PS1")))
 	{
-		ft_putstr_fd("minishell$ ", 1);
+		ft_putstr_fd("minishell$ ", 2);
 		return ;
 	}
 	while (*format)
@@ -65,7 +65,7 @@ void	put_prompt(void)
 			putformat(*format);
 		}
 		else
-			ft_putchar_fd(*format, 1);
+			ft_putchar_fd(*format, 2);
 		format++;
 	}
 }
