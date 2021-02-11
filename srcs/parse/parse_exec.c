@@ -46,6 +46,7 @@ static char		**convert_lst_to_args(t_token *tokens)
 	i = 0;
 	while (tokens)
 	{
+		parse_quotes(tokens);
 		if (tokens && *(tokens->word))
 			args[i++] = tokens->word;
 		tokens = tokens->next;
