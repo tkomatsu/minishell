@@ -1,3 +1,2 @@
 echo hello
-hello
 exit
