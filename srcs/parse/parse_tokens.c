@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_quotes.c                                     :+:      :+:    :+:   */
+/*   parse_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/12 02:31:25 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/12 19:47:43 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*parse_words(char *str)
 	return (new);
 }
 
-void		parse_quotes(t_token *tokens)
+void		parse_tokens(t_token *tokens)
 {
 	char	*tmp;
 
