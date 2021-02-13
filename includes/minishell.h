@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 14:18:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:35:28 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_token	*split_tokens(char *line);
 
 int		parse_exec(t_token *tokens);
 char	*parse_tokens(t_token *tokens);
+char	*parse_var(char *p_str, char **str, char **new);
 void	convert_esc(char **args);
 char	*convert_quotes(char *str, char **new);
 char	*convert_dquotes(char *str, char **new);

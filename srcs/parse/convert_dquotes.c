@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/12 21:18:28 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:31:06 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,27 @@ char	*convert_dquotes(char *str, char **new)
 {
 	char	*tmp;
 	int		flag;
-	int		len;
+	char	*p_str;
 
 	flag = 0;
-	len = 0;
-	while (str[len] != '\"' || (str[len] == '\"' && (flag & ESC)))
+	p_str = str;
+	while (*p_str != '\"' || (*p_str == '\"' && (flag & ESC)))
 	{
-		if (str[len] == '\\')
+		if (*p_str == '$' && !(flag & ESC))
+		{
+			*p_str = '\0';
+			if (!(p_str = parse_var(p_str + 1, &str, new)))
+				return (NULL);
+		}
+		if (*(p_str++) == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
-		len++;
 	}
-	str[len] = '\0';
+	*p_str = '\0';
 	if (!(tmp = ft_strjoin(*new, str)))
 		return (NULL);
 	ft_free(*new);
 	*new = tmp;
-	return (str + len + 1);
+	return (p_str + 1);
 }
