@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 13:35:51 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:23:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char	*ft_strerror(void)
 		ft_strlcpy(str, "command not found", 100);
 	else if (errno == 202)
 		ft_strlcpy(str, "no closing quotation", 100);
+	else if (errno == 203)
+		ft_strlcpy(str, "not a valid identifier", 100);
 	else
 		ft_strlcpy(str, "undefine error", 100);
 	return (str);
