@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 15:35:28 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:50:50 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ESC 0x04
 
 extern char	**g_env;
+extern int	g_status;
 
 /*
 ** READ

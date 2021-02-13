@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/18 19:31:39 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:48:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	execmd(char **args)
 {
+	g_status = EXIT_SUCCESS;
 	if (!args[0])
 		return (1);
 	else if (!ft_strcmp(args[0], "echo"))

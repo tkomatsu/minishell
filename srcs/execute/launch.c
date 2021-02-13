@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 10:21:17 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:49:02 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*exec_path(char *cmd)
 int	launch(char **args)
 {
 	pid_t		pid;
-	int			status;
 	char		*cmd_path;
 
 	pid = fork();
@@ -73,7 +72,7 @@ int	launch(char **args)
 		perror("fork");
 	else
 	{
-		if (wait(&status) < 0)
+		if (wait(&g_status) < 0)
 		{
 			perror("wait");
 			exit(1);
