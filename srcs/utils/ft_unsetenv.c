@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 22:10:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:41:07 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	_unsetenv(const char *name, int namelen)
 	envlen = 0;
 	while (g_env[envlen])
 		envlen++;
-	if (!(new = ft_calloc(sizeof(char *), envlen)))
+	if (!(new = ft_calloc(envlen, sizeof(char*))))
 		return (-1);
 	i = 0;
 	j = 0;

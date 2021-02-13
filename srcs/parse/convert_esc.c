@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   escape.c                                           :+:      :+:    :+:   */
+/*   convert_esc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:01:14 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/25 11:38:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:04:35 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*parse_esc(char *src)
 	int		i;
 	int		j;
 
-	if (!(ret = ft_calloc(sizeof(char), ft_strlen(src))))
+	if (!(ret = ft_calloc(ft_strlen(src), sizeof(char))))
 		return (NULL);
 	i = 0;
 	j = 0;

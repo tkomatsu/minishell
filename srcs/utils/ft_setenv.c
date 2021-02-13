@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 10:22:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:40:50 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	_reset(const char *name, const char *value, int len)
 	char	*new;
 	char	*tmp;
 
-	if (!(new_env = ft_calloc(sizeof(char*), (len + 2))))
+	if (!(new_env = ft_calloc(len + 2, sizeof(char*))))
 		return (-1);
 	i = 0;
 	while (g_env[i])
