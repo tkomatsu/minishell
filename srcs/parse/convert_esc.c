@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:01:14 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 13:04:35 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:22:06 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static char	*parse_esc(char *src)
 	return (ret);
 }
 
-void	convert_esc(char **args)
+void		convert_esc(char **args)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
 	i = 0;
