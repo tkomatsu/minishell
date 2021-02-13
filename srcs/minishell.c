@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 19:50:06 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/14 03:27:36 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_envcpy(void)
 	ft_setenv("SHLVL", ft_itoa(shlvl), 1);
 }
 
-void	minish_loop()
+void	minish_loop(void)
 {
 	int		status;
 	char	*line;
@@ -82,5 +82,5 @@ int		main(void)
 	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 2);
 	minish_loop();
 	ft_free_split(g_env);
-	return (g_status);
+	return ((unsigned char)g_status);
 }
