@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/09 13:41:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 00:43:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ static char		**convert_lst_to_args(t_token *tokens)
 	char	**args;
 	int		i;
 
-	/* environment viriable */
 	/* redirect */
-	/* escape */
-
-	if (!(args = ft_calloc(sizeof(char**), token_size(tokens) + 1)))
+	if (!(args = (char**)ft_calloc(sizeof(char*), token_size(tokens) + 1)))
 		return NULL;
 	i = 0;
 	while (tokens)
 	{
+		parse_tokens(tokens);
 		if (tokens && *(tokens->word))
 			args[i++] = tokens->word;
 		tokens = tokens->next;

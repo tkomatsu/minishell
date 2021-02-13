@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/09 01:43:36 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/12 19:33:48 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,12 @@ READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = escape.c \
-			  parse_exec.c
+PARSE_FILES = convert_esc.c \
+			  parse_exec.c \
+			  parse_tokens.c \
+			  convert_quotes.c \
+			  convert_dquotes.c \
+			  convert_words.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 

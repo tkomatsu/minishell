@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/11 08:27:07 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/12 00:54:13 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	minish_loop(void)
 	while (status)
 	{
 		put_prompt();
-		read_stdin(&line);
+		if (read_stdin(&line) == 1)
+			continue;
 		tokens = split_tokens(line);
 		/* test_tokens(tokens); */
 		status = parse_exec(tokens);

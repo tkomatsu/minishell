@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/09 01:41:42 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:54:05 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define QUOTE 1
-# define DQUOTE 2
+# define QUOTE 0x01
+# define DQUOTE 0x02
+# define ESC 0x04
 
 extern char	**g_env;
 
@@ -60,7 +61,11 @@ t_token	*split_tokens(char *line);
 */
 
 int		parse_exec(t_token *tokens);
+void	parse_tokens(t_token *tokens);
 void	convert_esc(char **args);
+char	*convert_quotes(char *str, char **new);
+char	*convert_dquotes(char *str, char **new);
+char	*convert_words(char *str, char **new);
 
 /*
 ** EXECUTE
