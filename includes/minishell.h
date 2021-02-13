@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/12 19:34:17 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:54:05 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define QUOTE 1
-# define DQUOTE 2
-# define ESC 4
+# define QUOTE 0x01
+# define DQUOTE 0x02
+# define ESC 0x04
 
 extern char	**g_env;
 
