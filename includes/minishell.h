@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 19:50:50 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 22:12:05 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		launch(char **args);
 ** BUILTIN COMMANDS
 */
 
-int		msh_exit(void);
+int		msh_exit(char **args);
 int		msh_pwd(void);
 int		msh_echo(char **args);
 int		msh_cd(char **args);

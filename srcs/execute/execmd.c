@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 19:48:23 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 21:02:55 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	execmd(char **args)
 	else if (!ft_strcmp(args[0], "env"))
 		return (msh_env());
 	else if (!ft_strcmp(args[0], "exit"))
-		return (msh_exit());
+		return (msh_exit(args));
 	else if (is_ultimate_question(args))
 		return (1);
 	return (launch(args));
