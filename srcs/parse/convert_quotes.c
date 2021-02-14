@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/13 15:59:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/14 15:16:33 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 char	*convert_quotes(char *str, char **new)
 {
 	char	*tmp;
-	char	*p_str;
+	char	*head;
 
-	p_str = str;
-	while (*p_str != '\'')
-		p_str++;
-	*p_str = '\0';
-	if (!(tmp = ft_strjoin(*new, str)))
+	head = str;
+	while (*str != '\'')
+		str++;
+	*str = '\0';
+	if (!(tmp = ft_strjoin(*new, head)))
 		return (NULL);
 	ft_free(*new);
 	*new = tmp;
-	return (p_str + 1);
+	return (str + 1);
 }
