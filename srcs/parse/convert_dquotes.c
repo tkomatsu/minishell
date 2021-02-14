@@ -6,13 +6,39 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/14 15:15:33 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/14 16:46:34 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*convert_dquotes(char *str, char **new)
+static int	is_special_char(char c)
+{
+	return (c == '$' || c == '`' || c == '\"' || c == '\\');
+}
+
+static char	*convert_escape(char *head, char **new)
+{
+	char	*tmp;
+	char	*ret;
+	int		i;
+
+	if (!(tmp = ft_calloc(ft_strlen(head) + 1, sizeof(char))))
+		return (NULL);
+	i = 0;
+	while (*head)
+	{
+		if (*head == '\\' && is_special_char(*(head + 1)))
+			head++;
+		tmp[i++] = *(head++);
+	}
+	if (!(ret = ft_strjoin(*new, tmp)))
+		return (NULL);
+	ft_free(tmp);
+	return (ret);
+}
+
+char		*convert_dquotes(char *str, char **new)
 {
 	char	*tmp;
 	char	*head;
@@ -34,7 +60,7 @@ char	*convert_dquotes(char *str, char **new)
 			flag = 0;
 	}
 	*str = '\0';
-	if (!(tmp = ft_strjoin(*new, head)))
+	if (!(tmp = convert_escape(head, new)))
 		return (NULL);
 	ft_free(*new);
 	*new = tmp;

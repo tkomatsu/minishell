@@ -6,16 +6,38 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/14 15:18:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/14 16:47:11 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*convert_words(char *str, char **new)
+static char	*convert_escape(char *str, char *head, char **new)
 {
 	char	*tmp;
-	char	*sub;
+	char	*ret;
+	int		i;
+	int		j;
+
+	if (!(tmp = ft_calloc(str - head + 1, sizeof(char))))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j < str - head)
+	{
+		if (head[j] == '\\')
+			j++;
+		tmp[i++] = head[j++];
+	}
+	if (!(ret = ft_strjoin(*new, tmp)))
+		return (NULL);
+	ft_free(tmp);
+	return (ret);
+}
+
+char		*convert_words(char *str, char **new)
+{
+	char	*tmp;
 	char	*head;
 	int		flag;
 
@@ -35,11 +57,8 @@ char	*convert_words(char *str, char **new)
 		else
 			flag = 0;
 	}
-	if (!(sub = ft_substr(head, 0, str - head)))
+	if (!(tmp = convert_escape(str, head, new)))
 		return (NULL);
-	if (!(tmp = ft_strjoin(*new, sub)))
-		return (NULL);
-	ft_free(sub);
 	ft_free(*new);
 	*new = tmp;
 	return (str);
