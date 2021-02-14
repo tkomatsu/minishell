@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/14 16:46:34 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:17:11 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_special_char(char c)
 {
-	return (c == '$' || c == '`' || c == '\"' || c == '\\');
+	return (c == '$' || c == '`' || c == '\"' || c == '\\' || c == '\n');
 }
 
 static char	*convert_escape(char *head, char **new)
