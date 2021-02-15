@@ -6,25 +6,40 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 19:54:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 03:42:45 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	export_list()
+static void	export_list(void)
 {
-	int	i;
+	int		i;
+	char	*item;
 
 	i = 0;
-	while (g_env[i])
+	while ((item = g_env[i++]))
 	{
 		ft_putstr_fd("declare -x ", 1);
-		ft_putendl_fd(g_env[i++], 1);
+		while (*item && *item != '=')
+			ft_putchar_fd(*(item++), 1);
+		if (!*item)
+		{
+			ft_putchar_fd('\n', 1);
+			return ;
+		}
+		ft_putstr_fd("=\"", 1);
+		while (*item)
+		{
+			if (*item == '$' || *item == '`' || *item == '\\' || *item == '"')
+				ft_putchar_fd('\\', 1);
+			ft_putchar_fd(*(item++), 1);
+		}
+		ft_putstr_fd("\"\n", 1);
 	}
 }
 
-int	msh_export(char **args)
+int			msh_export(char **args)
 {
 	int	i;
 

@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 13:40:50 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 03:30:24 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	_overwrite(const char *name, const char *value, int index)
+static int	overwrite(const char *name, const char *value, int index)
 {
 	char	*new;
 	char	*tmp;
@@ -25,7 +25,7 @@ static int	_overwrite(const char *name, const char *value, int index)
 	return (0);
 }
 
-static int	_reset(const char *name, const char *value, int len)
+static int	reset(const char *name, const char *value, int len)
 {
 	char	**new_env;
 	int		i;
@@ -42,14 +42,19 @@ static int	_reset(const char *name, const char *value, int len)
 	}
 	ft_free(g_env);
 	g_env = new_env;
-	tmp = ft_strjoin(name, "=");
-	new = ft_strjoin(tmp, value);
-	ft_free(tmp);
+	if (value)
+	{
+		tmp = ft_strjoin(name, "=");
+		new = ft_strjoin(tmp, value);
+		ft_free(tmp);
+	}
+	else
+		new = ft_strdup(name);
 	g_env[i] = new;
 	return (0);
 }
 
-int			ft_setenv(const char *name, const char *value, int overwrite)
+int			ft_setenv(const char *name, const char *value, int is_overwrite)
 {
 	int			i;
 	int			namelen;
@@ -64,12 +69,12 @@ int			ft_setenv(const char *name, const char *value, int overwrite)
 	{
 		if (!ft_strncmp(name, g_env[i], namelen))
 		{
-			if (overwrite)
-				return (_overwrite(name, value, i));
+			if (is_overwrite)
+				return (overwrite(name, value, i));
 			else
 				return (0);
 		}
 		i++;
 	}
-	return (_reset(name, value, i));
+	return (reset(name, value, i));
 }
