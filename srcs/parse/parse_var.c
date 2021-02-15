@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/14 15:20:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:47:27 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,25 @@ static char	*deploy_var(char *str, int len)
 	return (ret);
 }
 
-char		*parse_var(char *str, char **head, char **new)
+char		*parse_var(char *str, char *new, char **head, char **ptr)
 {
 	char	*tmp;
 	char	*var;
 	int		len;
 
-	if (!(tmp = ft_strjoin(*new, *head)))
+	if (!(tmp = ft_strjoin(new, *head)))
 		return (NULL);
-	ft_free(*new);
-	*new = tmp;
+	ft_free(new);
+	new = tmp;
 	len = get_varlen(str);
 	if (!(var = deploy_var(str, len)))
 		return (NULL);
-	if (!(tmp = ft_strjoin(*new, var)))
+	if (!(tmp = ft_strjoin(new, var)))
 		return (NULL);
 	ft_free(var);
-	ft_free(*new);
-	*new = tmp;
+	ft_free(new);
+	new = tmp;
 	*head = str + len;
-	return (str + len - 1);
+	*ptr = str + len - 1;
+	return (new);
 }

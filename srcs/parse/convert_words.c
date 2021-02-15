@@ -6,50 +6,52 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/14 16:47:11 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:04:11 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*convert_escape(char *str, char *head, char **new)
+static char	*convert_escape(char *new, char *str)
 {
-	char	*tmp;
 	char	*ret;
+	char	*tmp;
 	int		i;
-	int		j;
 
-	if (!(tmp = ft_calloc(str - head + 1, sizeof(char))))
+	if (!str || !(tmp = ft_strjoin(new, str)))
+		return (NULL);
+	ft_free(new);
+	ft_free(str);
+	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (j < str - head)
+	new = tmp;
+	while (*tmp)
 	{
-		if (head[j] == '\\')
-			j++;
-		tmp[i++] = head[j++];
+		if (*tmp == '\\')
+			tmp++;
+		ret[i++] = *(tmp++);
 	}
-	if (!(ret = ft_strjoin(*new, tmp)))
-		return (NULL);
-	ft_free(tmp);
+	ft_free(new);
 	return (ret);
 }
 
-char		*convert_words(char *str, char **new)
+char		*convert_words(char *str, char **ptr)
 {
-	char	*tmp;
+	char	*new;
 	char	*head;
 	int		flag;
 
-	flag = 0;
+	new = NULL;
 	head = str;
+	flag = 0;
 	while (!(*str == '\'' || *str == '\"' || *str == '\0')
 			|| ((*str == '\'' || *str == '\"') && (flag & ESC)))
 	{
 		if (*str == '$' && !(flag & ESC))
 		{
 			*str = '\0';
-			if (!(str = parse_var(str + 1, &head, new)))
+			if (!(new = parse_var(str + 1, new, &head, &str)))
 				return (NULL);
 		}
 		if (*(str++) == '\\')
@@ -57,9 +59,8 @@ char		*convert_words(char *str, char **new)
 		else
 			flag = 0;
 	}
-	if (!(tmp = convert_escape(str, head, new)))
+	if (!(new = convert_escape(new, ft_substr(head, 0, str - head))))
 		return (NULL);
-	ft_free(*new);
-	*new = tmp;
-	return (str);
+	*ptr = str;
+	return (new);
 }
