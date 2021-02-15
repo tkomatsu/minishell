@@ -60,8 +60,11 @@ t_token	*split_tokens(char *line);
 ** PARSE
 */
 
+int	parse_pipe(void *content);
+int	ft_lstiter_sta(t_list *lst, int (*f)(void *));
 int		parse_exec(t_token *tokens);
 char	*parse_tokens(t_token *tokens);
+char	**convert_lst_to_args(t_token *tokens);
 void	convert_esc(char **args);
 char	*convert_quotes(char *str, char **new);
 char	*convert_dquotes(char *str, char **new);

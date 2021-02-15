@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 14:24:40 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 20:52:00 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,10 @@ static t_list	*tokens_sep(t_token *tokens, int type)
 	return (list);
 }
 
-static char		**convert_lst_to_args(t_token *tokens)
-{
-	char	**args;
-	int		i;
-
-	/* redirect */
-	if (!(args = ft_calloc(token_size(tokens) + 1, sizeof(char*))))
-		return (NULL);
-	i = 0;
-	while (tokens)
-	{
-		if (!(tokens->word = parse_tokens(tokens)))
-			return (NULL);
-		if (*(tokens->word))
-			args[i++] = tokens->word;
-		tokens = tokens->next;
-	}
-	return (args);
-}
-
 int				parse_exec(t_token *tokens)
 {
 	t_list	*list_s;
 	t_list	*list_p;
-	char	**args;
 	int		status;
 
 	status = 1;
@@ -64,15 +43,19 @@ int				parse_exec(t_token *tokens)
 	while (list_s)
 	{
 		list_p = tokens_sep((t_token*)list_s->content, PIPE);
+		/*
 		while (list_p)
 		{
-			/* fork() */
+			//fork()
 			args = convert_lst_to_args((t_token*)list_p->content);
 			status = execmd(args);
 			ft_free(args);
 			list_p = list_p->next;
 		}
 		ft_lstclear(&list_p, ft_free);
+		*/
+		if (!(status = ft_lstiter_sta(list_p, parse_pipe)))
+			return (status);
 		list_s = list_s->next;
 	}
 	ft_lstclear(&list_s, ft_free);

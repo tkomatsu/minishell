@@ -53,12 +53,14 @@ READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = convert_esc.c \
-			  parse_exec.c \
-			  parse_tokens.c \
-			  convert_quotes.c \
+PARSE_FILES = connect_pipe.c \
 			  convert_dquotes.c \
-			  convert_words.c
+			  convert_esc.c \
+			  convert_quotes.c \
+			  convert_words.c \
+			  list_to_args.c \
+			  parse_exec.c \
+			  parse_tokens.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 
