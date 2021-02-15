@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/12 22:03:30 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 03:27:10 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ static int	is_bad_quote(char *line)
 	flag = 0;
 	while (*line)
 	{
-		if ( *line == '\'' && !flag)
+		if (*line == '\'' && !flag)
 			flag ^= QUOTE;
-		else if (*line == '\"' &&  !flag)
+		else if (*line == '"' && !flag)
 			flag ^= DQUOTE;
 		else if ((*line == '\'' && (flag & QUOTE)) ||
-					(*line == '\"' && (flag & DQUOTE) && !(flag & ESC)))
+					(*line == '"' && (flag & DQUOTE) && !(flag & ESC)))
 			flag = 0;
 		if (*line == '\\')
 			flag ^= ESC;
