@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 13:36:18 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:56:40 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,25 @@ void	ft_envcpy(void)
 	extern char	**environ;
 	int			i;
 	int			envlen;
-	int			shlvl;
+	static int	shlvl = 1;
 
 	envlen = 0;
 	while (environ[envlen])
 		envlen++;
 	if (!(g_env = ft_calloc(envlen + 1, sizeof(char*))))
-	{
-		perror("envcpy");
-		exit(1);
-	}
+		exit_perror("envcpy", 1);
 	i = 0;
 	while (environ[i])
 	{
 		if (!(g_env[i] = ft_strdup(environ[i])))
-		{
-			perror("envcpy");
-			exit(1);
-		}
+			exit_perror("envcpy", 1);
 		i++;
 	}
-	shlvl = ft_atoi(ft_getenv("SHLVL")) + 1;
+	if (ft_getenv("SHLVL"))
+		shlvl = ft_atoi(ft_getenv("SHLVL")) + 1;
 	ft_setenv("SHLVL", ft_itoa(shlvl), 1);
+	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	ft_setenv("OLDPWD", NULL, 1);
 }
 
 void	minish_loop(void)

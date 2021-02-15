@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/15 20:51:47 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/15 22:56:04 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 
 UTIL_DIR = utils/
 UTIL_FILES = clear_tokens.c \
+			 exit_perror.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
