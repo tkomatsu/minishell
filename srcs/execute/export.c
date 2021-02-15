@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 03:42:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 04:49:04 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ static void	export_list(void)
 		ft_putstr_fd("declare -x ", 1);
 		while (*item && *item != '=')
 			ft_putchar_fd(*(item++), 1);
-		if (!*item)
+		if (*(item++) == '=')
+			ft_putstr_fd("=\"", 1);
+		else
 		{
 			ft_putchar_fd('\n', 1);
 			return ;
 		}
-		ft_putstr_fd("=\"", 1);
 		while (*item)
 		{
 			if (*item == '$' || *item == '`' || *item == '\\' || *item == '"')
