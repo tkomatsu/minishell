@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 22:01:11 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 03:58:27 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		msh_unset(char **args);
 */
 
 void	clear_tokens(t_token **tokens);
+void	exit_perror(char *err_msg, int exit_status);
 int		token_size(t_token *tokens);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
