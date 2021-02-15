@@ -6,20 +6,22 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/13 00:35:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:21:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*parse_words(char *str)
+char	*parse_tokens(t_token *tokens)
 {
 	int		flag;
 	char	*new;
+	char	*str;
 
 	flag = 0;
 	new = ft_strdup("");
-	while(*str)
+	str = tokens->word;
+	while (*str)
 	{
 		if (*str == '\'' && !flag)
 			str = convert_quotes(str + 1, &new);
@@ -34,14 +36,6 @@ static char	*parse_words(char *str)
 		else
 			flag = 0;
 	}
-	return (new);
-}
-
-void		parse_tokens(t_token *tokens)
-{
-	char	*tmp;
-
-	tmp = parse_words(tokens->word);
 	ft_free(tokens->word);
-	tokens->word = tmp;
+	return (new);
 }

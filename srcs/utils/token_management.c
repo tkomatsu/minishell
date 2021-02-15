@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 11:59:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:35:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_token	*dlistnew(char *src, int sep)
 {
 	t_token	*new;
 
-	new = ft_calloc(sizeof(t_token), 1);
+	new = ft_calloc(1, sizeof(t_token));
 	new->word = src;
 	new->type = sep;
 	new->prev = NULL;

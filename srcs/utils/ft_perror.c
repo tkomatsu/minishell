@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/12 00:03:08 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:35:51 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*ft_strerror(void)
 {
 	char *str;
 
-	if (!(str = ft_calloc(sizeof(char*), 100)))
+	if (!(str = ft_calloc(100, sizeof(char*))))
 		return (NULL);
 	if (errno == 200)
 		ft_strlcpy(str, "minishell error", 100);

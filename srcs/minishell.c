@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/12 00:54:13 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/13 13:36:18 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_envcpy(void)
 	envlen = 0;
 	while (environ[envlen])
 		envlen++;
-	if (!(g_env = ft_calloc(sizeof(char*), envlen + 1)))
+	if (!(g_env = ft_calloc(envlen + 1, sizeof(char*))))
 	{
 		perror("envcpy");
 		exit(1);
