@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/15 19:25:51 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:25:10 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*strjoin_free(char *new, char *str, int type)
 	return (ret);
 }
 
-char	*parse_tokens(t_token *tokens)
+char		*parse_tokens(t_token *tokens)
 {
 	int		flag;
 	char	*new;

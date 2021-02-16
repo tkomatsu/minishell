@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 13:35:32 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:28:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 t_token	*dlistnew(char *src, int sep)
 {
@@ -24,7 +24,7 @@ t_token	*dlistnew(char *src, int sep)
 	return (new);
 }
 
-t_token *dlisthead(t_token *tokens)
+t_token	*dlisthead(t_token *tokens)
 {
 	if (!tokens)
 		return (NULL);
