@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/14 04:01:01 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:18:15 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ int			launch(char **args)
 	else
 	{
 		if (wait(&status) < 0)
-		{
-			perror("wait");
-			exit(1);
-		}
+			exit_perror("wait", 1);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);
 	}

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/09 14:32:12 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:26:34 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_metachar(char c)
 	return (0);
 }
 
-int		get_index(char *line, int start)
+int			get_index(char *line, int start)
 {
 	int	len;
 
@@ -55,13 +55,13 @@ int		get_index(char *line, int start)
 				len++;
 		}
 		if (!line[len] || is_metachar(line[len]))
-			break;
+			break ;
 		len++;
 	}
 	return (len - start);
 }
 
-t_token	*split_tokens(char *line)
+t_token		*split_tokens(char *line)
 {
 	t_token	*tokens;
 	int		i;
@@ -72,7 +72,10 @@ t_token	*split_tokens(char *line)
 	while (line[i])
 	{
 		len = get_index(line, i);
-		dlist_add_back(&tokens, dlistnew(ft_substr(line, i, len), is_metachar(line[i + len])));
+		dlist_add_back(
+			&tokens,
+			dlistnew(ft_substr(line, i, len),
+			is_metachar(line[i + len])));
 		i = i + len + 1;
 	}
 	return (tokens);

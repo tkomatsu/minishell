@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 20:26:03 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:30:32 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	_unsetenv(const char *name, int namelen)
+static int	delete_env(const char *name, int namelen)
 {
 	int		envlen;
 	int		i;
@@ -58,7 +58,7 @@ int			ft_unsetenv(const char *name)
 	while (g_env[i])
 	{
 		if (!ft_strncmp(name, g_env[i], namelen))
-			return (_unsetenv(name, namelen));
+			return (delete_env(name, namelen));
 		i++;
 	}
 	return (0);

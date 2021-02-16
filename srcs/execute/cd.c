@@ -6,13 +6,24 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 19:49:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:49:50 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	msh_cd(char	**args)
+static void	change_dir(char *dir)
+{
+	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
+	if (chdir(dir) < 0)
+	{
+		g_status = EXIT_FAILURE;
+		ft_perror("cd");
+	}
+	ft_setenv("PWD", getcwd(NULL, 0), 1);
+}
+
+int			msh_cd(char **args)
 {
 	char	*dir;
 
@@ -34,12 +45,6 @@ int	msh_cd(char	**args)
 	}
 	else
 		dir = args[1];
-	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-	if (chdir(dir) < 0)
-	{
-		g_status = EXIT_FAILURE;
-		ft_perror("cd");
-	}
-	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	change_dir(dir);
 	return (1);
 }

@@ -6,27 +6,19 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/11 08:23:17 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:33:46 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	putformat(char c)
+static void	putdir(char c)
 {
 	char	*home;
 	char	*cwd;
 	int		len;
 
-	if (c == 'a')
-		ft_putchar_fd('\a', 2);
-	else if (c == 'n')
-		ft_putchar_fd('\n', 2);
-	else if (c == 's')
-		ft_putstr_fd("minishell", 2);
-	else if (c == 'u')
-		ft_putstr_fd(ft_getenv("USER"), 2);
-	else if (c == 'w')
+	if (c == 'w')
 	{
 		home = ft_getenv("HOME");
 		cwd = ft_getenv("PWD");
@@ -39,6 +31,20 @@ static void	putformat(char c)
 			ft_putstr_fd(cwd + len, 2);
 		}
 	}
+}
+
+static void	putformat(char c)
+{
+	if (c == 'a')
+		ft_putchar_fd('\a', 2);
+	else if (c == 'n')
+		ft_putchar_fd('\n', 2);
+	else if (c == 's')
+		ft_putstr_fd("minishell", 2);
+	else if (c == 'u')
+		ft_putstr_fd(ft_getenv("USER"), 2);
+	else if (c == 'w')
+		putdir(c);
 	else if (c == '\\')
 		ft_putchar_fd('\\', 2);
 	else
@@ -48,7 +54,7 @@ static void	putformat(char c)
 	}
 }
 
-void	put_prompt(void)
+void		put_prompt(void)
 {
 	char	*format;
 
