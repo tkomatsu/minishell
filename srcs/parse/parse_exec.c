@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 14:00:02 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:19:54 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,6 @@ int				parse_exec(t_token *tokens)
 	while (list_s)
 	{
 		list_p = tokens_sep((t_token*)list_s->content, PIPE);
-		/*
-		while (list_p)
-		{
-			//fork()
-			args = convert_lst_to_args((t_token*)list_p->content);
-			status = execmd(args);
-			ft_free(args);
-			list_p = list_p->next;
-		}
-		*/
 		if (!(status = ft_lstiter_sta(list_p, parse_pipe)))
 			return (status);
 		ft_lstclear(&list_p, NULL);

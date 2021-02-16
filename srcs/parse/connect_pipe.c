@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 16:46:15 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:16:15 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ int	ft_lstiter_sta(t_list *lst, int (*f)(void *))
 	if (ft_lstsize(lst) > 1)
 	{
 		if (pipe(pipe_fd) < 0)
-		{
-			ft_perror("pipe");
-			exit(1);
-		}
+			exit_perror("pipe", 1);
 		head = lst;
 		while (lst)
 		{
@@ -53,10 +50,7 @@ int	ft_lstiter_sta(t_list *lst, int (*f)(void *))
 			else // parent
 			{
 				if (wait(&status) < 0)
-				{
-					ft_perror("wait");
-					exit(1);
-				}
+					exit_perror("wait", 1);
 			}
 			lst = lst->next;
 		}
