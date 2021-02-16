@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 04:49:04 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/16 13:50:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	export_list(void)
 		else
 		{
 			ft_putchar_fd('\n', 1);
-			return ;
+			continue ;
 		}
 		while (*item)
 		{
