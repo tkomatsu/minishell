@@ -6,32 +6,65 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/12 21:18:28 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:02:42 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*convert_dquotes(char *str, char **new)
+static int	is_special_char(char c)
 {
-	char	*tmp;
-	int		flag;
-	int		len;
+	return (c == '$' || c == '`' || c == '\"' || c == '\\' || c == '\n');
+}
 
-	flag = 0;
-	len = 0;
-	while (str[len] != '\"' || (str[len] == '\"' && (flag & ESC)))
+static char	*convert_escape(char *new, char *head)
+{
+	char	*ret;
+	char	*tmp;
+	int		i;
+
+	if (!(tmp = ft_strjoin(new, head)))
+		return (NULL);
+	ft_free(new);
+	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
+		return (NULL);
+	i = 0;
+	new = tmp;
+	while (*tmp)
 	{
-		if (str[len] == '\\')
+		if (*tmp == '\\' && is_special_char(*(tmp + 1)))
+			tmp++;
+		ret[i++] = *(tmp++);
+	}
+	ft_free(new);
+	return (ret);
+}
+
+char		*convert_dquotes(char *str, char **ptr)
+{
+	char	*new;
+	char	*head;
+	int		flag;
+
+	new = NULL;
+	head = str;
+	flag = 0;
+	while (*str != '\"' || (*str == '\"' && (flag & ESC)))
+	{
+		if (*str == '$' && !(flag & ESC))
+		{
+			*str = '\0';
+			if (!(new = parse_var(str + 1, new, &head, &str)))
+				return (NULL);
+		}
+		if (*(str++) == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
-		len++;
 	}
-	str[len] = '\0';
-	if (!(tmp = ft_strjoin(*new, str)))
+	*str = '\0';
+	if (!(new = convert_escape(new, head)))
 		return (NULL);
-	ft_free(*new);
-	*new = tmp;
-	return (str + len + 1);
+	*ptr = str + 1;
+	return (new);
 }

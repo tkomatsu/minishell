@@ -6,13 +6,14 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 22:56:40 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 03:58:53 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 char	**g_env;
+int		g_status;
 
 void	test_tokens(t_token *tokens)
 {
@@ -74,8 +75,9 @@ void	minish_loop(void)
 int		main(void)
 {
 	ft_envcpy();
+	g_status = EXIT_SUCCESS;
 	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 2);
 	minish_loop();
 	ft_free_split(g_env);
-	return (EXIT_SUCCESS);
+	return ((unsigned char)g_status);
 }

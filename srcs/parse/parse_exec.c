@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 20:52:00 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:00:02 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int				parse_exec(t_token *tokens)
 			ft_free(args);
 			list_p = list_p->next;
 		}
-		ft_lstclear(&list_p, ft_free);
 		*/
 		if (!(status = ft_lstiter_sta(list_p, parse_pipe)))
 			return (status);
+		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;
 	}
-	ft_lstclear(&list_s, ft_free);
+	ft_lstclear(&list_s, NULL);
 	return (status);
 }

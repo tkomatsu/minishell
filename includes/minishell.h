@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 22:55:32 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/16 04:41:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ESC 0x04
 
 extern char	**g_env;
+extern int	g_status;
 
 /*
 ** READ
@@ -60,15 +61,16 @@ t_token	*split_tokens(char *line);
 ** PARSE
 */
 
-int	parse_pipe(void *content);
-int	ft_lstiter_sta(t_list *lst, int (*f)(void *));
+int		parse_pipe(void *content);
+int		ft_lstiter_sta(t_list *lst, int (*f)(void *));
 int		parse_exec(t_token *tokens);
 char	*parse_tokens(t_token *tokens);
+char	*parse_var(char *str, char *new, char **head, char **ptr);
 char	**convert_lst_to_args(t_token *tokens);
 void	convert_esc(char **args);
-char	*convert_quotes(char *str, char **new);
-char	*convert_dquotes(char *str, char **new);
-char	*convert_words(char *str, char **new);
+char	*convert_quotes(char *str, char **ptr);
+char	*convert_dquotes(char *str, char **ptr);
+char	*convert_words(char *str, char **ptr);
 
 /*
 ** EXECUTE
@@ -81,7 +83,7 @@ int		launch(char **args);
 ** BUILTIN COMMANDS
 */
 
-int		msh_exit(void);
+int		msh_exit(char **args);
 int		msh_pwd(void);
 int		msh_echo(char **args);
 int		msh_cd(char **args);

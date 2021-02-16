@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 10:21:17 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/14 04:01:01 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_exist(char *path, char *cmd)
+static int	is_exist(char *path, char *cmd)
 {
 	DIR				*dir;
 	struct dirent	*dent;
@@ -25,7 +25,7 @@ int		is_exist(char *path, char *cmd)
 	return (0);
 }
 
-char	*exec_path(char *cmd)
+static char	*exec_path(char *cmd)
 {
 	char	*ret;
 	char	**path;
@@ -49,26 +49,30 @@ char	*exec_path(char *cmd)
 	return (NULL);
 }
 
-int	launch(char **args)
+static void	exec_launch(char **args)
 {
-	pid_t		pid;
-	int			status;
-	char		*cmd_path;
+	char	*cmd_path;
+
+	if ((cmd_path = exec_path(args[0])))
+		args[0] = cmd_path;
+	if (execve(args[0], args, g_env) == -1)
+	{
+		errno = 201;
+		ft_putstr_fd("minish: ", 2);
+		ft_perror(args[0]);
+	}
+	ft_free(cmd_path);
+	exit(1);
+}
+
+int			launch(char **args)
+{
+	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (!pid)
-	{
-		if ((cmd_path = exec_path(args[0])))
-			args[0] = cmd_path;
-		if (execve(args[0], args, g_env) == -1)
-		{
-			errno = 201;
-			ft_putstr_fd("minish: ", 2);
-			ft_perror(args[0]);
-		}
-		ft_free(cmd_path);
-		exit(1);
-	}
+		exec_launch(args);
 	else if (pid < 0)
 		perror("fork");
 	else
@@ -78,6 +82,8 @@ int	launch(char **args)
 			perror("wait");
 			exit(1);
 		}
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
 	}
 	return (1);
 }

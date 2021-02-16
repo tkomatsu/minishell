@@ -6,36 +6,61 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/12 21:53:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:04:11 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*convert_words(char *str, char **new)
+static char	*convert_escape(char *new, char *str)
 {
+	char	*ret;
 	char	*tmp;
-	char	*sub;
-	int		flag;
-	int		len;
+	int		i;
 
-	flag = 0;
-	len = 0;
-	while (!(str[len] == '\'' || str[len] == '\"' || str[len] == '\0')
-			|| ((str[len] == '\'' || str[len] == '\"') && (flag & ESC)))
+	if (!str || !(tmp = ft_strjoin(new, str)))
+		return (NULL);
+	ft_free(new);
+	ft_free(str);
+	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
+		return (NULL);
+	i = 0;
+	new = tmp;
+	while (*tmp)
 	{
-		if (str[len] == '\\')
+		if (*tmp == '\\')
+			tmp++;
+		ret[i++] = *(tmp++);
+	}
+	ft_free(new);
+	return (ret);
+}
+
+char		*convert_words(char *str, char **ptr)
+{
+	char	*new;
+	char	*head;
+	int		flag;
+
+	new = NULL;
+	head = str;
+	flag = 0;
+	while (!(*str == '\'' || *str == '\"' || *str == '\0')
+			|| ((*str == '\'' || *str == '\"') && (flag & ESC)))
+	{
+		if (*str == '$' && !(flag & ESC))
+		{
+			*str = '\0';
+			if (!(new = parse_var(str + 1, new, &head, &str)))
+				return (NULL);
+		}
+		if (*(str++) == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
-		len++;
 	}
-	if (!(sub = ft_substr(str, 0, len)))
+	if (!(new = convert_escape(new, ft_substr(head, 0, str - head))))
 		return (NULL);
-	if (!(tmp = ft_strjoin(*new, sub)))
-		return (NULL);
-	ft_free(*new);
-	ft_free(sub);
-	*new = tmp;
-	return (str + len);
+	*ptr = str;
+	return (new);
 }
