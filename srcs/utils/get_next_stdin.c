@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 09:58:38 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 02:20:00 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/17 02:28:19 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
 static int	gnl_memerr(char **s1, char **s2, int flag)
 {
@@ -60,13 +60,7 @@ static int	gnl_return(int fd, char **line, char **buf)
 	}
 }
 
-static int	gnl_empty(char **line)
-{
-	*line = ft_strdup("");
-	return (0);
-}
-
-int			get_next_line(int fd, char **line)
+int			get_next_stdin(int fd, char **line)
 {
 	static char *buf[STATIC_MAX];
 	char		*rdbuf;
@@ -76,7 +70,7 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	if (!(rdbuf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
-	while ((rdno = read(fd, rdbuf, BUFFER_SIZE)) > 0)
+	while ((rdno = read(fd, rdbuf, BUFFER_SIZE)) >= 0)
 	{
 		rdbuf[rdno] = 0;
 		if (gnl_rewrite(&buf[fd], &rdbuf) < 0)
@@ -86,11 +80,11 @@ int			get_next_line(int fd, char **line)
 			free(rdbuf);
 			return (gnl_return(fd, line, buf));
 		}
+		if (!rdno && !*buf[fd])
+			break ;
 	}
 	free(rdbuf);
 	if (rdno < 0)
 		return (-1);
-	if (!buf[fd])
-		return (gnl_empty(line));
 	return (gnl_return(fd, line, buf));
 }

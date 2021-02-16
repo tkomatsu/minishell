@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/17 01:52:48 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/17 01:55:59 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ UTIL_FILES = clear_tokens.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
+			 get_next_stdin.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
