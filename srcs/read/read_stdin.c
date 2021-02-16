@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 02:29:50 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/17 02:56:33 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			read_stdin(char **line)
 	if (!ret)
 	{
 		ft_putendl_fd("exit", 1);
-		exit(1);
+		exit(0);
 	}
 	if (is_bad_quote(*line))
 	{
