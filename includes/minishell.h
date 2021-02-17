@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 01:56:27 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:23:57 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_token	*dlistlast(t_token *tokens);
 void	dlist_add_back(t_token **list, t_token *new);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
-int		get_next_stdin(int fd, char **line);
+int		get_next_input(int fd, char **line);
 
 /*
 ** EASTER EGG

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_stdin.c                                   :+:      :+:    :+:   */
+/*   get_next_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 09:58:38 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 02:28:19 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:24:37 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	gnl_return(int fd, char **line, char **buf)
 	}
 }
 
-int			get_next_stdin(int fd, char **line)
+int			get_next_input(int fd, char **line)
 {
 	static char *buf[STATIC_MAX];
 	char		*rdbuf;

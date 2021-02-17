@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 02:56:33 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:24:55 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			read_stdin(char **line)
 {
 	int	ret;
 
-	if ((ret = get_next_stdin(0, line)) < 0)
+	if ((ret = get_next_input(0, line)) < 0)
 	{
 		ft_perror("get_next_line");
 		exit(1);
