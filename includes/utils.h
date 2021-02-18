@@ -23,20 +23,20 @@
 # include <unistd.h>
 
 void	clear_tokens(t_token **tokens);
+t_token	*dlistnew(char *src, int sep);
+t_token	*dlisthead(t_token *tokens);
+t_token	*dlistlast(t_token *tokens);
+void	dlist_add_back(t_token **list, t_token *new);
 void	exit_perror(char *err_msg, int exit_status);
-int		token_size(t_token *tokens);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
 int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
 void	put_prompt(void);
-t_token	*dlistnew(char *src, int sep);
-t_token	*dlisthead(t_token *tokens);
-t_token	*dlistlast(t_token *tokens);
-void	dlist_add_back(t_token **list, t_token *new);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
+int		token_size(t_token *tokens);
 int		get_next_input(int fd, char **line);
 
 #endif
