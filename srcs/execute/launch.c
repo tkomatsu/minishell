@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:18:15 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/17 01:55:16 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,24 @@ static void	exec_launch(char **args)
 
 int			launch(char **args)
 {
-	pid_t	pid;
 	int		status;
 
-	pid = fork();
-	if (!pid)
+	signal(SIGINT, signal_ignore);
+	signal(SIGQUIT, signal_ignore);
+	g_pid = fork();
+	if (!g_pid)
 		exec_launch(args);
-	else if (pid < 0)
+	else if (g_pid < 0)
 		perror("fork");
 	else
 	{
 		if (wait(&status) < 0)
 			exit_perror("wait", 1);
+		if (status == 2 || status == 3)
+			signal_handler(status);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);
+		g_pid = 0;
 	}
 	return (1);
 }
