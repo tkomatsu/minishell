@@ -43,8 +43,9 @@ int				parse_exec(t_token *tokens)
 	while (list_s)
 	{
 		list_p = tokens_sep((t_token*)list_s->content, PIPE);
-		if (!(status = ft_lstiter_sta(list_p, parse_pipe)))
-			return (status);
+		ft_lstiter(list_s, parse_tokens);
+		if (!(status = ft_lstiter_sta(list_p, run_cmd)))
+				return (status);
 		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;
 	}
