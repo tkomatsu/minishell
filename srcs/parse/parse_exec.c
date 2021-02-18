@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:19:54 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:01:45 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static t_list	*tokens_sep(t_token *tokens, int type)
 {
