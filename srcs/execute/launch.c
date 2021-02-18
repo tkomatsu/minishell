@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 01:49:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:53:27 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	exec_launch(char **args)
 		args[0] = cmd_path;
 	if (execve(args[0], args, g_env) == -1)
 	{
-		errno = 201;
+		errno = E_CMD;
 		ft_putstr_fd("minish: ", 2);
 		ft_perror(args[0]);
 	}

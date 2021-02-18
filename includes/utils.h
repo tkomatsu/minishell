@@ -6,13 +6,14 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 02:10:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:58:52 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
+# include "error.h"
 # include "libft.h"
 # include "minishell.h"
 # include "token.h"

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 21:12:08 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:57:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	exit_error(char **args, int len, int num)
 {
 	errno = num;
-	if (num == 204)
+	if (num == E_NUMERIC)
 	{
 		g_status = 255;
 		ft_putstr_fd("minish: exit: ", 2);
@@ -81,9 +81,9 @@ int			msh_exit(char **args)
 	while (args[len])
 	{
 		if (len == 1 && !is_numeric(args[len]))
-			return (exit_error(args, len, 204));
+			return (exit_error(args, len, E_NUMERIC));
 		else if (len >= 2)
-			return (exit_error(args, len, 205));
+			return (exit_error(args, len, E_ARGS));
 		len++;
 	}
 	if (len == 2)

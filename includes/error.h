@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.h                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 19:23:22 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 03:05:18 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/19 02:46:21 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 02:52:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READ_H
-# define READ_H
+#ifndef ERROR_H
+# define ERROR_H
 
-# include "error.h"
-# include "libft.h"
-# include "minishell.h"
-# include "utils.h"
-
-/*
-** FLAG: QUOTE:0b0001, DQUOTE:0b0010, ESC:0b0100
-*/
-
-# define QUOTE 0x01
-# define DQUOTE 0x02
-# define ESC 0x04
-
-int		read_stdin(char **line);
-t_token	*split_tokens(char *line);
+# define E_MINI 200
+# define E_CMD 201
+# define E_QUOTE 202
+# define E_VALID 203
+# define E_NUMERIC 204
+# define E_ARGS 205
 
 #endif

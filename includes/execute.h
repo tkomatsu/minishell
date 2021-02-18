@@ -14,6 +14,7 @@
 # define EXECUTE_H
 
 # include "easter.h"
+# include "error.h"
 # include "libft.h"
 # include "minishell.h"
 # include "utils.h"

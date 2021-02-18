@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 19:52:07 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 02:54:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			read_stdin(char **line)
 	}
 	if (is_bad_quote(*line))
 	{
-		errno = 202;
+		errno = E_QUOTE;
 		ft_putstr_fd("minish: ", 2);
 		ft_perror(*line);
 		return (1);

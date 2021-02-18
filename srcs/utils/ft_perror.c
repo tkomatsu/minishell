@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 19:48:25 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:06:40 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static char	*ft_strerror(void)
 
 	if (!(str = ft_calloc(100, sizeof(char*))))
 		return (NULL);
-	if (errno == 200)
+	if (errno == E_MINI)
 		ft_strlcpy(str, "minishell error", 100);
-	else if (errno == 201)
+	else if (errno == E_CMD)
 		ft_strlcpy(str, "command not found", 100);
-	else if (errno == 202)
+	else if (errno == E_QUOTE)
 		ft_strlcpy(str, "no closing quotation", 100);
-	else if (errno == 203)
+	else if (errno == E_VALID)
 		ft_strlcpy(str, "not a valid identifier", 100);
-	else if (errno == 204)
+	else if (errno == E_NUMERIC)
 		ft_strlcpy(str, "numeric argument required", 100);
-	else if (errno == 205)
+	else if (errno == E_ARGS)
 		ft_strlcpy(str, "too many arguments", 100);
 	else
 		ft_strlcpy(str, "undefine error", 100);
