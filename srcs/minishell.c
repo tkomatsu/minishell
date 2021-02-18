@@ -59,7 +59,7 @@ void	minish_loop(void)
 	char	*line;
 	t_token	*tokens;
 
-	status = 1;
+	status = STAY_LOOP;
 	while (status)
 	{
 		signal(SIGINT, signal_handler);
@@ -80,7 +80,7 @@ int		main(void)
 	ft_envcpy();
 	g_pid = 0;
 	g_status = EXIT_SUCCESS;
-	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 2);
+	ft_putendl_fd("\nWELCOME TO MINISHELL\n", STDERR);
 	minish_loop();
 	ft_free_split(g_env);
 	return ((unsigned char)g_status);

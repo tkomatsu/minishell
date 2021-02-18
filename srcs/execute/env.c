@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 21:11:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:41:44 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	msh_env(void)
 	while (g_env[i])
 	{
 		if (ft_strchr(g_env[i], '='))
-			ft_putendl_fd(g_env[i], 1);
+			ft_putendl_fd(g_env[i], STDOUT);
 		i++;
 	}
-	return (1);
+	return (STAY_LOOP);
 }

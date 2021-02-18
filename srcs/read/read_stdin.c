@@ -21,13 +21,13 @@ static void	add_next_line(char **line, int flag)
 	char	*tmp;
 
 	if (flag == QUOTE)
-		ft_putstr_fd("quote> ", 1);
+		ft_putstr_fd("quote> ", STDOUT);
 	else if (flag == DQUOTE)
-		ft_putstr_fd("dquote> ", 1);
+		ft_putstr_fd("dquote> ", STDOUT);
 	if ((ret = get_next_line(0, &tmp)) < 0)
 	{
 		ft_perror("get_next_line");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	put_nl = ft_strjoin("\n", tmp);
 	free(tmp);
@@ -68,17 +68,17 @@ int			read_stdin(char **line)
 	if ((ret = get_next_input(0, line)) < 0)
 	{
 		ft_perror("get_next_line");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	if (!ret)
 	{
-		ft_putendl_fd("exit", 1);
-		exit(0);
+		ft_putendl_fd("exit", STDOUT);
+		exit(EXIT_SUCCESS);
 	}
 	if (is_bad_quote(*line))
 	{
 		errno = E_QUOTE;
-		ft_putstr_fd("minish: ", 2);
+		ft_putstr_fd("minish: ", STDERR);
 		ft_perror(*line);
 		return (INVALID_INPUT);
 	}

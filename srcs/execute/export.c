@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 02:55:15 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:36:07 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ static void	export_list(void)
 	i = 0;
 	while ((item = g_env[i++]))
 	{
-		ft_putstr_fd("declare -x ", 1);
+		ft_putstr_fd("declare -x ", STDOUT);
 		while (*item && *item != '=')
-			ft_putchar_fd(*(item++), 1);
+			ft_putchar_fd(*(item++), STDOUT);
 		if (*(item++) == '=')
-			ft_putstr_fd("=\"", 1);
+			ft_putstr_fd("=\"", STDOUT);
 		else
 		{
-			ft_putchar_fd('\n', 1);
+			ft_putchar_fd('\n', STDOUT);
 			continue ;
 		}
 		while (*item)
 		{
 			if (*item == '$' || *item == '`' || *item == '\\' || *item == '"')
-				ft_putchar_fd('\\', 1);
-			ft_putchar_fd(*(item++), 1);
+				ft_putchar_fd('\\', STDOUT);
+			ft_putchar_fd(*(item++), STDOUT);
 		}
-		ft_putstr_fd("\"\n", 1);
+		ft_putstr_fd("\"\n", STDOUT);
 	}
 }
 
@@ -53,9 +53,9 @@ int			msh_export(char **args)
 		{
 			g_status = EXIT_FAILURE;
 			errno = E_VALID;
-			ft_putstr_fd("minish: export: `", 2);
-			ft_putstr_fd(args[i], 2);
-			ft_putstr_fd("'", 2);
+			ft_putstr_fd("minish: export: `", STDERR);
+			ft_putstr_fd(args[i], STDERR);
+			ft_putstr_fd("'", STDERR);
 			ft_perror("");
 		}
 		i++;

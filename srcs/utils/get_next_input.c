@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 09:58:38 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 01:50:05 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:32:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	gnl_return(int fd, char **line, char **buf)
 
 static int	is_eof_without_input(int rdno, char *buf)
 {
-	ft_putstr_fd("  \b\b", 1);
+	ft_putstr_fd("  \b\b", STDOUT);
 	if (!rdno && !*buf)
 		return (1);
 	return (0);
