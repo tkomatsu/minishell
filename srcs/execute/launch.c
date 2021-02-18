@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 01:55:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 18:25:21 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			launch(char **args)
 	{
 		if (wait(&status) < 0)
 			exit_perror("wait", 1);
-		if (status == 2 || status == 3)
+		if (status == SIGINT || status == SIGQUIT)
 			signal_handler(status);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);

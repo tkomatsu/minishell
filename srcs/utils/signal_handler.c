@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:24:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/17 01:51:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 18:49:06 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	sig_quit(int sig)
 
 void		signal_handler(int sig)
 {
-	if (sig == 2)
+	if (sig == SIGINT)
 		sig_int();
 	else
 		sig_quit(sig);
