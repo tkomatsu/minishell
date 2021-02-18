@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 01:09:09 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:12:08 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 static int	exit_error(char **args, int len, int num)
 {

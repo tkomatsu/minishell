@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 02:51:04 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:11:45 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 int	msh_env(void)
 {
