@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 02:54:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:28:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int			read_stdin(char **line)
 		errno = E_QUOTE;
 		ft_putstr_fd("minish: ", 2);
 		ft_perror(*line);
-		return (1);
+		return (INVALID_INPUT);
 	}
 	/*
 	while ((ret = is_bad_quote(*line)))
 		add_next_line(line, ret);
 	*/
-	return (0);
+	return (VALID_INPUT);
 }

@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 01:01:12 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:48:19 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	minish_loop(void)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt();
-		if (read_stdin(&line) == 1)
+		if (read_stdin(&line) == INVALID_INPUT)
 			continue;
 		tokens = split_tokens(line);
 		/* test_tokens(tokens); */
