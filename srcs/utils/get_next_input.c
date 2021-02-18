@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 09:58:38 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 18:35:00 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 01:50:05 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static int	gnl_memerr(char **s1, char **s2, int flag)
 {

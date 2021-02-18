@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:24:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 18:49:06 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 01:50:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static void	sig_int(void)
 {

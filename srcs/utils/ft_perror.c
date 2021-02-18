@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/14 03:10:50 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:48:25 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static char	*ft_strerror(void)
 {

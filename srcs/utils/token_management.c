@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:28:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:47:47 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 t_token	*dlistnew(char *src, int sep)
 {

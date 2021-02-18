@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 03:30:24 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:46:58 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static int	overwrite(const char *name, const char *value, int index)
 {

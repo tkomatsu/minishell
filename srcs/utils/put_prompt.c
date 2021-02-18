@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:33:46 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:47:27 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static void	putdir(char c)
 {
