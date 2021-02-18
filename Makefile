@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/17 12:23:32 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/18 18:41:55 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 PARSE_DIR = parse/
 PARSE_FILES = connect_pipe.c \
 			  convert_dquotes.c \
-			  convert_esc.c \
 			  convert_quotes.c \
 			  convert_words.c \
 			  list_to_args.c \
