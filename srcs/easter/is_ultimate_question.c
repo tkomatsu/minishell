@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 15:23:26 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:13:59 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "easter.h"
 
 int	is_ultimate_question(char **str)
 {
