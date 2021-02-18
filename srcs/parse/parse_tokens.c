@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/16 15:25:10 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:221:36 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ static char	*strjoin_free(char *new, char *str, int type)
 	return (ret);
 }
 
-char		*parse_tokens(t_token *tokens)
+void		parse_tokens(void *content)
 {
+	t_token	*tokens;
 	int		flag;
 	char	*new;
 	char	*str;
 
+	tokens = (t_token*)content;
 	flag = 0;
 	new = ft_strdup("");
 	str = tokens->word;
@@ -43,13 +45,11 @@ char		*parse_tokens(t_token *tokens)
 			new = strjoin_free(new, convert_dquotes(str + 1, &str), DQUOTE);
 		else
 			new = strjoin_free(new, convert_words(str, &str), 0);
-		if (!new)
-			return (NULL);
 		if (*str == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
 	}
 	ft_free(tokens->word);
-	return (new);
+	tokens->word = new;
 }

@@ -6,24 +6,24 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:16:15 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:55:333 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parse_pipe(void *content)
+int	run_cmd(void *content, int flag)
 {
 	char	**args;
 	int		status;
 
 	args = convert_lst_to_args((t_token *)content);
-	status = execmd(args);
+	status = execmd(args, flag);
 	ft_free(args);
 	return (status);
 }
 
-int	ft_lstiter_sta(t_list *lst, int (*f)(void *))
+int	ft_lstiter_sta(t_list *lst, int (*f)(void *, int))
 {
 	pid_t	pid;
 	int		status;
@@ -32,32 +32,27 @@ int	ft_lstiter_sta(t_list *lst, int (*f)(void *))
 
 	if (!lst || !f)
 		return (-1);
-	if (ft_lstsize(lst) > 1)
+	if (pipe(pipe_fd) < 0)
+		exit_perror("pipe", 1);
+	head = lst;
+	while (lst)
 	{
-		if (pipe(pipe_fd) < 0)
-			exit_perror("pipe", 1);
-		head = lst;
-		while (lst)
+		pid = fork();
+		if (pid < 0)
+			ft_perror("fork");
+		else if (!pid) // child
 		{
-			pid = fork();
-			if (pid < 0)
-				ft_perror("fork");
-			else if (!pid) // child
-			{
-				status = f(lst->content);
-				exit(1);
-			}
-			else // parent
-			{
-				if (wait(&status) < 0)
-					exit_perror("wait", 1);
-			}
-			lst = lst->next;
+			status = f(lst->content, 1);
+			exit(1);
 		}
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
+		else // parent
+		{
+			if (waitpid(pid, &status, WUNTRACED) < 0)
+				exit_perror("wait", 1);
+		}
+		lst = lst->next;
 	}
-	else
-		status = f(lst->content);
-	return (status);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	return (1);
 }

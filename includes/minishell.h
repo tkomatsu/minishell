@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 12:23:57 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:21:09 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ t_token	*split_tokens(char *line);
 ** PARSE
 */
 
-int		parse_pipe(void *content);
-int		ft_lstiter_sta(t_list *lst, int (*f)(void *));
+int		run_cmd(void *content, int flag);
+int		ft_lstiter_sta(t_list *lst, int (*f)(void *, int));
 int		parse_exec(t_token *tokens);
-char	*parse_tokens(t_token *tokens);
+void	parse_tokens(void *content);
 char	*parse_var(char *str, char *new, char **head, char **ptr);
 char	**convert_lst_to_args(t_token *tokens);
 void	convert_esc(char **args);
@@ -77,7 +77,7 @@ char	*convert_words(char *str, char **ptr);
 ** EXECUTE
 */
 
-int		execmd(char **args);
+int		execmd(char **args, int flag);
 int		launch(char **args);
 
 /*

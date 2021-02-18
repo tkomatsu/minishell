@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 01:55:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:11:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static char	*exec_path(char *cmd)
 	return (NULL);
 }
 
+/*
 static void	exec_launch(char **args)
 {
 	char	*cmd_path;
@@ -64,13 +65,15 @@ static void	exec_launch(char **args)
 	ft_free(cmd_path);
 	exit(1);
 }
+*/
 
 int			launch(char **args)
 {
-	int		status;
+//	int		status;
 
 	signal(SIGINT, signal_ignore);
 	signal(SIGQUIT, signal_ignore);
+	/*
 	g_pid = fork();
 	if (!g_pid)
 		exec_launch(args);
@@ -86,5 +89,18 @@ int			launch(char **args)
 			g_status = WEXITSTATUS(status);
 		g_pid = 0;
 	}
+	return (1);
+	*/
+	char	*cmd_path;
+
+	if ((cmd_path = exec_path(args[0])))
+		args[0] = cmd_path;
+	if (execve(args[0], args, g_env) == -1)
+	{
+		errno = 201;
+		ft_putstr_fd("minish: ", 2);
+		ft_perror(args[0]);
+	}
+	ft_free(cmd_path);
 	return (1);
 }

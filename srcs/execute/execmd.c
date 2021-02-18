@@ -6,32 +6,34 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 21:02:55 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:16:24 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execmd(char **args)
+int	execmd(char **args, int flag)
 {
 	g_status = EXIT_SUCCESS;
 	if (!args[0])
 		return (1);
-	else if (!ft_strcmp(args[0], "echo"))
+	else if (!ft_strcasecmp(args[0], "echo"))
 		return (msh_echo(args));
-	else if (!ft_strcmp(args[0], "cd"))
+	else if (!ft_strcasecmp(args[0], "cd"))
 		return (msh_cd(args));
-	else if (!ft_strcmp(args[0], "pwd"))
+	else if (!ft_strcasecmp(args[0], "pwd"))
 		return (msh_pwd());
-	else if (!ft_strcmp(args[0], "export"))
+	else if (!ft_strcasecmp(args[0], "export"))
 		return (msh_export(args));
-	else if (!ft_strcmp(args[0], "unset"))
+	else if (!ft_strcasecmp(args[0], "unset"))
 		return (msh_unset(args));
-	else if (!ft_strcmp(args[0], "env"))
+	else if (!ft_strcasecmp(args[0], "env"))
 		return (msh_env());
-	else if (!ft_strcmp(args[0], "exit"))
+	else if (!ft_strcasecmp(args[0], "exit"))
 		return (msh_exit(args));
 	else if (is_ultimate_question(args))
 		return (1);
-	return (launch(args));
+	if (flag)
+		return (launch(args));
+	return (-1);
 }
