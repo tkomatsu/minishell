@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 22:18:08 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 08:47:11 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static t_list	*tokens_sep(t_token *tokens, int type)
 
 static int		is_builtin(void *content)
 {
-	t_token	*token;
-	int		i;
-
-	const char *builtin[] = {
+	t_token		*token;
+	int			i;
+	const char	*builtin[] = {
 		"cd", "env", "exit", "export", "unset", "echo", "pwd", NULL};
+
 	token = content;
 	i = 0;
 	while (builtin[i])

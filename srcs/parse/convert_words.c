@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 20:51:15 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 00:24:56 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static char	*convert_escape(char *new, char *str)
 	char	*tmp;
 	int		i;
 
+	ret = NULL;
+	tmp = NULL;
 	if (!str || !(tmp = ft_strjoin(new, str)))
-		return (NULL);
+		exit_perror("convert_escape", EXIT_FAILURE);
 	ft_free(new);
 	ft_free(str);
 	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
-		return (NULL);
+		exit_perror("convert_escape", EXIT_FAILURE);
 	i = 0;
 	new = tmp;
 	while (*tmp)
@@ -51,16 +53,14 @@ char		*convert_words(char *str, char **ptr)
 		if (*str == '$' && !(flag & ESC))
 		{
 			*str = '\0';
-			if (!(new = expand_environ(str + 1, new, &head, &str)))
-				return (NULL);
+			new = expand_environ(str + 1, new, &head, &str);
 		}
 		if (*(str++) == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
 	}
-	if (!(new = convert_escape(new, ft_substr(head, 0, str - head))))
-		return (NULL);
+	new = convert_escape(new, ft_substr(head, 0, str - head));
 	*ptr = str;
 	return (new);
 }
