@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 14:28:41 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 14:31:22 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,9 @@ PARSE_DIR = parse/
 PARSE_FILES = convert_dquotes.c \
 			  convert_quotes.c \
 			  convert_words.c \
+			  exp_environ.c \
 			  exp_word.c \
 			  parse_exec.c \
-			  parse_var.c \
 			  run_cmd.c \
 			  run_pipeline.c \
 			  token_to_args.c
