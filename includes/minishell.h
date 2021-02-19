@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 11:06:29 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:28:49 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	s_token
 # define LESS 9
 
 int		read_stdin(char **line);
-t_token	*split_tokens(char *line);
+t_token	*tokenize(char *line);
 
 /*
 ** PARSE

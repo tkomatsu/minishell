@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_tokens.c                                     :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 09:24:43 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:28:31 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	tokenlen(char *line, int start)
 	return (end - start);
 }
 
-t_token		*split_tokens(char *line)
+t_token		*tokenize(char *line)
 {
 	t_token	*tokens;
 	int		i;
