@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 11:33:16 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 12:10:31 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ PARSE_FILES = connect_pipe.c \
 			  exp_word.c \
 			  parse_exec.c \
 			  parse_var.c \
+			  run_cmd.c \
 			  token_to_args.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
