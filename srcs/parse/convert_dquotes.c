@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 20:50:19 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:57:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static char	*convert_escape(char *new, char *head)
 	int		i;
 
 	if (!(tmp = ft_strjoin(new, head)))
-		return (NULL);
+		exit_perror("convert_escape", EXIT_FAILURE);
 	ft_free(new);
 	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
-		return (NULL);
+		exit_perror("convert_escape", EXIT_FAILURE);
 	i = 0;
 	new = tmp;
 	while (*tmp)
@@ -54,8 +54,7 @@ char		*convert_dquotes(char *str, char **ptr)
 		if (*str == '$' && !(flag & ESC))
 		{
 			*str = '\0';
-			if (!(new = expand_environ(str + 1, new, &head, &str)))
-				return (NULL);
+			new = expand_environ(str + 1, new, &head, &str);
 		}
 		if (*(str++) == '\\')
 			flag ^= ESC;
@@ -63,8 +62,7 @@ char		*convert_dquotes(char *str, char **ptr)
 			flag = 0;
 	}
 	*str = '\0';
-	if (!(new = convert_escape(new, head)))
-		return (NULL);
+	new = convert_escape(new, head);
 	*ptr = str + 1;
 	return (new);
 }

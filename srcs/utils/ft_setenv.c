@@ -6,20 +6,30 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 19:46:58 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/20 00:58:09 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-static int	overwrite(const char *name, const char *value, int index)
+static char	*double_strjoin(const char *name, const char *value)
 {
 	char	*new;
 	char	*tmp;
 
-	tmp = ft_strjoin(name, "=");
-	new = ft_strjoin(tmp, value);
+	if (!(tmp = ft_strjoin(name, "=")))
+		exit_perror("ft_setenv", EXIT_FAILURE);
+	if (!(new = ft_strjoin(tmp, value)))
+		exit_perror("ft_setenv", EXIT_FAILURE);
 	ft_free(tmp);
+	return (new);
+}
+
+static int	overwrite(const char *name, const char *value, int index)
+{
+	char	*new;
+
+	new = double_strjoin(name, value);
 	ft_free(g_env[index]);
 	g_env[index] = new;
 	return (0);
@@ -30,10 +40,9 @@ static int	reset(const char *name, const char *value, int len)
 	char	**new_env;
 	int		i;
 	char	*new;
-	char	*tmp;
 
 	if (!(new_env = ft_calloc(len + 2, sizeof(char*))))
-		return (-1);
+		exit_perror("ft_setenv", EXIT_FAILURE);
 	i = 0;
 	while (g_env[i])
 	{
@@ -43,13 +52,12 @@ static int	reset(const char *name, const char *value, int len)
 	ft_free(g_env);
 	g_env = new_env;
 	if (value)
-	{
-		tmp = ft_strjoin(name, "=");
-		new = ft_strjoin(tmp, value);
-		ft_free(tmp);
-	}
+		new = double_strjoin(name, value);
 	else
-		new = ft_strdup(name);
+	{
+		if (!(new = ft_strdup(name)))
+			exit_perror("ft_setenv", EXIT_FAILURE);
+	}
 	g_env[i] = new;
 	return (0);
 }

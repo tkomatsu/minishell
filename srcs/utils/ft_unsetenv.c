@@ -23,7 +23,7 @@ static int	delete_env(const char *name, int namelen)
 	while (g_env[envlen])
 		envlen++;
 	if (!(new = ft_calloc(envlen, sizeof(char*))))
-		return (-1);
+		exit_perror("delete_env", EXIT_FAILURE);
 	i = 0;
 	j = 0;
 	while (g_env[i])
