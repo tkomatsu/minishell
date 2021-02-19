@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 22:29:56 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 23:59:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,18 @@ static char	*get_var(char *str, int len)
 	char	*ret;
 
 	if (!(tmp = ft_substr(str, 0, len)))
-		return (NULL);
+		exit_perror("get_var", EXIT_FAILURE);
 	if (!(env = ft_getenv(tmp)))
 	{
-		ft_free(tmp);
 		if (!(ret = ft_strdup("")))
-			return (NULL);
+			exit_perror("get_var", EXIT_FAILURE);
 	}
 	else
 	{
-		ft_free(tmp);
 		if (!(ret = ft_strdup(env)))
-			return (NULL);
+			exit_perror("get_var", EXIT_FAILURE);
 	}
+	ft_free(tmp);
 	return (ret);
 }
 
@@ -57,18 +56,15 @@ static char	*deploy_var(char *str, int len)
 	if (len == 0)
 	{
 		if (!(ret = ft_strdup("$")))
-			return (NULL);
+			exit_perror("deploy_var", EXIT_FAILURE);
 	}
 	else if (len == 1 && *str == '?')
 	{
 		if (!(ret = ft_strdup(ft_itoa(g_status))))
-			return (NULL);
+			exit_perror("deploy_var", EXIT_FAILURE);
 	}
 	else
-	{
-		if (!(ret = get_var(str, len)))
-			return (NULL);
-	}
+		ret = get_var(str, len);
 	return (ret);
 }
 
@@ -79,14 +75,13 @@ char		*expand_environ(char *str, char *new, char **head, char **ptr)
 	int		len;
 
 	if (!(tmp = ft_strjoin(new, *head)))
-		return (NULL);
+		exit_perror("expand_environ", EXIT_FAILURE);
 	ft_free(new);
 	new = tmp;
 	len = get_varlen(str);
-	if (!(var = deploy_var(str, len)))
-		return (NULL);
+	var = deploy_var(str, len);
 	if (!(tmp = ft_strjoin(new, var)))
-		return (NULL);
+		exit_perror("expand_environ", EXIT_FAILURE);
 	ft_free(var);
 	ft_free(new);
 	new = tmp;

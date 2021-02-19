@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:23:36 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 00:08:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			ft_export(char **args)
 		export_list();
 	while (args[i])
 	{
-		if (ft_putenv(args[i]) == -1)
+		if (ft_putenv(args[i]) == INVALID_NAME)
 		{
 			g_status = EXIT_FAILURE;
 			errno = E_VALID;

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 21:20:05 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 01:00:51 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ static char	*strjoin_free(char *new, char *str, int type)
 {
 	char	*ret;
 
-	if (!str)
-		return (NULL);
 	if (!(ret = ft_strjoin(new, str)))
-		return (NULL);
+		exit_perror("strjoin_free", EXIT_FAILURE);
 	if (type != QUOTE)
 		ft_free(str);
 	ft_free(new);
@@ -33,7 +31,8 @@ static void	expand_word(t_token *tokens)
 	char	*str;
 
 	flag = 0;
-	new = ft_strdup("");
+	if (!(new = ft_strdup("")))
+		exit_perror("expand_word", EXIT_FAILURE);
 	str = tokens->word;
 	while (*str)
 	{
@@ -52,7 +51,7 @@ static void	expand_word(t_token *tokens)
 	tokens->word = new;
 }
 
-void	expand_token(void *content)
+void		expand_token(void *content)
 {
 	t_token *tokens;
 
