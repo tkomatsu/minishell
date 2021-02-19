@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 20:46:54 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:29:56 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*get_var(char *str, int len)
 	else
 	{
 		ft_free(tmp);
-		if (!(ret = ft_strdup(ft_getenv(tmp))))
+		if (!(ret = ft_strdup(env)))
 			return (NULL);
 	}
 	return (ret);
