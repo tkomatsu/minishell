@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/13 21:02:55 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:41:58 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 int	execmd(char **args)
 {
@@ -32,6 +32,6 @@ int	execmd(char **args)
 	else if (!ft_strcmp(args[0], "exit"))
 		return (msh_exit(args));
 	else if (is_ultimate_question(args))
-		return (1);
+		return (STAY_LOOP);
 	return (launch(args));
 }

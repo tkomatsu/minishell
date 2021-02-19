@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/15 19:04:11 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:00:40 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static char	*convert_escape(char *new, char *str)
 {

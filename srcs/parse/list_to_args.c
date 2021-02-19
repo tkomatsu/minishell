@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:36:17 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/15 16:36:42 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:01:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 char		**convert_lst_to_args(t_token *tokens)
 {

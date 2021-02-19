@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/16 15:25:10 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:43:49 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static char	*strjoin_free(char *new, char *str, int type)
 {
@@ -38,11 +38,11 @@ char		*parse_tokens(t_token *tokens)
 	while (*str)
 	{
 		if (*str == '\'' && !flag)
-			new = strjoin_free(new, convert_quotes(str + 1, &str), QUOTE);
+			new = strjoin_free(new, convert_quotes(str + 1, &str), T_QUOTE);
 		else if (*str == '\"' && !flag)
-			new = strjoin_free(new, convert_dquotes(str + 1, &str), DQUOTE);
+			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
 		else
-			new = strjoin_free(new, convert_words(str, &str), 0);
+			new = strjoin_free(new, convert_words(str, &str), T_WORDS);
 		if (!new)
 			return (NULL);
 		if (*str == '\\')

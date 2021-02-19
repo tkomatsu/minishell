@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 00:56:18 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/17 00:56:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:47:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 void	signal_ignore(int sig)
 {

@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:33:46 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:30:38 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static void	putdir(char c)
 {
@@ -24,11 +24,11 @@ static void	putdir(char c)
 		cwd = ft_getenv("PWD");
 		len = ft_strlen(home);
 		if (ft_strncmp(home, cwd, len))
-			ft_putstr_fd(cwd, 2);
+			ft_putstr_fd(cwd, STDERR);
 		else
 		{
-			ft_putchar_fd('~', 2);
-			ft_putstr_fd(cwd + len, 2);
+			ft_putchar_fd('~', STDERR);
+			ft_putstr_fd(cwd + len, STDERR);
 		}
 	}
 }
@@ -36,21 +36,21 @@ static void	putdir(char c)
 static void	putformat(char c)
 {
 	if (c == 'a')
-		ft_putchar_fd('\a', 2);
+		ft_putchar_fd('\a', STDERR);
 	else if (c == 'n')
-		ft_putchar_fd('\n', 2);
+		ft_putchar_fd('\n', STDERR);
 	else if (c == 's')
-		ft_putstr_fd("minishell", 2);
+		ft_putstr_fd("minishell", STDERR);
 	else if (c == 'u')
-		ft_putstr_fd(ft_getenv("USER"), 2);
+		ft_putstr_fd(ft_getenv("USER"), STDERR);
 	else if (c == 'w')
 		putdir(c);
 	else if (c == '\\')
-		ft_putchar_fd('\\', 2);
+		ft_putchar_fd('\\', STDERR);
 	else
 	{
-		ft_putchar_fd('\\', 2);
-		ft_putchar_fd(c, 2);
+		ft_putchar_fd('\\', STDERR);
+		ft_putchar_fd(c, STDERR);
 	}
 }
 
@@ -60,7 +60,7 @@ void		put_prompt(void)
 
 	if (!(format = ft_getenv("PS1")))
 	{
-		ft_putstr_fd("minishell$ ", 2);
+		ft_putstr_fd("minishell$ ", STDERR);
 		return ;
 	}
 	while (*format)

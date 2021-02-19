@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 21:30:12 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 02:38:31 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:46:46 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 int	ft_putenv(const char *string)
 {

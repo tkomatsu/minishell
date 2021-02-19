@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_quotes.c                                   :+:      :+:    :+:   */
+/*   easter.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 21:00:29 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/18 19:31:54 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 12:47:58 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#ifndef EASTER_H
+# define EASTER_H
 
-char	*convert_quotes(char *str, char **ptr)
-{
-	char	*new;
+/*
+** SELF-MADE HEADER FILES
+*/
 
-	new = str;
-	while (*str != '\'')
-		str++;
-	*str = '\0';
-	*ptr = str + 1;
-	return (new);
-}
+# include "libft.h"
+# include "minishell.h"
+
+/*
+** EXTERNAL LIBRARIES
+*/
+
+# include <unistd.h>
+
+/*
+** PROTOTYPE DECLARATION - EASTER EGG
+*/
+
+int		is_ultimate_question(char **args);
+
+#endif

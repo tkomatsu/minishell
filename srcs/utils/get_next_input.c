@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 09:58:38 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 18:35:00 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:32:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static int	gnl_memerr(char **s1, char **s2, int flag)
 {
@@ -62,7 +62,7 @@ static int	gnl_return(int fd, char **line, char **buf)
 
 static int	is_eof_without_input(int rdno, char *buf)
 {
-	ft_putstr_fd("  \b\b", 1);
+	ft_putstr_fd("  \b\b", STDOUT);
 	if (!rdno && !*buf)
 		return (1);
 	return (0);

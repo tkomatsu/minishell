@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/17 01:01:12 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:48:19 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	minish_loop(void)
 	char	*line;
 	t_token	*tokens;
 
-	status = 1;
+	status = STAY_LOOP;
 	while (status)
 	{
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt();
-		if (read_stdin(&line) == 1)
+		if (read_stdin(&line) == INVALID_INPUT)
 			continue;
 		tokens = split_tokens(line);
 		/* test_tokens(tokens); */
@@ -80,7 +80,7 @@ int		main(void)
 	ft_envcpy();
 	g_pid = 0;
 	g_status = EXIT_SUCCESS;
-	ft_putendl_fd("\nWELCOME TO MINISHELL\n", 2);
+	ft_putendl_fd("\nWELCOME TO MINISHELL\n", STDERR);
 	minish_loop();
 	ft_free_split(g_env);
 	return ((unsigned char)g_status);

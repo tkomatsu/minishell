@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/27 15:23:26 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:44:22 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "easter.h"
 
 int	is_ultimate_question(char **str)
 {
@@ -38,6 +38,6 @@ int	is_ultimate_question(char **str)
 		return (0);
 	if (str[11])
 		return (0);
-	write(1, "42\n", 3);
+	write(STDOUT, "42\n", 3);
 	return (1);
 }

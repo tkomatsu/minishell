@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_quotes.c                                   :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 21:00:29 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/19 02:46:21 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 12:46:17 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-char	*convert_quotes(char *str, char **ptr)
-{
-	char	*new;
+/*
+** MACRO DECLARATION - ERRNO
+*/
 
-	new = str;
-	while (*str != '\'')
-		str++;
-	*str = '\0';
-	*ptr = str + 1;
-	return (new);
-}
+# define E_MINI 200
+# define E_CMD 201
+# define E_QUOTE 202
+# define E_VALID 203
+# define E_NUMERIC 204
+# define E_ARGS 205
+
+#endif
