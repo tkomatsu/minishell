@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 11:28:49 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:32:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		ft_lstiter_sta(t_list *lst, int (*f)(void *, int));
 int		parse_exec(t_token *tokens);
 void	exp_word(void *content);
 char	*parse_var(char *str, char *new, char **head, char **ptr);
-char	**convert_lst_to_args(t_token *tokens);
+char	**token_to_args(t_token *tokens);
 void	convert_esc(char **args);
 char	*convert_quotes(char *str, char **ptr);
 char	*convert_dquotes(char *str, char **ptr);

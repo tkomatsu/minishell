@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 15:55:333 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:32:13 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	run_cmd(void *content, int flag)
 	char	**args;
 	int		status;
 
-	args = convert_lst_to_args((t_token *)content);
+	args = token_to_args((t_token *)content);
 	status = execmd(args, flag);
 	ft_free(args);
 	return (status);
