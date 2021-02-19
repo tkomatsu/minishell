@@ -163,6 +163,9 @@ fclean:
 	@rm -rf $(NAME) $(OBJ_DIR)
 	@rm -fr *.dSYM
 
+check: all
+	@cd test && bash grademe.sh
+
 re: fclean all
 
 PHONY: all clean fclean re
