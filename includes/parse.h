@@ -6,29 +6,40 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:26:49 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 03:01:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:50:00 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
+/*
+** SELF-MADE HEADER FILES
+*/
+
 # include "execute.h"
 # include "libft.h"
-# include "minishell.h"
-# include "parse.h"
 # include "token.h"
 # include "utils.h"
+
+/*
+** EXTERNAL LIBRARIES
+*/
+
 # include <fcntl.h>
 # include <sys/wait.h>
 
 /*
-** TYPE OF CONVERT
+** MACRO DECLARATION - TYPE OF CONVERT
 */
 
 # define T_QUOTE 1
 # define T_DQUOTE 2
 # define T_WORDS 3
+
+/*
+** PROTOTYPE DECLARATION
+*/
 
 char	**convert_lst_to_args(t_token *tokens);
 char	*convert_quotes(char *str, char **ptr);

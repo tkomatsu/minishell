@@ -6,22 +6,50 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 02:58:52 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:53:53 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
+/*
+** SELF-MADE HEADER FILES
+*/
+
 # include "error.h"
 # include "libft.h"
-# include "minishell.h"
 # include "token.h"
+
+/*
+** EXTERNAL LIBRARIES
+*/
+
 # include <errno.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+/*
+** MACRO DECLARATION - FILE DISCRIPTOR
+*/
+
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+
+/*
+** GLOBAL VARIABLES
+*/
+
+extern char		**g_env;
+extern pid_t	g_pid;
+extern int		g_status;
+
+/*
+** PROTOTYPE DECLARATION
+*/
 
 void	clear_tokens(t_token **tokens);
 t_token	*dlistnew(char *src, int sep);

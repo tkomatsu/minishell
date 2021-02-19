@@ -6,32 +6,40 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 03:05:43 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:45:39 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
+/*
+** SELF-MADE HEADER FILES
+*/
+
 # include "easter.h"
 # include "error.h"
 # include "libft.h"
-# include "minishell.h"
 # include "utils.h"
+
+/*
+** EXTERNAL LIBRARIES
+*/
+
 # include <dirent.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <sys/wait.h>
 
 /*
-** EXECUTE
+** PROTOTYPE DECLARATION - EXECUTE
 */
 
 int		execmd(char **args);
 int		launch(char **args);
 
 /*
-** BUILTIN COMMANDS
+** PROTOTYPE DECLARATION - BUILTIN COMMANDS
 */
 
 int		msh_cd(char **args);
