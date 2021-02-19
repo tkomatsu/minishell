@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 14:25:38 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 14:28:41 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ UTIL_FILES = clear_tokens.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
-			 token_management.c \
+			 token_utils.c \
 			 token_size.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
