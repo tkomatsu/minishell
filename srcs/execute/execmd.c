@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 15:16:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:12:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	execmd(char **args, int flag)
+int	execmd(char **args, int executable)
 {
 	g_status = EXIT_SUCCESS;
 	if (!args[0])
@@ -33,7 +33,7 @@ int	execmd(char **args, int flag)
 		return (msh_exit(args));
 	else if (is_ultimate_question(args))
 		return (1);
-	if (flag)
+	if (executable)
 		return (launch(args));
 	return (-1);
 }
