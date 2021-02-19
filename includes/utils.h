@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 12:53:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:18:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+
+/*
+** MACRO DECLARATION - LOOP STATUS
+*/
+# define EXIT_LOOP 0
+# define STAY_LOOP 1
 
 /*
 ** GLOBAL VARIABLES

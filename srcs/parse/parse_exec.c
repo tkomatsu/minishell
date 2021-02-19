@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 22:07:27 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:18:08 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ int				parse_exec(t_token *tokens)
 {
 	t_list	*list_s;
 	t_list	*list_p;
-	int		status;
+	int		is_loop;
 
-	status = 1;
+	is_loop = STAY_LOOP;
 	list_s = tokens_sep(tokens, SEMICOLON);
 	while (list_s)
 	{
 		list_p = tokens_sep((t_token *)list_s->content, PIPE);
 		ft_lstiter(list_p, expand_token);
 		if (ft_lstsize(list_p) == 1 && is_builtin((list_p->content)))
-			status = run_cmd(list_p->content, 0);
-		else if (!(status = run_pipeline(list_p)))
-			return (status);
+			is_loop = run_cmd(list_p->content, 0);
+		else if (!(is_loop = run_pipeline(list_p)))
+			return (is_loop);
 		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;
 	}
 	ft_lstclear(&list_s, NULL);
-	return (status);
+	return (is_loop);
 }
