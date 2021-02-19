@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 16:41:11:10 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 09:24:43 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,30 @@ static int	is_metachar(char c)
 	return (0);
 }
 
-int			tokenlen(char *line, int start)
+static int	tokenlen(char *line, int start)
 {
-	int	len;
+	int	end;
 
-	len = start;
-	while (line[len])
+	end = start;
+	while (line[end])
 	{
-		if (line[len] == '\'')
+		if (line[end] == '\'')
 		{
-			len++;
-			while (line[len] && line[len] != '\'')
-				len++;
+			end++;
+			while (line[end] && line[end] != '\'')
+				end++;
 		}
-		else if (line[len] == '\"')
+		else if (line[end] == '\"')
 		{
-			len++;
-			while (line[len] && line[len] != '\"')
-				len++;
+			end++;
+			while (line[end] && line[end] != '\"')
+				end++;
 		}
-		if (is_metachar(line[len + 1]))
+		if (is_metachar(line[end]))
 			break ;
-		len++;
+		end++;
 	}
-	return (len - start + 1);
+	return (end - start);
 }
 
 t_token		*split_tokens(char *line)
@@ -72,9 +72,11 @@ t_token		*split_tokens(char *line)
 	while (line[i])
 	{
 		len = tokenlen(line, i);
-		dlist_add_back(&tokens, dlistnew(ft_substr(line, i, len), is_metachar(line[i + len])));
-		i = i + len + 1;
-		if (!line[i])
+		dlist_add_back(
+			&tokens,
+			dlistnew(ft_substr(line, i, len), is_metachar(line[i + len])));
+		i += len;
+		if (line[i])
 			i++;
 	}
 	return (tokens);
