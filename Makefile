@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 14:13:31 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 14:25:38 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,15 +68,15 @@ PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 # execute
 
 EXE_DIR = execute/
-EXE_FILES = cd.c \
-			echo.c \
-			env.c \
-			execmd.c \
-			exit.c \
-			export.c \
-			launch.c \
-			pwd.c \
-			unset.c
+EXE_FILES = execmd.c \
+			ft_cd.c \
+			ft_echo.c \
+			ft_env.c \
+			ft_exit.c \
+			ft_export.c \
+			ft_pwd.c \
+			ft_unset.c \
+			launch.c
 
 EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 

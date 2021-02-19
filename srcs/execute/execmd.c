@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:20:08 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:24:11 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ int	execmd(char **args, int executable)
 	if (!args[0])
 		return (1);
 	else if (!ft_strcasecmp(args[0], "echo"))
-		return (msh_echo(args));
+		return (ft_echo(args));
 	else if (!ft_strcasecmp(args[0], "cd"))
-		return (msh_cd(args));
+		return (ft_cd(args));
 	else if (!ft_strcasecmp(args[0], "pwd"))
-		return (msh_pwd());
+		return (ft_pwd());
 	else if (!ft_strcasecmp(args[0], "export"))
-		return (msh_export(args));
+		return (ft_export(args));
 	else if (!ft_strcasecmp(args[0], "unset"))
-		return (msh_unset(args));
+		return (ft_unset(args));
 	else if (!ft_strcasecmp(args[0], "env"))
-		return (msh_env());
+		return (ft_env());
 	else if (!ft_strcasecmp(args[0], "exit"))
-		return (msh_exit(args));
+		return (ft_exit(args));
 	else if (is_ultimate_question(args))
 		return (STAY_LOOP);
 	if (executable)

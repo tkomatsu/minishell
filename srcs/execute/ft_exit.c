@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:43:10 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:23:22 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	is_numeric(char *str)
 	return (within_range(num, is_negative));
 }
 
-int			msh_exit(char **args)
+int			ft_exit(char **args)
 {
 	int	len;
 
