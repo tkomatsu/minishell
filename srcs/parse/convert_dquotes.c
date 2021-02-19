@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 21:00:17 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 20:50:19 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char		*convert_dquotes(char *str, char **ptr)
 		if (*str == '$' && !(flag & ESC))
 		{
 			*str = '\0';
-			if (!(new = parse_var(str + 1, new, &head, &str)))
+			if (!(new = expand_environ(str + 1, new, &head, &str)))
 				return (NULL);
 		}
 		if (*(str++) == '\\')

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_environ.c                                      :+:      :+:    :+:   */
+/*   expand_environ.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 14:31:03 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 20:46:54 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*deploy_var(char *str, int len)
 	return (ret);
 }
 
-char		*parse_var(char *str, char *new, char **head, char **ptr)
+char		*expand_environ(char *str, char *new, char **head, char **ptr)
 {
 	char	*tmp;
 	char	*var;

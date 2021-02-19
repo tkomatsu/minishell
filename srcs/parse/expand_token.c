@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_word.c                                         :+:      :+:    :+:   */
+/*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 14:19:45 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:20:05 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ static char	*strjoin_free(char *new, char *str, int type)
 	return (ret);
 }
 
-void		exp_word(void *content)
+static void	expand_word(t_token *tokens)
 {
-	t_token	*tokens;
 	int		flag;
 	char	*new;
 	char	*str;
 
-	tokens = (t_token*)content;
 	flag = 0;
 	new = ft_strdup("");
 	str = tokens->word;
@@ -52,4 +50,16 @@ void		exp_word(void *content)
 	}
 	ft_free(tokens->word);
 	tokens->word = new;
+}
+
+void	expand_token(void *content)
+{
+	t_token *tokens;
+
+	tokens = (t_token*)content;
+	while (tokens)
+	{
+		expand_word(tokens);
+		tokens = tokens->next;
+	}
 }
