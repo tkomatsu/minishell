@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 11:32:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:16:30 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_token	*tokenize(char *line);
 */
 
 int		run_cmd(void *content, int flag);
-int		ft_lstiter_sta(t_list *lst, int (*f)(void *, int));
+int		run_pipeline(t_list *lst, int (*f)(void *, int));
 int		parse_exec(t_token *tokens);
 void	exp_word(void *content);
 char	*parse_var(char *str, char *new, char **head, char **ptr);

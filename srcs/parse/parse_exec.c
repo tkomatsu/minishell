@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 11:05:25 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:15:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				parse_exec(t_token *tokens)
 		ft_lstiter(list_s, exp_word);
 		if (ft_lstsize(list_p) == 1 && is_builtin((list_p->content)))
 			status = run_cmd(list_p->content, 0);
-		else if (!(status = ft_lstiter_sta(list_p, run_cmd)))
+		else if (!(status = run_pipeline(list_p, run_cmd)))
 			return (status);
 		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;

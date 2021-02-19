@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   connect_pipe.c                                     :+:      :+:    :+:   */
+/*   run_pipeline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 12:10:17 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:16:19 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_lstiter_sta(t_list *lst, int (*f)(void *, int))
+int	run_pipeline(t_list *lst, int (*f)(void *, int))
 {
 	pid_t	pid;
 	int		status;
