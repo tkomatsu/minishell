@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:41:44 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/19 02:46:21 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 12:46:17 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-int	msh_env(void)
-{
-	int			i;
+/*
+** MACRO DECLARATION - ERRNO
+*/
 
-	i = 0;
-	while (g_env[i])
-	{
-		if (ft_strchr(g_env[i], '='))
-			ft_putendl_fd(g_env[i], STDOUT);
-		i++;
-	}
-	return (STAY_LOOP);
-}
+# define E_MINI 200
+# define E_CMD 201
+# define E_QUOTE 202
+# define E_VALID 203
+# define E_NUMERIC 204
+# define E_ARGS 205
+
+#endif

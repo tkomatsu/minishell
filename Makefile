@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/11 08:38:59 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 14:44:11 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,14 @@ READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = escape.c \
-			  parse_exec.c
+PARSE_FILES = connect_pipe.c \
+			  convert_dquotes.c \
+			  convert_quotes.c \
+			  convert_words.c \
+			  list_to_args.c \
+			  parse_exec.c \
+			  parse_tokens.c \
+			  parse_var.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 
@@ -77,12 +83,16 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 
 UTIL_DIR = utils/
 UTIL_FILES = clear_tokens.c \
+			 exit_perror.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
+			 get_next_input.c \
 			 put_prompt.c \
+			 signal_handler.c \
+			 signal_ignore.c \
 			 token_management.c \
 			 token_size.c
 

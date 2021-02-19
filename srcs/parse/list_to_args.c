@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   list_to_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 23:26:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:34:38 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/15 16:36:17 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/18 21:01:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "parse.h"
 
-int	msh_unset(char **args)
+char		**convert_lst_to_args(t_token *tokens)
 {
-	int	i;
+	char	**args;
+	int		i;
 
-	i = 1;
-	while (args[i])
+	/* redirect */
+	if (!(args = ft_calloc(token_size(tokens) + 1, sizeof(char*))))
+		return (NULL);
+	i = 0;
+	while (tokens)
 	{
-		if (ft_unsetenv(args[i]) == -1)
-		{
-			g_status = EXIT_FAILURE;
-			errno = E_VALID;
-			ft_putstr_fd("minish: unset: `", STDERR);
-			ft_putstr_fd(args[i], STDERR);
-			ft_putstr_fd("'", STDERR);
-			ft_perror("");
-		}
-		i++;
+		if (!(tokens->word = parse_tokens(tokens)))
+			return (NULL);
+		if (*(tokens->word))
+			args[i++] = tokens->word;
+		tokens = tokens->next;
 	}
-	return (1);
+	return (args);
 }

@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/06 10:21:17 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:34:17 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
-int		is_exist(char *path, char *cmd)
+static int	is_exist(char *path, char *cmd)
 {
 	DIR				*dir;
 	struct dirent	*dent;
@@ -25,7 +25,7 @@ int		is_exist(char *path, char *cmd)
 	return (0);
 }
 
-char	*exec_path(char *cmd)
+static char	*exec_path(char *cmd)
 {
 	char	*ret;
 	char	**path;
@@ -49,35 +49,42 @@ char	*exec_path(char *cmd)
 	return (NULL);
 }
 
-int	launch(char **args)
+static void	exec_launch(char **args)
 {
-	pid_t		pid;
-	int			status;
-	char		*cmd_path;
+	char	*cmd_path;
 
-	pid = fork();
-	if (!pid)
+	if ((cmd_path = exec_path(args[0])))
+		args[0] = cmd_path;
+	if (execve(args[0], args, g_env) == -1)
 	{
-		if ((cmd_path = exec_path(args[0])))
-			args[0] = cmd_path;
-		if (execve(args[0], args, g_env) == -1)
-		{
-			errno = 201;
-			ft_putstr_fd("minish: ", 2);
-			ft_perror(args[0]);
-		}
-		ft_free(cmd_path);
-		exit(1);
+		errno = E_CMD;
+		ft_putstr_fd("minish: ", STDERR);
+		ft_perror(args[0]);
 	}
-	else if (pid < 0)
+	ft_free(cmd_path);
+	exit(1);
+}
+
+int			launch(char **args)
+{
+	int		status;
+
+	signal(SIGINT, signal_ignore);
+	signal(SIGQUIT, signal_ignore);
+	g_pid = fork();
+	if (!g_pid)
+		exec_launch(args);
+	else if (g_pid < 0)
 		perror("fork");
 	else
 	{
 		if (wait(&status) < 0)
-		{
-			perror("wait");
-			exit(1);
-		}
+			exit_perror("wait", 1);
+		if (status == SIGINT || status == SIGQUIT)
+			signal_handler(status);
+		if (WIFEXITED(status))
+			g_status = WEXITSTATUS(status);
+		g_pid = 0;
 	}
 	return (1);
 }

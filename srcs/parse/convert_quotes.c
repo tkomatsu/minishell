@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   convert_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:41:44 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/18 21:00:29 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "parse.h"
 
-int	msh_env(void)
+char	*convert_quotes(char *str, char **ptr)
 {
-	int			i;
+	char	*new;
 
-	i = 0;
-	while (g_env[i])
-	{
-		if (ft_strchr(g_env[i], '='))
-			ft_putendl_fd(g_env[i], STDOUT);
-		i++;
-	}
-	return (STAY_LOOP);
+	new = str;
+	while (*str != '\'')
+		str++;
+	*str = '\0';
+	*ptr = str + 1;
+	return (new);
 }

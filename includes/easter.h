@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   easter.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 12:50:59 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/18 19:31:54 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 12:47:58 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef EASTER_H
+# define EASTER_H
 
 /*
 ** SELF-MADE HEADER FILES
 */
 
 # include "libft.h"
-# include "parse.h"
-# include "read.h"
-# include "token.h"
-# include "utils.h"
+# include "minishell.h"
 
 /*
 ** EXTERNAL LIBRARIES
 */
 
-# include <signal.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include <unistd.h>
 
 /*
-** MACRO DECLARATION - LOOP STATUS
+** PROTOTYPE DECLARATION - EASTER EGG
 */
 
-# define EXIT_LOOP 0
-# define STAY_LOOP 1
+int		is_ultimate_question(char **args);
 
 #endif

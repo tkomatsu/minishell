@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/04 16:53:42 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:28:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "read.h"
 
 /*
 static void	add_next_line(char **line, int flag)
@@ -21,13 +21,13 @@ static void	add_next_line(char **line, int flag)
 	char	*tmp;
 
 	if (flag == QUOTE)
-		ft_putstr_fd("quote> ", 1);
+		ft_putstr_fd("quote> ", STDOUT);
 	else if (flag == DQUOTE)
-		ft_putstr_fd("dquote> ", 1);
+		ft_putstr_fd("dquote> ", STDOUT);
 	if ((ret = get_next_line(0, &tmp)) < 0)
 	{
 		ft_perror("get_next_line");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	put_nl = ft_strjoin("\n", tmp);
 	free(tmp);
@@ -36,44 +36,55 @@ static void	add_next_line(char **line, int flag)
 	free(*line);
 	*line = new;
 }
+*/
 
 static int	is_bad_quote(char *line)
 {
 	int	flag;
 
 	flag = 0;
-	if (*line == '\'')
-		flag = QUOTE;
-	else if (*line == '\"')
-		flag = DQUOTE;
-	line++;
 	while (*line)
 	{
-		if (!flag && *line == '\'' && *(line - 1) != '\\')
-			flag = QUOTE;
-		else if (!flag && *line == '\"' && *(line - 1) != '\\')
-			flag = DQUOTE;
-		else if ((flag == QUOTE && *line == '\'') ||
-					(flag == DQUOTE && *line == '\"'))
+		if (*line == '\'' && !flag)
+			flag ^= QUOTE;
+		else if (*line == '"' && !flag)
+			flag ^= DQUOTE;
+		else if ((*line == '\'' && (flag & QUOTE)) ||
+					(*line == '"' && (flag & DQUOTE) && !(flag & ESC)))
 			flag = 0;
+		if (*line == '\\')
+			flag ^= ESC;
+		else
+			flag &= (QUOTE | DQUOTE);
 		line++;
 	}
-	return (flag);
+	return (flag & (QUOTE | DQUOTE));
 }
-*/
 
 int			read_stdin(char **line)
 {
 	int	ret;
 
-	if ((ret = get_next_line(0, line)) < 0)
+	if ((ret = get_next_input(0, line)) < 0)
 	{
 		ft_perror("get_next_line");
-		exit(1);
+		exit(EXIT_FAILURE);
+	}
+	if (!ret)
+	{
+		ft_putendl_fd("exit", STDOUT);
+		exit(EXIT_SUCCESS);
+	}
+	if (is_bad_quote(*line))
+	{
+		errno = E_QUOTE;
+		ft_putstr_fd("minish: ", STDERR);
+		ft_perror(*line);
+		return (INVALID_INPUT);
 	}
 	/*
 	while ((ret = is_bad_quote(*line)))
 		add_next_line(line, ret);
 	*/
-	return (0);
+	return (VALID_INPUT);
 }

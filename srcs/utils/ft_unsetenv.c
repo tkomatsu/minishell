@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/20 22:10:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:48:40 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
-static int	_unsetenv(const char *name, int namelen)
+static int	delete_env(const char *name, int namelen)
 {
 	int		envlen;
 	int		i;
@@ -22,7 +22,7 @@ static int	_unsetenv(const char *name, int namelen)
 	envlen = 0;
 	while (g_env[envlen])
 		envlen++;
-	if (!(new = ft_calloc(sizeof(char *), envlen)))
+	if (!(new = ft_calloc(envlen, sizeof(char*))))
 		return (-1);
 	i = 0;
 	j = 0;
@@ -43,16 +43,22 @@ int			ft_unsetenv(const char *name)
 	int	i;
 	int	namelen;
 
-	if (!name || !(namelen = ft_strlen(name)) || ft_strchr(name, '='))
-	{
-		errno = EINVAL;
+	if (!(namelen = ft_strlen(name)))
+		return (0);
+	i = 0;
+	if (ft_isdigit(name[i]))
 		return (-1);
+	while (name[i])
+	{
+		if (!ft_isalnum(name[i]) && name[i] != '_')
+			return (-1);
+		i++;
 	}
 	i = 0;
 	while (g_env[i])
 	{
 		if (!ft_strncmp(name, g_env[i], namelen))
-			return (_unsetenv(name, namelen));
+			return (delete_env(name, namelen));
 		i++;
 	}
 	return (0);
