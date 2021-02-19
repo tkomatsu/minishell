@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokens.c                                     :+:      :+:    :+:   */
+/*   expand_token.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 21:43:49 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:20:05 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*strjoin_free(char *new, char *str, int type)
 	return (ret);
 }
 
-char		*parse_tokens(t_token *tokens)
+static void	expand_word(t_token *tokens)
 {
 	int		flag;
 	char	*new;
@@ -43,13 +43,23 @@ char		*parse_tokens(t_token *tokens)
 			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
 		else
 			new = strjoin_free(new, convert_words(str, &str), T_WORDS);
-		if (!new)
-			return (NULL);
 		if (*str == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
 	}
 	ft_free(tokens->word);
-	return (new);
+	tokens->word = new;
+}
+
+void	expand_token(void *content)
+{
+	t_token *tokens;
+
+	tokens = (t_token*)content;
+	while (tokens)
+	{
+		expand_word(tokens);
+		tokens = tokens->next;
+	}
 }

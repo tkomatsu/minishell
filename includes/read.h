@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:23:22 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 12:54:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:18:40 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@
 */
 
 int		read_stdin(char **line);
-t_token	*split_tokens(char *line);
+t_token	*tokenize(char *line);
 
 #endif

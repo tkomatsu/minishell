@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_exec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 21:01:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 21:20:29 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ static t_list	*tokens_sep(t_token *tokens, int type)
 	return (list);
 }
 
+static int		is_builtin(void *content)
+{
+	t_token	*token;
+	int		i;
+
+	const char *builtin[] = {
+		"cd", "env", "exit", "export", "unset", "echo", "pwd", NULL};
+	token = content;
+	i = 0;
+	while (builtin[i])
+		if (!ft_strcmp(builtin[i++], token->word))
+			return (1);
+	return (0);
+}
+
 int				parse_exec(t_token *tokens)
 {
 	t_list	*list_s;
@@ -42,8 +57,11 @@ int				parse_exec(t_token *tokens)
 	list_s = tokens_sep(tokens, SEMICOLON);
 	while (list_s)
 	{
-		list_p = tokens_sep((t_token*)list_s->content, PIPE);
-		if (!(status = ft_lstiter_sta(list_p, parse_pipe)))
+		list_p = tokens_sep((t_token *)list_s->content, PIPE);
+		ft_lstiter(list_p, expand_token);
+		if (ft_lstsize(list_p) == 1 && is_builtin((list_p->content)))
+			status = run_cmd(list_p->content, 0);
+		else if (!(status = run_pipeline(list_p, run_cmd)))
 			return (status);
 		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;

@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:18:49 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/01/22 23:26:45 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/19 14:23:52 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "execute.h"
 
-/*
-** SELF-MADE HEADER FILES
-*/
+int	ft_unset(char **args)
+{
+	int	i;
 
-# include "libft.h"
-# include "parse.h"
-# include "read.h"
-# include "token.h"
-# include "utils.h"
-
-/*
-** EXTERNAL LIBRARIES
-*/
-
-# include <signal.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-/*
-** MACRO DECLARATION - LOOP STATUS
-*/
-
-# define EXIT_LOOP 0
-# define STAY_LOOP 1
-
-#endif
+	i = 1;
+	while (args[i])
+	{
+		if (ft_unsetenv(args[i]) == -1)
+		{
+			g_status = EXIT_FAILURE;
+			errno = E_VALID;
+			ft_putstr_fd("minish: unset: `", STDERR);
+			ft_putstr_fd(args[i], STDERR);
+			ft_putstr_fd("'", STDERR);
+			ft_perror("");
+		}
+		i++;
+	}
+	return (1);
+}

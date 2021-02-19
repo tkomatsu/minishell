@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:41:44 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/01/22 23:24:08 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/19 14:23:45 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	msh_env(void)
+int	ft_pwd(void)
 {
-	int			i;
-
-	i = 0;
-	while (g_env[i])
-	{
-		if (ft_strchr(g_env[i], '='))
-			ft_putendl_fd(g_env[i], STDOUT);
-		i++;
-	}
-	return (STAY_LOOP);
+	ft_putendl_fd(ft_getenv("PWD"), STDOUT);
+	return (1);
 }

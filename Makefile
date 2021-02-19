@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 14:44:11 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/19 21:16:49 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,36 +46,37 @@ DEBUG_CFLAGS = -g3
 
 READ_DIR = read/
 READ_FILES = read_stdin.c \
-			 split_tokens.c
+			 tokenize.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = connect_pipe.c \
-			  convert_dquotes.c \
+PARSE_FILES = convert_dquotes.c \
 			  convert_quotes.c \
 			  convert_words.c \
-			  list_to_args.c \
+			  expand_environ.c \
+			  expand_token.c \
 			  parse_exec.c \
-			  parse_tokens.c \
-			  parse_var.c
+			  run_cmd.c \
+			  run_pipeline.c \
+			  token_to_args.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
 
 # execute
 
 EXE_DIR = execute/
-EXE_FILES = cd.c \
-			echo.c \
-			env.c \
-			execmd.c \
-			exit.c \
-			export.c \
-			launch.c \
-			pwd.c \
-			unset.c
+EXE_FILES = execmd.c \
+			ft_cd.c \
+			ft_echo.c \
+			ft_env.c \
+			ft_exit.c \
+			ft_export.c \
+			ft_pwd.c \
+			ft_unset.c \
+			launch.c
 
 EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 
@@ -93,7 +94,7 @@ UTIL_FILES = clear_tokens.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
-			 token_management.c \
+			 token_utils.c \
 			 token_size.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))

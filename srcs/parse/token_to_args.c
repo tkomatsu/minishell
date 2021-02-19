@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_to_args.c                                     :+:      :+:    :+:   */
+/*   token_to_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:36:17 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 21:01:32 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:09:10 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-char		**convert_lst_to_args(t_token *tokens)
+char		**token_to_args(t_token *tokens)
 {
 	char	**args;
 	int		i;
@@ -23,8 +23,6 @@ char		**convert_lst_to_args(t_token *tokens)
 	i = 0;
 	while (tokens)
 	{
-		if (!(tokens->word = parse_tokens(tokens)))
-			return (NULL);
 		if (*(tokens->word))
 			args[i++] = tokens->word;
 		tokens = tokens->next;

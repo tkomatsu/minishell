@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:41:33 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/19 14:23:07 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	msh_echo(char **args)
+int	ft_env(void)
 {
-	int		i;
-	_Bool	noption;
+	int			i;
 
-	i = 1;
-	noption = false;
-	if (!args[1])
+	i = 0;
+	while (g_env[i])
 	{
-		ft_putchar_fd('\n', STDOUT);
-		return (STAY_LOOP);
-	}
-	if (!ft_strcmp(args[i], "-n"))
-	{
-		noption = true;
+		if (ft_strchr(g_env[i], '='))
+			ft_putendl_fd(g_env[i], STDOUT);
 		i++;
 	}
-	while (args[i])
-	{
-		if (i >= 3 || (i == 2 && !noption))
-			ft_putchar_fd(' ', STDOUT);
-		ft_putstr_fd(args[i], STDOUT);
-		i++;
-	}
-	if (!noption)
-		ft_putchar_fd('\n', STDOUT);
 	return (STAY_LOOP);
 }
