@@ -62,7 +62,7 @@ int			ft_setenv(const char *name, const char *value, int is_overwrite)
 	if (!name || !(namelen = ft_strlen(name)))
 	{
 		errno = EINVAL;
-		return (-1);
+		return (INVALID_NAME);
 	}
 	i = 0;
 	while (g_env[i])

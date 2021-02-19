@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 19:48:40 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/20 00:28:11 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int			ft_unsetenv(const char *name)
 		return (0);
 	i = 0;
 	if (ft_isdigit(name[i]))
-		return (-1);
+		return (INVALID_NAME);
 	while (name[i])
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
-			return (-1);
+			return (INVALID_NAME);
 		i++;
 	}
 	i = 0;
