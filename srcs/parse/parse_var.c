@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/15 18:47:27 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:02:14 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static int	get_varlen(char *str)
 {

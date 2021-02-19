@@ -1,41 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   read.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:18:49 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/02/18 19:23:22 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/19 14:18:40 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef READ_H
+# define READ_H
 
 /*
 ** SELF-MADE HEADER FILES
 */
 
+# include "error.h"
 # include "libft.h"
-# include "parse.h"
-# include "read.h"
 # include "token.h"
 # include "utils.h"
 
 /*
-** EXTERNAL LIBRARIES
+** MACRO DECLARATION - BIT MASK FLAG
 */
 
-# include <signal.h>
-# include <stdio.h>
-# include <stdlib.h>
+# define QUOTE 0x01
+# define DQUOTE 0x02
+# define ESC 0x04
 
 /*
-** MACRO DECLARATION - LOOP STATUS
+** MACRO DECLARATION - INPUT STATUS
 */
 
-# define EXIT_LOOP 0
-# define STAY_LOOP 1
+# define VALID_INPUT 0
+# define INVALID_INPUT 1
+
+/*
+** PROTOTYPE DECLARATION
+*/
+
+int		read_stdin(char **line);
+t_token	*tokenize(char *line);
 
 #endif

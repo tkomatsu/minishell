@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:49:50 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 03:41:06 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 static void	change_dir(char *dir)
 {
@@ -31,20 +31,20 @@ int			msh_cd(char **args)
 	{
 		if (!(dir = ft_getenv("HOME")))
 		{
-			ft_putendl_fd("minish: cd: HOME not set", 1);
-			return (1);
+			ft_putendl_fd("minish: cd: HOME not set", STDOUT);
+			return (STAY_LOOP);
 		}
 	}
 	else if (!ft_strcmp(args[1], "-"))
 	{
 		if (!(dir = ft_getenv("OLDPWD")))
 		{
-			ft_putendl_fd("minish: cd: OLDPWD not set", 1);
-			return (1);
+			ft_putendl_fd("minish: cd: OLDPWD not set", STDOUT);
+			return (STAY_LOOP);
 		}
 	}
 	else
 		dir = args[1];
 	change_dir(dir);
-	return (1);
+	return (STAY_LOOP);
 }

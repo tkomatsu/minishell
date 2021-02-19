@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 11:11:04 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:11:01 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 static int	is_exist(char *path, char *cmd)
 {
@@ -58,8 +58,8 @@ static void	exec_launch(char **args)
 		args[0] = cmd_path;
 	if (execve(args[0], args, g_env) == -1)
 	{
-		errno = 201;
-		ft_putstr_fd("minish: ", 2);
+		errno = E_CMD;
+		ft_putstr_fd("minish: ", STDERR);
 		ft_perror(args[0]);
 	}
 	ft_free(cmd_path);
@@ -83,7 +83,7 @@ int			launch(char **args)
 	{
 		if (wait(&status) < 0)
 			exit_perror("wait", 1);
-		if (status == 2 || status == 3)
+		if (status == SIGINT || status == SIGQUIT)
 			signal_handler(status);
 		if (WIFEXITED(status))
 			g_status = WEXITSTATUS(status);

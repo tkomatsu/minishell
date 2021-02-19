@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 12:16:19 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:09:27 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 int	run_pipeline(t_list *lst, int (*f)(void *, int))
 {

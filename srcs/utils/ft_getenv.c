@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:54:18 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/01/19 22:31:03 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:48:13 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 char		*ft_getenv(const char *name)
 {

@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 10:51:16 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:19:45 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static char	*strjoin_free(char *new, char *str, int type)
 {
@@ -40,11 +40,11 @@ void		exp_word(void *content)
 	while (*str)
 	{
 		if (*str == '\'' && !flag)
-			new = strjoin_free(new, convert_quotes(str + 1, &str), QUOTE);
+			new = strjoin_free(new, convert_quotes(str + 1, &str), T_QUOTE);
 		else if (*str == '\"' && !flag)
-			new = strjoin_free(new, convert_dquotes(str + 1, &str), DQUOTE);
+			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
 		else
-			new = strjoin_free(new, convert_words(str, &str), 0);
+			new = strjoin_free(new, convert_words(str, &str), T_WORDS);
 		if (*str == '\\')
 			flag ^= ESC;
 		else

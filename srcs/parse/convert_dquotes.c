@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 02:04:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/15 19:02:42 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/18 21:00:17 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parse.h"
 
 static int	is_special_char(char c)
 {

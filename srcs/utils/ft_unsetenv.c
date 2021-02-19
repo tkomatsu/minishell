@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/16 15:30:32 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/18 19:48:40 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "utils.h"
 
 static int	delete_env(const char *name, int namelen)
 {

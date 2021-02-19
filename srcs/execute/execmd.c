@@ -6,11 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 12:12:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 14:20:08 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "execute.h"
 
 int	execmd(char **args, int executable)
 {
@@ -32,8 +32,8 @@ int	execmd(char **args, int executable)
 	else if (!ft_strcasecmp(args[0], "exit"))
 		return (msh_exit(args));
 	else if (is_ultimate_question(args))
-		return (1);
+		return (STAY_LOOP);
 	if (executable)
 		return (launch(args));
-	return (-1);
+	return (launch(args));
 }
