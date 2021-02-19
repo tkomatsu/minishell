@@ -6,20 +6,20 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:09:27 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:08:05 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	run_pipeline(t_list *lst, int (*f)(void *, int))
+int	run_pipeline(t_list *lst)
 {
 	pid_t	pid;
 	int		status;
 	int		pipe_fd[2];
 	t_list	*head;
 
-	if (!lst || !f)
+	if (!lst)
 		return (-1);
 	if (pipe(pipe_fd) < 0)
 		exit_perror("pipe", 1);
@@ -31,7 +31,7 @@ int	run_pipeline(t_list *lst, int (*f)(void *, int))
 			ft_perror("fork");
 		else if (!pid) // child
 		{
-			status = f(lst->content, 1);
+			status = run_cmd(lst->content, 1);
 			exit(1);
 		}
 		else // parent
