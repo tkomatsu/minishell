@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/18 17:07:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 11:05:25 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ static t_list	*tokens_sep(t_token *tokens, int type)
 	return (list);
 }
 
-int	is_builtin(void *content)
+static int		is_builtin(void *content)
 {
-	t_token		*token;
-	const char	*builtin[] = {"cd", "env", "exit", "export", "unset", "echo", "pwd", NULL};
-	int			i;
+	t_token	*token;
+	int		i;
 
+	const char *builtin[] = {
+		"cd", "env", "exit", "export", "unset", "echo", "pwd", NULL};
 	token = content;
 	i = 0;
 	while (builtin[i])
@@ -56,13 +57,12 @@ int				parse_exec(t_token *tokens)
 	list_s = tokens_sep(tokens, SEMICOLON);
 	while (list_s)
 	{
-		list_p = tokens_sep((t_token*)list_s->content, PIPE);
-		ft_lstiter(list_s, parse_tokens);
+		list_p = tokens_sep((t_token *)list_s->content, PIPE);
+		ft_lstiter(list_s, exp_word);
 		if (ft_lstsize(list_p) == 1 && is_builtin((list_p->content)))
 			status = run_cmd(list_p->content, 0);
-		else
-			if (!(status = ft_lstiter_sta(list_p, run_cmd)))
-				return (status);
+		else if (!(status = ft_lstiter_sta(list_p, run_cmd)))
+			return (status);
 		ft_lstclear(&list_p, NULL);
 		list_s = list_s->next;
 	}
