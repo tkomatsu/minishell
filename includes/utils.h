@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/20 08:47:50 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 09:31:24 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-/*
-** MACRO DECLARATION - FILE DISCRIPTOR
-*/
-
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
 
 /*
 ** MACRO DECLARATION - LOOP STATUS
