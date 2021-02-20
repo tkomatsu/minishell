@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:01:28 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/21 02:38:57 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	minish_loop(void)
 	status = STAY_LOOP;
 	while (status)
 	{
+		g_pid = 0;
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt();
@@ -78,7 +79,6 @@ void	minish_loop(void)
 int		main(void)
 {
 	ft_envcpy();
-	g_pid = 0;
 	g_status = EXIT_SUCCESS;
 	ft_putendl_fd("\nWELCOME TO MINISHELL\n", STDERR);
 	minish_loop();
