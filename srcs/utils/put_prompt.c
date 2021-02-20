@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 22:38:39 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:46:14 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ static void	putformat(char c)
 	else if (c == 'n')
 		ft_putchar_fd('\n', STDERR);
 	else if (c == 's')
-		ft_putstr_fd("minishell", STDERR);
+		ft_putstr_fd("minish", STDERR);
 	else if (c == 'u')
 		ft_putstr_fd(ft_getenv("USER"), STDERR);
+	else if (c == 'v' || c == 'V')
+	{
+		ft_putstr_fd("1.0", STDERR);
+		if (c == 'V')
+			ft_putstr_fd(".0", STDERR);
+	}
 	else if (c == 'w' || c == 'W')
 		putdir(c);
 	else if (c == '\\')
