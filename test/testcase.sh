@@ -7,4 +7,6 @@ echo he''llo
 echo he""llo
 echo $PWD
 ls | cat
+ls | cat | wc
+cat ../Makefile | grep SRCS | wc
 exit
