@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 03:30:38 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:38:39 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	putdir(char c)
 	char	*cwd;
 	int		len;
 
+	cwd = ft_getenv("PWD");
 	if (c == 'w')
 	{
 		home = ft_getenv("HOME");
-		cwd = ft_getenv("PWD");
 		len = ft_strlen(home);
 		if (ft_strncmp(home, cwd, len))
 			ft_putstr_fd(cwd, STDERR);
@@ -30,6 +30,14 @@ static void	putdir(char c)
 			ft_putchar_fd('~', STDERR);
 			ft_putstr_fd(cwd + len, STDERR);
 		}
+	}
+	else if (c == 'W')
+	{
+		while (*cwd)
+			cwd++;
+		while (*cwd != '/')
+			cwd--;
+		ft_putstr_fd(cwd + 1, STDERR);
 	}
 }
 
@@ -43,7 +51,7 @@ static void	putformat(char c)
 		ft_putstr_fd("minishell", STDERR);
 	else if (c == 'u')
 		ft_putstr_fd(ft_getenv("USER"), STDERR);
-	else if (c == 'w')
+	else if (c == 'w' || c == 'W')
 		putdir(c);
 	else if (c == '\\')
 		ft_putchar_fd('\\', STDERR);
