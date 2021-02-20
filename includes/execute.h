@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 14:24:30 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 12:01:47 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 /*
 ** PROTOTYPE DECLARATION - EXECUTE
 */
+
+# define EXECUTABLE 1
 
 int		execmd(char **args, int flag);
 int		launch(char **args);

@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/19 21:16:49 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/20 18:21:01 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,7 +163,7 @@ fclean:
 	@rm -rf $(NAME) $(OBJ_DIR)
 	@rm -fr *.dSYM
 
-check: all
+test: all
 	@cd test && bash grademe.sh
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:13:49 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:18:49 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:19:00 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,5 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-/*
-** MACRO DECLARATION - LOOP STATUS
-*/
-
-# define EXIT_LOOP 0
-# define STAY_LOOP 1
 
 #endif

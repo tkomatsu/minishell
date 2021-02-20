@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:26:49 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 21:19:23 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/19 22:07:47 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 */
 
 int		run_cmd(void *content, int flag);
-int		run_pipeline(t_list *lst, int (*f)(void *, int));
+int		run_pipeline(t_list *lst);
 int		parse_exec(t_token *tokens);
 void	expand_token(void *content);
 char	*expand_environ(char *str, char *new, char **head, char **ptr);

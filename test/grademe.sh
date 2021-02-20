@@ -20,10 +20,13 @@ BOLDWHITE="\033[1m\033[37m"
 
 printf "$BOLDYELLOW TEST RESULT $RESET \n"
 
-cd ..
-touch minish_error.txt minish_result.txt bash_error.txt bash_result.txt
-./minishell < test/testcase.sh 2> minish_error.txt > minish_result.txt
-bash < test/testcase.sh 2> bassh_error.txt > bash_result.txt
-diff minish_result.txt bash_result.txt
-diff minish_error.txt bash_error.txt
-rm *.txt
+cp ../minishell .
+mkdir ./log
+touch ./log/minish_error.txt ./log/minish_result.txt ./log/bash_error.txt ./log/bash_result.txt
+./minishell < ./testcase.sh 1> ./log/minish_result.txt 2> ./log/minish_error.txt
+bash < ./testcase.sh 1> ./log/bash_result.txt 2> ./log/bassh_error.txt
+printf "$GREEN STDOUT $RESET\n"
+diff ./log/minish_result.txt ./log/bash_result.txt
+printf "$RED STDERR $RESET\n"
+diff ./log/minish_error.txt ./log/bash_error.txt
+rm -r ./log ./minishell
