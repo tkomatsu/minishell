@@ -23,8 +23,8 @@ printf "$BOLDYELLOW TEST RESULT $RESET \n"
 cp ../minishell .
 mkdir ./log
 touch ./log/minish_error.txt ./log/minish_result.txt ./log/bash_error.txt ./log/bash_result.txt
-./minishell < ./testcase.sh 2> ./log/minish_error.txt > ./log/minish_result.txt
-bash < ./testcase.sh 2> ./log/bassh_error.txt > ./log/bash_result.txt
+./minishell < ./testcase.sh 1> ./log/minish_result.txt 2> ./log/minish_error.txt
+bash < ./testcase.sh 1> ./log/bash_result.txt 2> ./log/bassh_error.txt
 printf "$GREEN STDOUT $RESET\n"
 diff ./log/minish_result.txt ./log/bash_result.txt
 printf "$RED STDERR $RESET\n"
