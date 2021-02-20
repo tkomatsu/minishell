@@ -6,4 +6,5 @@ echo he'llo'
 echo he''llo
 echo he""llo
 echo $PWD
+ls | cat
 exit
