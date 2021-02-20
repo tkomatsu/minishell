@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 14:50:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/20 18:19:20 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	run_pipeline(t_list *lst)
 	pid_t	pid;
 	int		newpipe[2];
 	int		status;
-	t_list	*head;
 
-	head = lst;
 	while (lst)
 	{
 		if (lst->next)
@@ -29,7 +27,7 @@ int	run_pipeline(t_list *lst)
 			ft_perror("fork");
 		else if (pid == 0) // child
 		{
-			if (lst == head)
+			if (lst->next)
 			{
 				close(newpipe[0]);
 				dup2(newpipe[1], STDOUT);
@@ -48,7 +46,7 @@ int	run_pipeline(t_list *lst)
 		{
 			if (waitpid(pid, &status, WUNTRACED) < 0)
 				exit_perror("wait", 1);
-			if (lst == head)
+			if (lst->next)
 				close(newpipe[1]);
 			else
 				close(newpipe[0]);
