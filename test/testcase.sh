@@ -5,4 +5,5 @@ echo he"llo"
 echo he'llo'
 echo he''llo
 echo he""llo
+echo $PWD
 exit

@@ -24,6 +24,8 @@ cd ..
 touch minish_error.txt minish_result.txt bash_error.txt bash_result.txt
 ./minishell < test/testcase.sh 2> minish_error.txt > minish_result.txt
 bash < test/testcase.sh 2> bassh_error.txt > bash_result.txt
+printf "$GREEN STDOUT $RESET\n"
 diff minish_result.txt bash_result.txt
+printf "$RED STDERR $RESET\n"
 diff minish_error.txt bash_error.txt
 rm *.txt
