@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 21:53:30 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 04:15:46 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	child_proc(t_list *head, t_list *cur, int oldp[2], int newp[2])
 	exit(EXIT_SUCCESS);
 }
 
-static void	parent_proc(t_list *head, t_list *cur, int oldp[2], pid_t pid)
+static void	parent_proc(t_list *head, t_list *cur, int oldp[2])
 {
 	int	status;
 
@@ -39,13 +39,16 @@ static void	parent_proc(t_list *head, t_list *cur, int oldp[2], pid_t pid)
 		close(oldp[0]);
 		close(oldp[1]);
 	}
-	if (waitpid(pid, &status, WUNTRACED) < 0)
+	if (waitpid(g_pid, &status, WUNTRACED) < 0)
 		exit_perror("wait", EXIT_FAILURE);
+	if (status == SIGINT || status == SIGQUIT)
+		signal_handler(status);
+	if (WIFEXITED(status))
+		g_status = WEXITSTATUS(status);
 }
 
 static void	exec_pipeline(t_list *lst)
 {
-	pid_t	pid;
 	int		lastpipe[2];
 	int		newpipe[2];
 	t_list	*head;
@@ -58,13 +61,13 @@ static void	exec_pipeline(t_list *lst)
 		if (lst->next)
 			if (pipe(newpipe) < 0)
 				exit_perror("pipe", EXIT_FAILURE);
-		pid = fork();
-		if (pid < 0)
+		g_pid = fork();
+		if (g_pid < 0)
 			exit_perror("fork", EXIT_FAILURE);
-		else if (pid == 0)
+		else if (g_pid == 0)
 			child_proc(head, lst, lastpipe, newpipe);
 		else
-			parent_proc(head, lst, lastpipe, pid);
+			parent_proc(head, lst, lastpipe);
 		lst = lst->next;
 	}
 }
@@ -74,6 +77,8 @@ int			run_pipeline(t_list *lst)
 	int	original_stdin;
 	int	original_stdout;
 
+	signal(SIGINT, signal_ignore);
+	signal(SIGQUIT, signal_ignore);
 	original_stdin = dup(STDIN);
 	original_stdout = dup(STDOUT);
 	exec_pipeline(lst);

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:11:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:19:38 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	is_exist(char *path, char *cmd)
 	while ((dent = readdir(dir)))
 		if (!strcmp(cmd, dent->d_name))
 			return (1);
+	closedir(dir);
 	return (0);
 }
 
@@ -49,11 +50,35 @@ static char	*exec_path(char *cmd)
 	return (NULL);
 }
 
-/*
-static void	exec_launch(char **args)
+static void	validate_cmd(char *path)
+{
+	struct stat	st;
+
+	if (!ft_strchr(path, '/'))
+		return ;
+	if ((lstat(path, &st) < 0))
+	{
+		ft_putstr_fd("minish: ", STDERR);
+		if (errno == ENOTDIR)
+			exit_perror(path, EX_EPERM);
+		else if (errno == ENOENT)
+			exit_perror(path, EX_ENOENT);
+		else if (errno == EACCES)
+			exit_perror(path, EXIT_FAILURE);
+	}
+	if (S_ISDIR(st.st_mode))
+	{
+		errno = EISDIR;
+		ft_putstr_fd("minish: ", STDERR);
+		exit_perror(path, EX_EPERM);
+	}
+}
+
+int			launch(char **args)
 {
 	char	*cmd_path;
 
+	validate_cmd(args[0]);
 	if ((cmd_path = exec_path(args[0])))
 		args[0] = cmd_path;
 	if (execve(args[0], args, g_env) == -1)
@@ -63,44 +88,5 @@ static void	exec_launch(char **args)
 		ft_perror(args[0]);
 	}
 	ft_free(cmd_path);
-	exit(1);
-}
-*/
-
-int			launch(char **args)
-{
-//	int		status;
-
-	signal(SIGINT, signal_ignore);
-	signal(SIGQUIT, signal_ignore);
-	/*
-	g_pid = fork();
-	if (!g_pid)
-		exec_launch(args);
-	else if (g_pid < 0)
-		perror("fork");
-	else
-	{
-		if (wait(&status) < 0)
-			exit_perror("wait", 1);
-		if (status == SIGINT || status == SIGQUIT)
-			signal_handler(status);
-		if (WIFEXITED(status))
-			g_status = WEXITSTATUS(status);
-		g_pid = 0;
-	}
-	return (1);
-	*/
-	char	*cmd_path;
-
-	if ((cmd_path = exec_path(args[0])))
-		args[0] = cmd_path;
-	if (execve(args[0], args, g_env) == -1)
-	{
-		errno = 201;
-		ft_putstr_fd("minish: ", 2);
-		ft_perror(args[0]);
-	}
-	ft_free(cmd_path);
-	return (1);
+	return (STAY_LOOP);
 }

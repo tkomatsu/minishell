@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/20 09:31:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:06:57 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 /*
 ** SELF-MADE HEADER FILES
 */
-
 # include "error.h"
 # include "libft.h"
 # include "token.h"
@@ -24,12 +23,22 @@
 /*
 ** EXTERNAL LIBRARIES
 */
-
 # include <errno.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+/*
+** MACRO DECLARATION - EXIT STATUS
+*/
+# define EX_EBUILTIN 2
+# define EX_EPERM 126
+# define EX_ENOENT 127
+# define EX_EINVAL 128
+# define EX_SIGNAL 128
+# define EX_CTRLC 130
+# define EX_OUTRANGE 255
 
 /*
 ** MACRO DECLARATION - LOOP STATUS
@@ -40,13 +49,11 @@
 /*
 ** MACRO DECLARATION - RETURN VALUE
 */
-
 # define INVALID_NAME -1
 
 /*
 ** GLOBAL VARIABLES
 */
-
 extern char		**g_env;
 extern pid_t	g_pid;
 extern int		g_status;
@@ -54,7 +61,6 @@ extern int		g_status;
 /*
 ** PROTOTYPE DECLARATION
 */
-
 void	clear_tokens(t_token **tokens);
 t_token	*dlistnew(char *src, int sep);
 t_token	*dlisthead(t_token *tokens);

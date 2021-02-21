@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:10:08 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 12:49:01 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:30:47 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 /*
 ** MACRO DECLARATION - TYPE OF TOKEN
 */
-
 # define WORD 1
 # define NEWLINE 2
 # define PIPE 3
@@ -30,7 +29,6 @@
 /*
 ** STRUCTURE
 */
-
 typedef struct	s_token
 {
 	char			*word;
