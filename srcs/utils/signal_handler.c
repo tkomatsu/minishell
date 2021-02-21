@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:24:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 03:31:44 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:15:24 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	sig_int(void)
 	{
 		ft_putendl_fd("\b\b  ", STDOUT);
 		put_prompt();
-		g_status = 1;
+		g_status = EXIT_FAILURE;
 	}
 	else
 	{
 		ft_putendl_fd("", STDOUT);
-		g_status = 130;
+		g_status = EX_CTRLC;
 	}
 }
 
@@ -39,7 +39,7 @@ static void	sig_quit(int sig)
 		ft_putstr_fd("Quit: ", STDOUT);
 		ft_putendl_fd(code, STDOUT);
 		ft_free(code);
-		g_status = 131;
+		g_status = EX_SIGNAL + sig;
 	}
 }
 

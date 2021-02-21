@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 04:12:06 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/21 15:19:38 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	is_exist(char *path, char *cmd)
 	while ((dent = readdir(dir)))
 		if (!strcmp(cmd, dent->d_name))
 			return (1);
+	closedir(dir);
 	return (0);
 }
 
@@ -59,9 +60,9 @@ static void	validate_cmd(char *path)
 	{
 		ft_putstr_fd("minish: ", STDERR);
 		if (errno == ENOTDIR)
-			exit_perror(path, 126);
+			exit_perror(path, EX_EPERM);
 		else if (errno == ENOENT)
-			exit_perror(path, 127);
+			exit_perror(path, EX_ENOENT);
 		else if (errno == EACCES)
 			exit_perror(path, EXIT_FAILURE);
 	}
@@ -69,7 +70,7 @@ static void	validate_cmd(char *path)
 	{
 		errno = EISDIR;
 		ft_putstr_fd("minish: ", STDERR);
-		exit_perror(path, 126);
+		exit_perror(path, EX_EPERM);
 	}
 }
 
