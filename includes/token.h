@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:10:08 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/21 21:02:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 21:27:41 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # define P_OPEN 6
 # define P_CLOSE 7
 # define GREATER 8
-# define LESS 9
+# define GREATER2 9
+# define LESS 10
 
 /*
 ** STRUCTURE
@@ -40,6 +41,7 @@ typedef struct	s_token
 	struct s_token	*next;
 }				t_token;
 
+void	del_token(t_token *token);
 void	clear_tokens(t_token **tokens);
 t_token	*dlistnew(char *src, int sep);
 t_token	*dlisthead(t_token *tokens);
