@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 16:06:20 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 21:33:48 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 22:00:00 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	output_redirect(t_token *token)
 	wish_fd = ft_atoi(token->word);
 	if (wish_fd <= 0)
 		wish_fd = STDOUT;
+	else
+	{
+		ft_free(token->word);
+		token->word = ft_strdup("");
+	}
 	if (!token->next)
 	{
 		ft_perror("redirect syntax error");
