@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/20 18:21:01 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/21 13:47:40 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,9 +58,11 @@ PARSE_FILES = convert_dquotes.c \
 			  convert_words.c \
 			  expand_environ.c \
 			  expand_token.c \
+			  input_redirect.c \
 			  parse_exec.c \
 			  run_cmd.c \
 			  run_pipeline.c \
+			  set_redirect.c \
 			  token_to_args.c
 
 PARSE_SRCS = $(addprefix $(PARSE_DIR), $(PARSE_FILES))
