@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_cmd.c                                          :+:      :+:    :+:   */
+/*   input_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/19 12:09:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 13:51:24 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/02/21 13:15:31 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/21 13:50:57 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	run_cmd(void *content, int flag)
+void	input_redirect(t_token *token)
 {
-	char	**args;
-	int		status;
+	int		file_fd;
+	char	*path;
 
-	set_redirect((t_token*)content);
-	args = token_to_args((t_token *)content);
-	status = execmd(args, flag);
-	ft_free(args);
-	return (status);
+	if (!token->next)
+	{
+		ft_perror("redirect syntax error");
+		return ;
+	}
+	path = ft_strdup(token->next->word);
+	file_fd = open(path, O_RDONLY);
+	dup2(file_fd, STDIN);
+	close(file_fd);
 }

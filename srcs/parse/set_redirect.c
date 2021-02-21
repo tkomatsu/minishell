@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_cmd.c                                          :+:      :+:    :+:   */
+/*   set_redirect.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/19 12:09:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 13:51:24 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/21 13:54:32 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	run_cmd(void *content, int flag)
-{
-	char	**args;
-	int		status;
+void	output_redirect(t_token *token);
 
-	set_redirect((t_token*)content);
-	args = token_to_args((t_token *)content);
-	status = execmd(args, flag);
-	ft_free(args);
-	return (status);
+void	set_redirect(t_token *token)
+{
+	while (token)
+	{
+		if (token->type == LESS)
+			input_redirect(token);
+		/*
+		else if (token->type == GREATER)
+			output_redirect(token);
+		*/
+		token = token->next;
+	}
 }
