@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:22:48 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 16:08:24 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	change_dir(char *dir)
 	if (chdir(dir) < 0)
 	{
 		g_status = EXIT_FAILURE;
-		ft_perror("cd");
+		ft_putstr_fd("minish: cd: ", STDERR);
+		ft_perror(dir);
 	}
 	ft_setenv("PWD", getcwd(NULL, 0), 1);
 }
@@ -31,7 +32,8 @@ int			ft_cd(char **args)
 	{
 		if (!(dir = ft_getenv("HOME")))
 		{
-			ft_putendl_fd("minish: cd: HOME not set", STDOUT);
+			g_status = EXIT_FAILURE;
+			ft_putendl_fd("minish: cd: HOME not set", STDERR);
 			return (STAY_LOOP);
 		}
 	}
@@ -39,7 +41,8 @@ int			ft_cd(char **args)
 	{
 		if (!(dir = ft_getenv("OLDPWD")))
 		{
-			ft_putendl_fd("minish: cd: OLDPWD not set", STDOUT);
+			g_status = EXIT_FAILURE;
+			ft_putendl_fd("minish: cd: OLDPWD not set", STDERR);
 			return (STAY_LOOP);
 		}
 	}
