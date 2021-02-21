@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/21 15:06:57 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/21 21:02:32 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 */
 # include "error.h"
 # include "libft.h"
-# include "token.h"
 
 /*
 ** EXTERNAL LIBRARIES
@@ -61,11 +60,6 @@ extern int		g_status;
 /*
 ** PROTOTYPE DECLARATION
 */
-void	clear_tokens(t_token **tokens);
-t_token	*dlistnew(char *src, int sep);
-t_token	*dlisthead(t_token *tokens);
-t_token	*dlistlast(t_token *tokens);
-void	dlist_add_back(t_token **list, t_token *new);
 void	exit_perror(char *err_msg, int exit_status);
 char	*ft_getenv(const char *name);
 void	ft_perror(char *s);
@@ -75,7 +69,6 @@ int		ft_unsetenv(const char *name);
 void	put_prompt(void);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
-int		token_size(t_token *tokens);
 int		get_next_input(int fd, char **line);
 
 #endif
