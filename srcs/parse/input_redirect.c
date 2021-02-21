@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 13:15:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 13:50:57 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/21 21:04:22 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	input_redirect(t_token *token)
 		return ;
 	}
 	path = ft_strdup(token->next->word);
+	dlstextract(token->next);
 	file_fd = open(path, O_RDONLY);
+	ft_free(path);
 	dup2(file_fd, STDIN);
 	close(file_fd);
 }
