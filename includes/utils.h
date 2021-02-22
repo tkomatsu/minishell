@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/21 21:02:32 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:38:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_perror(char *s);
 int		ft_putenv(const char *string);
 int		ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_unsetenv(const char *name);
-void	put_prompt(void);
+void	put_prompt(char *ps);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
 int		get_next_input(int fd, char **line);

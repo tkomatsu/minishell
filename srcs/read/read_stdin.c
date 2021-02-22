@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 12:59:05 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:39:27 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	add_next_line(char **line, int flag)
 	char	*tmp;
 
 	if (flag == QUOTE || flag == DQUOTE)
-		ft_putstr_fd("> ", STDOUT);
+		put_prompt("PS2");
 	if ((ret = get_next_input(0, &tmp)) < 0)
 		exit_perror("get_next_input", EXIT_FAILURE);
 	if (!ret)
