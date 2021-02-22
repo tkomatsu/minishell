@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 14:42:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:03:09 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,11 @@ static int	strtofd(t_token *token)
 	return (fd);
 }
 
-static void	io_redirect(t_token *token)
+static int	open_redirect(t_token *token, char *path)
 {
-	int		file_fd;
-	int		wish_fd;
-	char	*path;
+	int	file_fd;
 
 	file_fd = -1;
-	wish_fd = strtofd(token);
-	if (!token->next)
-	{
-		ft_perror("redirect syntax error");
-		return ;
-	}
-	path = ft_strdup(token->next->word);
-	dlstextract(token->next);
 	if (token->type == GREATER)
 		file_fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	else if (token->type == GREATER2)
@@ -54,23 +44,48 @@ static void	io_redirect(t_token *token)
 			path, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, S_IRUSR | S_IWUSR);
 	else if (token->type == LESS)
 		file_fd = open(path, O_RDONLY);
+	return (file_fd);
+}
+
+static int	io_redirect(t_token *token)
+{
+	int		file_fd;
+	int		wish_fd;
+	char	*path;
+
+	wish_fd = strtofd(token);
+	if (!token->next)
+	{
+		ft_putendl_fd("minish: syntax error", STDERR);
+		return (EXIT_FAILURE);
+	}
+	path = ft_strdup(token->next->word);
+	dlstextract(token->next);
+	file_fd = open_redirect(token, path);
 	if (file_fd < 0)
 	{
 		ft_putstr_fd("minish: ", STDERR);
-		exit_perror(path, EXIT_FAILURE);
+		ft_perror(path);
+		return (EXIT_FAILURE);
 	}
 	ft_free(path);
 	dup2(file_fd, wish_fd);
 	close(file_fd);
+	return (EXIT_SUCCESS);
 }
 
-void		set_redirect(t_token *token)
+int			set_redirect(t_token *token)
 {
+	int	status;
+
+	status = 0;
 	while (token)
 	{
 		if (token->type == LESS || token->type == GREATER ||
 			token->type == GREATER2)
-			io_redirect(token);
+			if ((status = io_redirect(token)) == EXIT_FAILURE)
+				return (EXIT_FAILURE);
 		token = token->next;
 	}
+	return (EXIT_SUCCESS);
 }
