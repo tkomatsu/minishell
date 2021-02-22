@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:36:17 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:00:08 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:33:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char		**token_to_args(t_token *tokens)
 	char	**args;
 	int		i;
 
-	/* redirect */
 	if (!(args = ft_calloc(token_size(tokens) + 1, sizeof(char*))))
 		exit_perror("token_to_args", EXIT_FAILURE);
 	i = 0;

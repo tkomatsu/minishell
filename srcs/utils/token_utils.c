@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 21:27:01 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:33:36 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	dlist_add_back(t_token **list, t_token *new)
 
 void	dlstextract(t_token *token)
 {
-	t_token *p;
+	t_token	*p;
 	t_token	*n;
+
 	p = token->prev;
 	n = token->next;
 	del_token(token);

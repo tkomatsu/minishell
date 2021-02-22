@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 02:38:57 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 15:37:06 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 char	**g_env;
 pid_t	g_pid;
 int		g_status;
-
-void	test_tokens(t_token *tokens)
-{
-	char type[10][20] = {"word", "newline", "pipe", "and", "semicolon", "p_open", "p_close", "greater", "less"};
-
-	for (int i = 0; tokens; i++)
-	{
-		printf("[%2d]%s, type:%s\n", i, tokens->word, type[(tokens->type - 1)]);
-		tokens = tokens->next;
-	}
-}
 
 void	ft_envcpy(void)
 {
@@ -69,7 +58,6 @@ void	minish_loop(void)
 		if (read_stdin(&line) == INVALID_INPUT)
 			continue;
 		tokens = tokenize(line);
-		/* test_tokens(tokens); */
 		status = parse_exec(tokens);
 		ft_free(line);
 		clear_tokens(&tokens);
