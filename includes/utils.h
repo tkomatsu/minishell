@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/23 02:10:47 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 02:34:18 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define EX_SIGNAL 128
 # define EX_CTRLC 130
 # define EX_OUTRANGE 255
+# define EX_EINPUT 258
 
 /*
 ** MACRO DECLARATION - LOOP STATUS
