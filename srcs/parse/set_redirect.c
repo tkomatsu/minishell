@@ -6,11 +6,31 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 11:45:22 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:43:40 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+static int	strtofd(t_token *token)
+{
+	int	fd;
+
+	fd = ft_atoi(token->word);
+	if (fd <= 0)
+	{
+		if (token->type == GREATER || token->type == GREATER2)
+			fd = STDOUT;
+		else if (token->type == LESS)
+			fd = STDIN;
+	}
+	else
+	{
+		ft_free(token->word);
+		token->word = ft_strdup("");
+	}
+	return (fd);
+}
 
 static void	io_redirect(t_token *token)
 {
@@ -19,19 +39,7 @@ static void	io_redirect(t_token *token)
 	char	*path;
 
 	file_fd = -1;
-	wish_fd = ft_atoi(token->word);
-	if (wish_fd <= 0)
-	{
-		if (token->type == GREATER || token->type == GREATER2)
-			wish_fd = STDOUT;
-		else if (token->type == LESS)
-			wish_fd = STDIN;
-	}
-	else
-	{
-		ft_free(token->word);
-		token->word = ft_strdup("");
-	}
+	wish_fd = strtofd(token);
 	if (!token->next)
 	{
 		ft_perror("redirect syntax error");
