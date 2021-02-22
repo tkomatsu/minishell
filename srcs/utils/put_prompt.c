@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 22:46:14 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:40:53 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,16 @@ static void	putformat(char c)
 	}
 }
 
-void		put_prompt(void)
+void		put_prompt(char *ps)
 {
 	char	*format;
 
-	if (!(format = ft_getenv("PS1")))
+	if (!(format = ft_getenv(ps)))
 	{
-		ft_putstr_fd("minishell$ ", STDERR);
+		if (!strcmp(ps, "PS1"))
+			ft_putstr_fd("minishell$ ", STDERR);
+		else if (!strcmp(ps, "PS2"))
+			ft_putstr_fd("> ", STDERR);
 		return ;
 	}
 	while (*format)

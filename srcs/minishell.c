@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 15:37:06 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:38:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	minish_loop(void)
 		g_pid = 0;
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
-		put_prompt();
+		put_prompt("PS1");
 		if (read_stdin(&line) == INVALID_INPUT)
 			continue;
 		tokens = tokenize(line);
