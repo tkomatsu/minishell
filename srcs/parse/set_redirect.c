@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 13:43:40 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:46:59 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ static void	io_redirect(t_token *token)
 	else if (token->type == LESS)
 		file_fd = open(path, O_RDONLY);
 	if (file_fd < 0)
-		exit_perror("error", EXIT_FAILURE);
+	{
+		ft_putstr_fd("minish: ", STDERR);
+		exit_perror(path, EXIT_FAILURE);
+	}
 	ft_free(path);
 	dup2(file_fd, wish_fd);
 	close(file_fd);
