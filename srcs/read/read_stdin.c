@@ -6,37 +6,46 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 23:47:04 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 12:59:05 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
 
-/*
-static void	add_next_line(char **line, int flag)
+static int	output_eof_err(int flag)
+{
+	if (flag == QUOTE)
+		ft_putendl_fd("minish: unexpected EOF while looking for matching `\''"
+				, STDERR);
+	else if (flag == DQUOTE)
+		ft_putendl_fd("minish: unexpected EOF while looking for matching `\"'"
+				, STDERR);
+	errno = E_EOF;
+	ft_perror("minish: syntax error");
+	return (INVALID_INPUT);
+}
+
+static int	add_next_line(char **line, int flag)
 {
 	int		ret;
 	char	*new;
 	char	*put_nl;
 	char	*tmp;
 
-	if (flag == QUOTE)
-		ft_putstr_fd("quote> ", STDOUT);
-	else if (flag == DQUOTE)
-		ft_putstr_fd("dquote> ", STDOUT);
-	if ((ret = get_next_line(0, &tmp)) < 0)
-	{
-		ft_perror("get_next_line");
-		exit(EXIT_FAILURE);
-	}
+	if (flag == QUOTE || flag == DQUOTE)
+		ft_putstr_fd("> ", STDOUT);
+	if ((ret = get_next_input(0, &tmp)) < 0)
+		exit_perror("get_next_input", EXIT_FAILURE);
+	if (!ret)
+		return (output_eof_err(flag));
 	put_nl = ft_strjoin("\n", tmp);
 	free(tmp);
 	new = ft_strjoin(*line, put_nl);
 	free(put_nl);
 	free(*line);
 	*line = new;
+	return (VALID_INPUT);
 }
-*/
 
 static int	is_bad_quote(char *line)
 {
@@ -72,16 +81,8 @@ int			read_stdin(char **line)
 		ft_putendl_fd("exit", STDOUT);
 		exit(EXIT_SUCCESS);
 	}
-	if (is_bad_quote(*line))
-	{
-		errno = E_QUOTE;
-		ft_putstr_fd("minish: ", STDERR);
-		ft_perror(*line);
-		return (INVALID_INPUT);
-	}
-	/*
 	while ((ret = is_bad_quote(*line)))
-		add_next_line(line, ret);
-	*/
+		if (add_next_line(line, ret) == INVALID_INPUT)
+			return (INVALID_INPUT);
 	return (VALID_INPUT);
 }

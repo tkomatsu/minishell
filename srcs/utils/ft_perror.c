@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:00:32 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 13:05:21 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static char	*ft_strerror(void)
 		ft_strlcpy(str, "minishell error", 100);
 	else if (errno == E_CMD)
 		ft_strlcpy(str, "command not found", 100);
-	else if (errno == E_QUOTE)
-		ft_strlcpy(str, "no closing quotation", 100);
+	else if (errno == E_EOF)
+		ft_strlcpy(str, "unexpected end of file", 100);
 	else if (errno == E_VALID)
 		ft_strlcpy(str, "not a valid identifier", 100);
 	else if (errno == E_NUMERIC)
