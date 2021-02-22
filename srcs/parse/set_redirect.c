@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 13:46:59 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 14:42:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static void	io_redirect(t_token *token)
 	dlstextract(token->next);
 	if (token->type == GREATER)
 		file_fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	else if (token->type == GREATER2)
+		file_fd = open(
+			path, O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, S_IRUSR | S_IWUSR);
 	else if (token->type == LESS)
 		file_fd = open(path, O_RDONLY);
 	if (file_fd < 0)
