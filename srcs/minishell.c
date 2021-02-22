@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 17:38:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 18:01:47 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,36 @@ char	**g_env;
 pid_t	g_pid;
 int		g_status;
 
+void	set_shlvl(void)
+{
+	int		shlvl;
+	char	*level;
+
+	shlvl = ft_atoi(ft_getenv("SHLVL")) + 1;
+	if (shlvl < 0)
+		ft_setenv("SHLVL", "0", 1);
+	else if (shlvl == 1000)
+		ft_setenv("SHLVL", "", 1);
+	else if (shlvl > 1000)
+	{
+		ft_putstr_fd("minish: warning: shell level (", STDERR);
+		ft_putnbr_fd(shlvl, STDERR);
+		ft_putendl_fd(") too high, resetting to 1", STDERR);
+		ft_setenv("SHLVL", "1", 1);
+	}
+	else
+	{
+		level = ft_itoa(shlvl);
+		ft_setenv("SHLVL", level, 1);
+		free(level);
+	}
+}
+
 void	ft_envcpy(void)
 {
 	extern char	**environ;
 	int			i;
 	int			envlen;
-	static int	shlvl = 1;
 
 	envlen = 0;
 	while (environ[envlen])
@@ -36,8 +60,9 @@ void	ft_envcpy(void)
 		i++;
 	}
 	if (ft_getenv("SHLVL"))
-		shlvl = ft_atoi(ft_getenv("SHLVL")) + 1;
-	ft_setenv("SHLVL", ft_itoa(shlvl), 1);
+		set_shlvl();
+	else
+		ft_setenv("SHLVL", "1", 1);
 	ft_setenv("PWD", getcwd(NULL, 0), 1);
 	ft_setenv("OLDPWD", NULL, 1);
 }
