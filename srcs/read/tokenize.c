@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 16:33:48 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 17:01:12 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_token		*tokenize(char *line)
 		if (line[i])
 			i++;
 	}
-	remove_empty(tokens);
 	appending_redirect(tokens);
+	remove_empty(tokens);
 	return (tokens);
 }
