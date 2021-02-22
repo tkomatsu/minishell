@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 21:11:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:04:42 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	io_redirect(t_token *token)
 	wish_fd = strtofd(token);
 	if (!token->next || !*(token->next->word))
 	{
+		g_status = EXIT_FAILURE;
 		ft_putendl_fd("minish: syntax error", STDERR);
 		return (EXIT_FAILURE);
 	}
@@ -63,6 +64,7 @@ static int	io_redirect(t_token *token)
 	file_fd = open_redirect(token, path);
 	if (file_fd < 0)
 	{
+		g_status = EXIT_FAILURE;
 		ft_putstr_fd("minish: ", STDERR);
 		ft_perror(path);
 		return (EXIT_FAILURE);
