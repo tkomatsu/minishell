@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 22:53:46 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:32:48 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,22 @@ static void	validate_cmd(char *path)
 int			launch(char **args)
 {
 	char	*cmd_path;
+	int		is_error;
 
+	is_error = 0;
 	validate_cmd(args[0]);
 	if ((cmd_path = exec_path(args[0])))
 		args[0] = cmd_path;
 	if (execve(args[0], args, g_env) == -1)
 	{
+		is_error = 1;
 		errno = E_CMD;
 		ft_putstr_fd("minish: ", STDERR);
 		ft_perror(args[0]);
 		g_status = EX_ENOENT;
 	}
 	ft_free(cmd_path);
+	if (!is_error)
+		g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);
 }

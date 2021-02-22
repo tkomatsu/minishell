@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:22:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:41:59 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	ft_echo(char **args)
 	{
 		if (i >= 3 || (i == 2 && !noption))
 			ft_putchar_fd(' ', STDOUT);
-		ft_putstr_fd(args[i], STDOUT);
-		i++;
+		ft_putstr_fd(args[i++], STDOUT);
 	}
 	if (!noption)
 		ft_putchar_fd('\n', STDOUT);
+	g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);
 }

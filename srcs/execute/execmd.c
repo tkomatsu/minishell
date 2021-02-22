@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 15:17:23 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:06:13 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	execmd(char **args, int executable)
 {
-	g_status = EXIT_SUCCESS;
 	if (!args[0])
 		return (STAY_LOOP);
 	else if (!ft_strcasecmp(args[0], "echo"))

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:08:32 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:49:36 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static void	export_list(void)
 
 int			ft_export(char **args)
 {
+	int	is_error;
 	int	i;
 
+	is_error = 0;
 	i = 1;
 	if (!args[i])
 		export_list();
@@ -51,6 +53,7 @@ int			ft_export(char **args)
 	{
 		if (ft_putenv(args[i]) == INVALID_NAME)
 		{
+			is_error = 1;
 			g_status = EXIT_FAILURE;
 			errno = E_VALID;
 			ft_putstr_fd("minish: export: `", STDERR);
@@ -60,5 +63,7 @@ int			ft_export(char **args)
 		}
 		i++;
 	}
-	return (1);
+	if (!is_error)
+		g_status = EXIT_SUCCESS;
+	return (STAY_LOOP);
 }

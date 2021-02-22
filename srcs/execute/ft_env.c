@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:11:50 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/19 14:23:07 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:24:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	ft_env(void)
 			ft_putendl_fd(g_env[i], STDOUT);
 		i++;
 	}
+	g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);
 }
