@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 18:01:47 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 02:06:41 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		main(void)
 {
 	ft_envcpy();
 	g_status = EXIT_SUCCESS;
+	g_sigint = OFF;
 	ft_putendl_fd("\nWELCOME TO MINISHELL\n", STDERR);
 	minish_loop();
 	ft_free_split(g_env);

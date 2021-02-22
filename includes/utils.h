@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/22 17:38:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/23 02:10:47 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,18 @@
 # define INVALID_NAME -1
 
 /*
+** MACRO DECLARATION - FLAG
+*/
+# define OFF 0
+# define ON 1
+
+/*
 ** GLOBAL VARIABLES
 */
 extern char		**g_env;
 extern pid_t	g_pid;
 extern int		g_status;
+extern int		g_sigint;
 
 /*
 ** PROTOTYPE DECLARATION
