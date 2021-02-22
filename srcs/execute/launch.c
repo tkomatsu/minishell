@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 15:27:33 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/22 22:53:46 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int			launch(char **args)
 		errno = E_CMD;
 		ft_putstr_fd("minish: ", STDERR);
 		ft_perror(args[0]);
+		g_status = EX_ENOENT;
 	}
 	ft_free(cmd_path);
 	return (STAY_LOOP);
