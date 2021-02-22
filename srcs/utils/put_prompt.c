@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 17:40:53 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 18:32:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ static void	putdir(char c)
 	}
 	else if (c == 'W')
 	{
-		while (*cwd)
-			cwd++;
-		while (*cwd != '/')
-			cwd--;
+		cwd = ft_strrchr(cwd, '/');
 		ft_putstr_fd(cwd + 1, STDERR);
 	}
 }

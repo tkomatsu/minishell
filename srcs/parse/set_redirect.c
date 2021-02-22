@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 16:58:12 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/22 21:11:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	io_redirect(t_token *token)
 	char	*path;
 
 	wish_fd = strtofd(token);
-	if (!token->next)
+	if (!token->next || !*(token->next->word))
 	{
 		ft_putendl_fd("minish: syntax error", STDERR);
 		return (EXIT_FAILURE);
