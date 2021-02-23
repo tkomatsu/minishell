@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/23 18:53:58 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/24 04:31:38 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,18 +47,22 @@ DEBUG_CFLAGS = -g3
 READ_DIR = read/
 READ_FILES = read_stdin.c \
 			 tokenize.c \
-			 get_next_input.c
+			 get_next_input.c \
+			 convert_dquotes.c \
+			 convert_quotes.c \
+			 convert_words.c \
+			 expand_environ.c \
+			 parse_line.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = convert_dquotes.c \
-			  convert_quotes.c \
-			  convert_words.c \
-			  expand_environ.c \
-			  expand_token.c \
+PARSE_FILES = expand_dquotes.c \
+			  expand_quotes.c \
+			  expand_words.c \
+			  expand_tokens.c \
 			  parse_exec.c \
 			  run_cmd.c \
 			  run_pipeline.c \

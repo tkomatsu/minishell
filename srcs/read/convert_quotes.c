@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/18 21:00:29 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/24 02:59:14 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/24 04:22:30 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "read.h"
 
 char	*convert_quotes(char *str, char **ptr)
 {
 	char	*new;
+	char	*head;
 
-	new = str;
+	head = str++;
 	while (*str != '\'')
 		str++;
-	*str = '\0';
+	new = ft_substr(head, 0, str - head + 1);
 	*ptr = str + 1;
 	return (new);
 }

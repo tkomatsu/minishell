@@ -1,64 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_token.c                                     :+:      :+:    :+:   */
+/*   expand_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/20 01:00:51 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 04:31:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static char	*strjoin_free(char *new, char *str, int type)
+static void	expand_token(t_token *tokens)
 {
-	char	*ret;
-
-	if (!(ret = ft_strjoin(new, str)))
-		exit_perror("strjoin_free", EXIT_FAILURE);
-	if (type != QUOTE)
-		ft_free(str);
-	ft_free(new);
-	return (ret);
-}
-
-static void	expand_word(t_token *tokens)
-{
-	int		flag;
 	char	*new;
+	char	*head;
 	char	*str;
+	int		flag;
 
 	flag = 0;
-	if (!(new = ft_strdup("")))
+	if (!(new = ft_calloc(ft_strlen(tokens->word) + 1, sizeof(char))))
 		exit_perror("expand_word", EXIT_FAILURE);
+	head = new;
 	str = tokens->word;
 	while (*str)
 	{
 		if (*str == '\'' && !flag)
-			new = strjoin_free(new, convert_quotes(str + 1, &str), T_QUOTE);
+			new = expand_quotes(new, &str);
 		else if (*str == '\"' && !flag)
-			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
+			new = expand_dquotes(new, &str);
 		else
-			new = strjoin_free(new, convert_words(str, &str), T_WORDS);
+			new = expand_words(new, &str);
 		if (*str == '\\')
 			flag ^= ESC;
 		else
 			flag = 0;
 	}
 	ft_free(tokens->word);
-	tokens->word = new;
+	tokens->word = head;
 }
 
-void		expand_token(void *content)
+void		expand_tokens(void *content)
 {
 	t_token *tokens;
 
 	tokens = (t_token*)content;
 	while (tokens)
 	{
-		expand_word(tokens);
+		expand_token(tokens);
 		tokens = tokens->next;
 	}
 }

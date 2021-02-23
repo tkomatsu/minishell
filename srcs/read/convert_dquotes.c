@@ -1,54 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_words.c                                    :+:      :+:    :+:   */
+/*   convert_dquotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/20 00:24:56 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/24 03:00:19 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/24 04:22:38 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "read.h"
 
-static char	*convert_escape(char *new, char *str)
+static char	*strjoin_free(char *new, char *str)
 {
 	char	*ret;
-	char	*tmp;
-	int		i;
 
 	ret = NULL;
-	tmp = NULL;
-	if (!str || !(tmp = ft_strjoin(new, str)))
-		exit_perror("convert_escape", EXIT_FAILURE);
+	if (!str || !(ret = ft_strjoin(new, str)))
+		exit_perror("convert_dquotes", EXIT_FAILURE);
 	ft_free(new);
 	ft_free(str);
-	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
-		exit_perror("convert_escape", EXIT_FAILURE);
-	i = 0;
-	new = tmp;
-	while (*tmp)
-	{
-		if (*tmp == '\\')
-			tmp++;
-		ret[i++] = *(tmp++);
-	}
-	ft_free(new);
 	return (ret);
 }
 
-char		*convert_words(char *str, char **ptr)
+char		*convert_dquotes(char *str, char **ptr)
 {
 	char	*new;
 	char	*head;
 	int		flag;
 
 	new = NULL;
-	head = str;
+	head = str++;
 	flag = 0;
-	while (!(*str == '\'' || *str == '\"' || *str == '\0')
-			|| ((*str == '\'' || *str == '\"') && (flag & ESC)))
+	while (*str != '\"' || (*str == '\"' && (flag & ESC)))
 	{
 		if (*str == '$' && !(flag & ESC))
 		{
@@ -60,7 +45,7 @@ char		*convert_words(char *str, char **ptr)
 		else
 			flag = 0;
 	}
-	new = convert_escape(new, ft_substr(head, 0, str - head));
-	*ptr = str;
+	new = strjoin_free(new, ft_substr(head, 0, str - head + 1));
+	*ptr = str + 1;
 	return (new);
 }
