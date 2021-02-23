@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 20:52:32 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:06:08 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int			ft_exit(char **args)
 	int	len;
 
 	len = 0;
-	ft_putendl_fd("exit", STDERR);
+	if (g_pid)
+		ft_putendl_fd("exit", STDERR);
 	while (args[len])
 	{
 		if (len == 1 && !is_numeric(args[len]))

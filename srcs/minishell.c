@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 02:06:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:06:38 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	minish_loop(void)
 	status = STAY_LOOP;
 	while (status)
 	{
-		g_pid = 0;
+		g_pid = INITIAL;
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt("PS1");

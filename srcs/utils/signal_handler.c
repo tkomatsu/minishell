@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:24:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/23 02:11:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:06:27 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	sig_int(void)
 {
-	if (g_pid == 0)
+	if (g_pid == INITIAL)
 	{
 		ft_putendl_fd("\b\b  ", STDOUT);
 		put_prompt("PS1");
@@ -32,7 +32,7 @@ static void	sig_quit(int sig)
 {
 	char	*code;
 
-	if (g_pid == 0)
+	if (g_pid == INITIAL)
 		ft_putstr_fd("\b\b  \b\b", STDOUT);
 	else
 	{

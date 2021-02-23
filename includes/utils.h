@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/23 22:18:20 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 02:07:22 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@
 */
 # define OFF 0
 # define ON 1
+
+/*
+** MACRO DECLARATION - PID
+*/
+# define INITIAL -1
 
 /*
 ** GLOBAL VARIABLES
