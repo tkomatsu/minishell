@@ -6,11 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 19:35:31 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/23 02:28:09 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 22:16:01 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "read.h"
 
 int	g_sigint;
 
@@ -40,31 +40,31 @@ static void	clear(char **p)
 	*p = NULL;
 }
 
-static int	output(int fd, char **line, int ret, char **str)
+static int	output(char **line, int ret, char **str)
 {
 	char	*tmp;
 	int		len;
 
 	if (ret == -1)
 	{
-		clear(&str[fd]);
+		clear(str);
 		return (-1);
 	}
 	len = 0;
-	while (str[fd][len] != '\n' && str[fd][len] != '\0')
+	while ((*str)[len] != '\n' && (*str)[len] != '\0')
 		len++;
-	if (!(*line = ft_substr(str[fd], 0, len)))
+	if (!(*line = ft_substr(*str, 0, len)))
 		return (-1);
-	if (str[fd][len] == '\0')
+	if ((*str)[len] == '\0')
 	{
-		clear(&str[fd]);
+		clear(str);
 		return (0);
 	}
 	len++;
-	if (!(tmp = ft_strdup(str[fd] + len)))
+	if (!(tmp = ft_strdup(*str + len)))
 		return (-1);
-	free(str[fd]);
-	str[fd] = tmp;
+	free(*str);
+	*str = tmp;
 	return (1);
 }
 
@@ -98,14 +98,14 @@ static int	read_file(int fd, char **buf, char **str)
 int			get_next_input(int fd, char **line)
 {
 	int			ret;
-	static char	*str[STATIC_MAX];
+	static char	*str;
 	char		*buf;
 
 	ret = 1;
-	if (BUFFER_SIZE <= 0 || fd < 0 || !line || !(init(&buf, &str[fd])))
+	if (BUFFER_SIZE <= 0 || fd < 0 || !line || !(init(&buf, &str)))
 		return (-1);
-	if (!ft_strchr(str[fd], '\n'))
-		ret = read_file(fd, &buf, &str[fd]);
+	if (!ft_strchr(str, '\n'))
+		ret = read_file(fd, &buf, &str);
 	clear(&buf);
-	return (output(fd, line, ret, str));
+	return (output(line, ret, &str));
 }
