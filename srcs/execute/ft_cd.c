@@ -6,22 +6,23 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 16:08:24 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/23 04:40:09 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-static void	change_dir(char *dir)
+static int	change_dir(char *dir)
 {
-	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
 	if (chdir(dir) < 0)
 	{
-		g_status = EXIT_FAILURE;
 		ft_putstr_fd("minish: cd: ", STDERR);
 		ft_perror(dir);
+		return (EXIT_FAILURE);
 	}
+	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
 	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	return (EXIT_SUCCESS);
 }
 
 int			ft_cd(char **args)
@@ -48,6 +49,6 @@ int			ft_cd(char **args)
 	}
 	else
 		dir = args[1];
-	change_dir(dir);
+	g_status = change_dir(dir);
 	return (STAY_LOOP);
 }

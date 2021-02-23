@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/22 11:45:56 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/02/23 18:53:58 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ DEBUG_CFLAGS = -g3
 
 READ_DIR = read/
 READ_FILES = read_stdin.c \
-			 tokenize.c
+			 tokenize.c \
+			 get_next_input.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
@@ -91,7 +92,6 @@ UTIL_FILES = clear_tokens.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
-			 get_next_input.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \

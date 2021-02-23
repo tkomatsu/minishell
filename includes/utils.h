@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/22 17:38:38 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/23 22:18:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define EX_SIGNAL 128
 # define EX_CTRLC 130
 # define EX_OUTRANGE 255
+# define EX_EINPUT 258
 
 /*
 ** MACRO DECLARATION - LOOP STATUS
@@ -51,11 +52,18 @@
 # define INVALID_NAME -1
 
 /*
+** MACRO DECLARATION - FLAG
+*/
+# define OFF 0
+# define ON 1
+
+/*
 ** GLOBAL VARIABLES
 */
 extern char		**g_env;
 extern pid_t	g_pid;
 extern int		g_status;
+extern int		g_sigint;
 
 /*
 ** PROTOTYPE DECLARATION
@@ -69,6 +77,5 @@ int		ft_unsetenv(const char *name);
 void	put_prompt(char *ps);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
-int		get_next_input(int fd, char **line);
 
 #endif
