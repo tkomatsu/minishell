@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 23:49:53 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/25 00:37:31 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ TOKEN_FILES = clear_tokens.c \
 			  dlisthead.c \
 			  dlistlast.c \
 			  dlist_add_back.c \
+			  dlist_insert.c \
 			  dlstextract.c \
 			  token_size.c
 

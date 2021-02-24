@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:10:08 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 12:34:18 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 01:30:04 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_token				*dlistnew(char *src, int sep);
 t_token				*dlisthead(t_token *tokens);
 t_token				*dlistlast(t_token *tokens);
 void				dlist_add_back(t_token **list, t_token *new);
+void				dlist_insert(t_token *tokens, t_token *new);
 void				dlstextract(t_token *token);
 int					token_size(t_token *tokens);
 int					syntax_check(t_token *token);
