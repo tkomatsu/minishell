@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 04:31:38 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/24 14:39:18 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ READ_DIR = read/
 READ_FILES = read_stdin.c \
 			 tokenize.c \
 			 get_next_input.c \
+			 syntax_check.c \
 			 convert_dquotes.c \
 			 convert_quotes.c \
 			 convert_words.c \
