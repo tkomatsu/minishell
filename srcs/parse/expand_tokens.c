@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 23:05:09 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 00:05:26 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	expand_token(t_token *tokens)
 		else if (*str == '\"' && !flag)
 			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
 		else
-			new = strjoin_free(new, convert_words(str, &str), T_WORDS);
+			new = strjoin_free(new, convert_words(str, &str, tokens), T_WORDS);
 		if (*str == '\\')
 			flag ^= ESC;
 		else

@@ -6,11 +6,38 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 23:07:59 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 01:22:59 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+static void	words_to_tokens(char *new, char *str, char **ptr, t_token *tokens)
+{
+	char	**words;
+	char	*tmp;
+
+	while (*new && *new != ' ')
+		new++;
+	if (!*new)
+	{
+		*ptr = str;
+		return ;
+	}
+	*(new++) = '\0';
+	if (!(words = ft_split(new, ' ')))
+		exit_perror("convert_words", EXIT_FAILURE);
+	while (*words)
+	{
+		dlist_insert(tokens, dlistnew(*words, WORD));
+		tokens = tokens->next;
+		words++;
+	}
+	if (!(tmp = ft_strdup(str)))
+		exit_perror("convert_words", EXIT_FAILURE);
+	dlist_insert(tokens, dlistnew(tmp, WORD));
+	**ptr = '\0';
+}
 
 static char	*convert_escape(char *new, char *str)
 {
@@ -46,7 +73,7 @@ static void	validate_escape(char c, int *flag)
 		*flag = 0;
 }
 
-char		*convert_words(char *str, char **ptr)
+char		*convert_words(char *str, char **ptr, t_token *tokens)
 {
 	char	*new;
 	char	*head;
@@ -71,6 +98,6 @@ char		*convert_words(char *str, char **ptr)
 		validate_escape(*(str++), &flag);
 	}
 	new = convert_escape(new, ft_substr(head, 0, str - head));
-	*ptr = str;
+	words_to_tokens(new, str, ptr, tokens);
 	return (new);
 }
