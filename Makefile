@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 14:55:17 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/24 23:09:44 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,22 +48,18 @@ READ_DIR = read/
 READ_FILES = read_stdin.c \
 			 tokenize.c \
 			 get_next_input.c \
-			 syntax_check.c \
-			 convert_dquotes.c \
-			 convert_quotes.c \
-			 convert_words.c \
-			 expand_environ.c \
-			 parse_line.c
+			 syntax_check.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = expand_dquotes.c \
-			  expand_quotes.c \
-			  expand_words.c \
+PARSE_FILES = convert_dquotes.c \
+			  convert_quotes.c \
+			  convert_words.c \
 			  expand_tokens.c \
+			  expand_environ.c \
 			  parse_exec.c \
 			  run_cmd.c \
 			  run_pipeline.c \
@@ -100,7 +96,6 @@ UTIL_FILES = clear_tokens.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
-			 strjoin_free.c \
 			 token_utils.c \
 			 token_size.c
 
