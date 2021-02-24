@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 23:09:44 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/24 23:49:53 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,7 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = clear_tokens.c \
-			 exit_perror.c \
+UTIL_FILES = exit_perror.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
@@ -95,11 +94,23 @@ UTIL_FILES = clear_tokens.c \
 			 ft_unsetenv.c \
 			 put_prompt.c \
 			 signal_handler.c \
-			 signal_ignore.c \
-			 token_utils.c \
-			 token_size.c
+			 signal_ignore.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
+
+# token
+
+TOKEN_DIR = token/
+TOKEN_FILES = clear_tokens.c \
+			  del_token.c \
+			  dlistnew.c \
+			  dlisthead.c \
+			  dlistlast.c \
+			  dlist_add_back.c \
+			  dlstextract.c \
+			  token_size.c
+
+TOKEN_SRCS = $(addprefix $(TOKEN_DIR), $(TOKEN_FILES))
 
 # easter egg
 
@@ -118,6 +129,7 @@ SRC_FILES =	minishell.c \
 			$(PARSE_SRCS) \
 			$(EXE_SRCS) \
 			$(UTIL_SRCS) \
+			$(TOKEN_SRCS) \
 			$(EASTER_SRCS)
 
 
@@ -147,6 +159,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
 	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
 	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
+	@mkdir -p $(OBJ_DIR)$(TOKEN_DIR)
 	@mkdir -p $(OBJ_DIR)$(EASTER_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
