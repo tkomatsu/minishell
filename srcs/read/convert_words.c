@@ -6,23 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 04:02:26 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:55:59 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
-
-static char	*strjoin_free(char *new, char *str)
-{
-	char	*ret;
-
-	ret = NULL;
-	if (!str || !(ret = ft_strjoin(new, str)))
-		exit_perror("convert_words", EXIT_FAILURE);
-	ft_free(new);
-	ft_free(str);
-	return (ret);
-}
 
 static void	validate_escape(char c, int *flag)
 {

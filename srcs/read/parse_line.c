@@ -6,22 +6,11 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 02:57:07 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 02:58:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:55:30 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
-
-static char	*strjoin_free(char *new, char *str)
-{
-	char	*ret;
-
-	if (!(ret = ft_strjoin(new, str)))
-		exit_perror("strjoin_free", EXIT_FAILURE);
-	ft_free(str);
-	ft_free(new);
-	return (ret);
-}
 
 void	parse_line(char **line)
 {

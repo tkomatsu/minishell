@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 14:39:18 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/24 14:55:17 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ UTIL_FILES = clear_tokens.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
+			 strjoin_free.c \
 			 token_utils.c \
 			 token_size.c
 
