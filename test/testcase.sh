@@ -42,4 +42,6 @@ unset 111
 /bin/ls
 /bin/nosuchfile
 /bin
+echo -n -n test
+mkdir test_dir ; cd test_dir ; rm -rf ../test_dir ; cd . ; pwd ; cd . ; pwd ; cd .. ; pwd
 exit
