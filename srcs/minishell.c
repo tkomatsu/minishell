@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 02:06:41 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/24 12:22:38 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_envcpy(void)
 	envlen = 0;
 	while (environ[envlen])
 		envlen++;
-	if (!(g_env = ft_calloc(envlen + 1, sizeof(char*))))
+	if (!(g_env = ft_calloc(envlen + 1, sizeof(char *))))
 		exit_perror("envcpy", EXIT_FAILURE);
 	i = 0;
 	while (environ[i])
@@ -80,9 +80,8 @@ void	minish_loop(void)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt("PS1");
-		if (read_stdin(&line) == INVALID_INPUT)
-			continue;
-		tokens = tokenize(line);
+		if (read_stdin(&line) == INVALID_INPUT || !(tokens = tokenize(line)))
+			continue ;
 		status = parse_exec(tokens);
 		ft_free(line);
 		clear_tokens(&tokens);
