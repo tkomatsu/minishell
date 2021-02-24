@@ -18,15 +18,16 @@ BOLDMAGENTA="\033[1m\033[35m"
 BOLDCYAN="\033[1m\033[36m"
 BOLDWHITE="\033[1m\033[37m"
 
-printf "$BOLDYELLOW TEST RESULT $RESET \n"
+printf "$BOLDYELLOW TEST RESULT$RESET\n"
 
 cp ../minishell .
 mkdir ./log
 touch ./log/minish_error.txt ./log/minish_result.txt ./log/bash_error.txt ./log/bash_result.txt
+export PS1=''
 ./minishell < ./testcase.sh 1> ./log/minish_result.txt 2> ./log/minish_error.txt
 bash < ./testcase.sh 1> ./log/bash_result.txt 2> ./log/bassh_error.txt
-printf "$GREEN STDOUT $RESET\n"
+printf "$GREEN STDOUT$RESET\n"
 diff ./log/minish_result.txt ./log/bash_result.txt
-printf "$RED STDERR $RESET\n"
+printf "$RED STDERR$RESET\n"
 diff ./log/minish_error.txt ./log/bash_error.txt
 rm -r ./log ./minishell
