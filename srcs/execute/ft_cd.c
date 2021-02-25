@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 14:36:33 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:19:19 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	change_dir(char *dir)
 		free(tmp);
 	}
 	ft_setenv("PWD", path, 1);
+	free(path);
 	return (EXIT_SUCCESS);
 }
 
