@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/24 22:52:45 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:57:31 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,10 @@ void	minish_loop(void)
 		signal(SIGINT, signal_handler);
 		signal(SIGQUIT, signal_handler);
 		put_prompt("PS1");
-		if (read_stdin(&line) == INVALID_INPUT || !(tokens = tokenize(line)))
+		if (read_stdin(&line) == INVALID_INPUT || !*line ||
+			!(tokens = tokenize(line)))
 			continue ;
-		ft_free(line);
+		free(line);
 		status = parse_exec(tokens);
 		clear_tokens(&tokens);
 	}
