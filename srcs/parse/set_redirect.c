@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 16:03:47 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	strtofd(t_token *token)
 	}
 	else
 	{
-		ft_free(token->word);
+		free(token->word);
 		token->word = ft_strdup("");
 	}
 	return (fd);
@@ -73,7 +73,7 @@ static int	io_redirect(t_token *token)
 	file_fd = open_redirect(token, path);
 	if (file_fd < 0)
 		return (exit_failure(path));
-	ft_free(path);
+	free(path);
 	dup2(file_fd, wish_fd);
 	close(file_fd);
 	return (EXIT_SUCCESS);

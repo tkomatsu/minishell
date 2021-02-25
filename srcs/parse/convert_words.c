@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_words.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 01:22:59 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static char	*convert_escape(char *new, char *str)
 	tmp = NULL;
 	if (!str || !(tmp = ft_strjoin(new, str)))
 		exit_perror("convert_escape", EXIT_FAILURE);
-	ft_free(new);
-	ft_free(str);
+	free(new);
+	free(str);
 	if (!(ret = ft_calloc(ft_strlen(tmp) + 1, sizeof(char))))
 		exit_perror("convert_escape", EXIT_FAILURE);
 	i = 0;
@@ -61,7 +61,7 @@ static char	*convert_escape(char *new, char *str)
 			tmp++;
 		ret[i++] = *(tmp++);
 	}
-	ft_free(new);
+	free(new);
 	return (ret);
 }
 

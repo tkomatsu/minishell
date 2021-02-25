@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:36:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 13:05:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_perror(char *s)
 	if (200 <= errno && errno < 299)
 	{
 		ft_putstr_fd((err_msg = ft_strerror()), STDERR);
-		ft_free(err_msg);
+		free(err_msg);
 	}
 	else
 		ft_putstr_fd(strerror(errno), STDERR);
