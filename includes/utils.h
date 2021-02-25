@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 22:53:54 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:56:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int		ft_unsetenv(const char *name);
 void	put_prompt(char *ps);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
+void	nop(void *v);
 
 #endif

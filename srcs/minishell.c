@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 17:40:23 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:28:20 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_envcpy(void)
 	extern char	**environ;
 	int			i;
 	int			envlen;
+	char		*tmp;
 
 	envlen = 0;
 	while (environ[envlen])
@@ -63,8 +64,9 @@ void	ft_envcpy(void)
 		set_shlvl();
 	else
 		ft_setenv("SHLVL", "1", 1);
-	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	ft_setenv("PWD", (tmp = getcwd(NULL, 0)), 1);
 	ft_setenv("OLDPWD", NULL, 1);
+	free(tmp);
 }
 
 void	minish_loop(void)
@@ -89,7 +91,6 @@ void	minish_loop(void)
 		}
 		free(line);
 		status = parse_exec(tokens);
-		clear_tokens(&tokens);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:10:08 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 01:30:04 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:59:51 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_token
 }					t_token;
 
 void				del_token(t_token *token);
-void				clear_tokens(t_token **tokens);
+void				clear_tokens(void *tokens);
 t_token				*dlistnew(char *src, int sep);
 t_token				*dlisthead(t_token *tokens);
 t_token				*dlistlast(t_token *tokens);
