@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/24 12:55:31 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:03:47 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ static int	open_redirect(t_token *token, char *path)
 	return (file_fd);
 }
 
+static int	exit_failure(char *path)
+{
+	g_status = EXIT_FAILURE;
+	ft_putstr_fd("minish: ", STDERR);
+	ft_perror(path);
+	return (EXIT_FAILURE);
+}
+
 static int	io_redirect(t_token *token)
 {
 	int		file_fd;
@@ -64,12 +72,7 @@ static int	io_redirect(t_token *token)
 	dlstextract(token->next);
 	file_fd = open_redirect(token, path);
 	if (file_fd < 0)
-	{
-		g_status = EXIT_FAILURE;
-		ft_putstr_fd("minish: ", STDERR);
-		ft_perror(path);
-		return (EXIT_FAILURE);
-	}
+		return (exit_failure(path));
 	ft_free(path);
 	dup2(file_fd, wish_fd);
 	close(file_fd);

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:06:41 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 15:46:16 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:57:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int			syntax_check(t_token *token)
 			return (put_err(token));
 		if ((token->type == GREATER || token->type == GREATER2) && token->next
 				&& !*token->next->word
-				&& (token->next->type == GREATER || token->next->type == GREATER2))
+				&& (token->next->type == GREATER
+					|| token->next->type == GREATER2))
 			return (put_err(token));
 		token = token->next;
 	}
