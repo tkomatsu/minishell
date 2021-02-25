@@ -46,6 +46,7 @@ void	ft_envcpy(void)
 	extern char	**environ;
 	int			i;
 	int			envlen;
+	char		*tmp;
 
 	envlen = 0;
 	while (environ[envlen])
@@ -63,8 +64,9 @@ void	ft_envcpy(void)
 		set_shlvl();
 	else
 		ft_setenv("SHLVL", "1", 1);
-	ft_setenv("PWD", getcwd(NULL, 0), 1);
+	ft_setenv("PWD", (tmp = getcwd(NULL, 0)), 1);
 	ft_setenv("OLDPWD", NULL, 1);
+	free(tmp);
 }
 
 void	minish_loop(void)
