@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_quotes.c                                    :+:      :+:    :+:   */
+/*   dlist_insert.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:03:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 03:47:09 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/25 00:27:47 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/25 00:35:45 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "token.h"
 
-char	*expand_quotes(char *new, char **ptr)
+void	dlist_insert(t_token *tokens, t_token *new)
 {
-	char	*tmp;
+	t_token *tmp;
 
-	tmp = *ptr + 1;
-	while (*tmp != '\'')
-		*(new++) = *(tmp++);
-	*ptr = tmp + 1;
-	return (new);
+	if (!tokens || !new)
+		return ;
+	tmp = tokens->next;
+	tokens->next = new;
+	new->prev = tokens;
+	new->next = tmp;
+	if (new->next)
+		new->next->prev = new;
 }

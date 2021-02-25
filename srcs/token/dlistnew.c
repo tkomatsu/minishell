@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strjoin_free.c                                     :+:      :+:    :+:   */
+/*   dlistnew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 14:52:50 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 14:54:07 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/24 23:38:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "token.h"
 
-char	*strjoin_free(char *new, char *str)
+t_token	*dlistnew(char *src, int sep)
 {
-	char	*ret;
+	t_token	*new;
 
-	if(!(ret = ft_strjoin(new, str)))
-		exit_perror("strjoin_free", EXIT_FAILURE);
-	ft_free(new);
-	ft_free(str);
-	return (ret);
+	if (!(new = ft_calloc(1, sizeof(t_token))))
+		exit_perror("dlistnew", EXIT_FAILURE);
+	new->word = src;
+	new->type = sep;
+	new->prev = NULL;
+	new->next = NULL;
+	return (new);
 }

@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_tokens.c                                     :+:      :+:    :+:   */
+/*   dlistlast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 21:56:59 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/21 21:27:26 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/02/04 22:16:31 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/24 23:38:31 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
 
-void	del_token(t_token *token)
+t_token	*dlistlast(t_token *tokens)
 {
-	if (token)
-	{
-		ft_free(token->word);
-		ft_free(token);
-	}
-}
-
-void	clear_tokens(t_token **tokens)
-{
-	t_token	*now;
-	t_token	*next;
-
-	now = *tokens;
-	while (now)
-	{
-		next = now->next;
-		del_token(now);
-		now = next;
-	}
-	tokens = NULL;
+	if (!tokens)
+		return (NULL);
+	if (!tokens->next)
+		return (tokens);
+	return (dlistlast(tokens->next));
 }

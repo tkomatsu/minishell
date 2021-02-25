@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/24 14:55:17 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/25 00:37:31 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,22 +48,18 @@ READ_DIR = read/
 READ_FILES = read_stdin.c \
 			 tokenize.c \
 			 get_next_input.c \
-			 syntax_check.c \
-			 convert_dquotes.c \
-			 convert_quotes.c \
-			 convert_words.c \
-			 expand_environ.c \
-			 parse_line.c
+			 syntax_check.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
 # parse
 
 PARSE_DIR = parse/
-PARSE_FILES = expand_dquotes.c \
-			  expand_quotes.c \
-			  expand_words.c \
+PARSE_FILES = convert_dquotes.c \
+			  convert_quotes.c \
+			  convert_words.c \
 			  expand_tokens.c \
+			  expand_environ.c \
 			  parse_exec.c \
 			  run_cmd.c \
 			  run_pipeline.c \
@@ -90,8 +86,7 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = clear_tokens.c \
-			 exit_perror.c \
+UTIL_FILES = exit_perror.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
@@ -99,12 +94,24 @@ UTIL_FILES = clear_tokens.c \
 			 ft_unsetenv.c \
 			 put_prompt.c \
 			 signal_handler.c \
-			 signal_ignore.c \
-			 strjoin_free.c \
-			 token_utils.c \
-			 token_size.c
+			 signal_ignore.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
+
+# token
+
+TOKEN_DIR = token/
+TOKEN_FILES = clear_tokens.c \
+			  del_token.c \
+			  dlistnew.c \
+			  dlisthead.c \
+			  dlistlast.c \
+			  dlist_add_back.c \
+			  dlist_insert.c \
+			  dlstextract.c \
+			  token_size.c
+
+TOKEN_SRCS = $(addprefix $(TOKEN_DIR), $(TOKEN_FILES))
 
 # easter egg
 
@@ -123,6 +130,7 @@ SRC_FILES =	minishell.c \
 			$(PARSE_SRCS) \
 			$(EXE_SRCS) \
 			$(UTIL_SRCS) \
+			$(TOKEN_SRCS) \
 			$(EASTER_SRCS)
 
 
@@ -152,6 +160,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)$(PARSE_DIR)
 	@mkdir -p $(OBJ_DIR)$(EXE_DIR)
 	@mkdir -p $(OBJ_DIR)$(UTIL_DIR)
+	@mkdir -p $(OBJ_DIR)$(TOKEN_DIR)
 	@mkdir -p $(OBJ_DIR)$(EASTER_DIR)
 
 debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)

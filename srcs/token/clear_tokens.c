@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_words.c                                     :+:      :+:    :+:   */
+/*   clear_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 02:05:04 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 04:03:58 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/01/26 21:56:59 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/24 23:40:40 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "token.h"
 
-char		*expand_words(char *new, char **ptr)
+void	clear_tokens(t_token **tokens)
 {
-	char	*tmp;
+	t_token	*now;
+	t_token	*next;
 
-	tmp = *ptr;
-	while (!(*tmp == '\'' || *tmp == '\"' || *tmp == '\0'))
+	now = *tokens;
+	while (now)
 	{
-		if (*tmp == '\\')
-			tmp++;
-		*(new++) = *(tmp++);
+		next = now->next;
+		del_token(now);
+		now = next;
 	}
-	*ptr = tmp;
-	return (new);
+	tokens = NULL;
 }
