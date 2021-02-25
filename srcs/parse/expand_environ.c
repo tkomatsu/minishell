@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_environ.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/19 23:59:20 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_var(char *str, int len)
 		if (!(ret = ft_strdup(env)))
 			exit_perror("get_var", EXIT_FAILURE);
 	}
-	ft_free(tmp);
+	free(tmp);
 	return (ret);
 }
 
@@ -76,14 +76,14 @@ char		*expand_environ(char *str, char *new, char **head, char **ptr)
 
 	if (!(tmp = ft_strjoin(new, *head)))
 		exit_perror("expand_environ", EXIT_FAILURE);
-	ft_free(new);
+	free(new);
 	new = tmp;
 	len = get_varlen(str);
 	var = deploy_var(str, len);
 	if (!(tmp = ft_strjoin(new, var)))
 		exit_perror("expand_environ", EXIT_FAILURE);
-	ft_free(var);
-	ft_free(new);
+	free(var);
+	free(new);
 	new = tmp;
 	*head = str + len;
 	*ptr = str + len - 1;

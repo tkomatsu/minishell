@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:24:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 02:06:27 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	sig_quit(int sig)
 		code = ft_itoa(sig);
 		ft_putstr_fd("Quit: ", STDOUT);
 		ft_putendl_fd(code, STDOUT);
-		ft_free(code);
+		free(code);
 		g_status = EX_SIGNAL + sig;
 	}
 }

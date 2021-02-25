@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 04:32:48 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*exec_path(char *cmd)
 		{
 			cmd = ft_strjoin("/", cmd);
 			ret = ft_strjoin(path[i], cmd);
-			ft_free(cmd);
+			free(cmd);
 			ft_free_split(path);
 			return (ret);
 		}
@@ -93,7 +93,7 @@ int			launch(char **args)
 		ft_perror(args[0]);
 		g_status = EX_ENOENT;
 	}
-	ft_free(cmd_path);
+	free(cmd_path);
 	if (!is_error)
 		g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);

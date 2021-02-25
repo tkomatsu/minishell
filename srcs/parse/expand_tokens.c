@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 00:05:26 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static char	*strjoin_free(char *new, char *str, int type)
 	if (!(ret = ft_strjoin(new, str)))
 		exit_perror("strjoin_free", EXIT_FAILURE);
 	if (type != QUOTE)
-		ft_free(str);
-	ft_free(new);
+		free(str);
+	free(new);
 	return (ret);
 }
 
@@ -47,7 +47,7 @@ static void	expand_token(t_token *tokens)
 		else
 			flag = 0;
 	}
-	ft_free(tokens->word);
+	free(tokens->word);
 	tokens->word = new;
 }
 

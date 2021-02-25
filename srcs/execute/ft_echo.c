@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 11:45:31 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:55:23 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static _Bool	check_noption(char *s)
 	return (true);
 }
 
+static int		return_void(void)
+{
+	ft_putchar_fd('\n', STDOUT);
+	return (STAY_LOOP);
+}
+
 int				ft_echo(char **args)
 {
 	int		i;
@@ -35,10 +41,7 @@ int				ft_echo(char **args)
 	i = 1;
 	noption = false;
 	if (!args[1])
-	{
-		ft_putchar_fd('\n', STDOUT);
-		return (STAY_LOOP);
-	}
+		return (return_void());
 	while (check_noption(args[i]))
 	{
 		noption = true;

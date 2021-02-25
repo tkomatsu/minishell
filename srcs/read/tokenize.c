@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/24 12:05:09 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:57:31 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
 
-static int	is_metachar(char c)
+static int		is_metachar(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\0')
 		return (WORD);
@@ -35,7 +35,7 @@ static int	is_metachar(char c)
 	return (0);
 }
 
-static int	tokenlen(char *line, int start)
+static int		tokenlen(char *line, int start)
 {
 	int	end;
 
@@ -61,9 +61,10 @@ static int	tokenlen(char *line, int start)
 	return (end - start);
 }
 
-static void	remove_empty(t_token *token)
+static t_token	*remove_empty(t_token *token)
 {
 	t_token	*tmp;
+	t_token	*head;
 
 	while (token)
 	{
@@ -74,11 +75,16 @@ static void	remove_empty(t_token *token)
 			token = tmp;
 		}
 		else
+		{
+			if (!token->next)
+				head = dlisthead(token);
 			token = token->next;
+		}
 	}
+	return (head);
 }
 
-static void	appending_redirect(t_token *token)
+static void		appending_redirect(t_token *token)
 {
 	t_token	*tmp;
 
@@ -99,7 +105,7 @@ static void	appending_redirect(t_token *token)
 	}
 }
 
-t_token		*tokenize(char *line)
+t_token			*tokenize(char *line)
 {
 	t_token	*tokens;
 	int		i;
@@ -118,7 +124,7 @@ t_token		*tokenize(char *line)
 			i++;
 	}
 	appending_redirect(tokens);
-	remove_empty(tokens);
+	tokens = remove_empty(tokens);
 	if (syntax_check(tokens))
 	{
 		clear_tokens(&tokens);

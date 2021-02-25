@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 20:20:28 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:28:11 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static int	delete_env(const char *name, int namelen)
 	while (g_env[i])
 	{
 		if (!ft_strncmp(name, g_env[i], namelen))
-			ft_free(g_env[i++]);
+			free(g_env[i++]);
 		else
 			new[j++] = g_env[i++];
 	}
-	ft_free(g_env);
+	free(g_env);
 	g_env = new;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/20 00:58:09 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*double_strjoin(const char *name, const char *value)
 		exit_perror("ft_setenv", EXIT_FAILURE);
 	if (!(new = ft_strjoin(tmp, value)))
 		exit_perror("ft_setenv", EXIT_FAILURE);
-	ft_free(tmp);
+	free(tmp);
 	return (new);
 }
 
@@ -30,7 +30,7 @@ static int	overwrite(const char *name, const char *value, int index)
 	char	*new;
 
 	new = double_strjoin(name, value);
-	ft_free(g_env[index]);
+	free(g_env[index]);
 	g_env[index] = new;
 	return (0);
 }
@@ -49,7 +49,7 @@ static int	reset(const char *name, const char *value, int len)
 		new_env[i] = g_env[i];
 		i++;
 	}
-	ft_free(g_env);
+	free(g_env);
 	g_env = new_env;
 	if (value)
 		new = double_strjoin(name, value);
