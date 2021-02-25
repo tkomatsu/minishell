@@ -6,37 +6,64 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 04:49:36 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:56:20 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
+static int	cmp_content(void *a, void *b)
+{
+	return (ft_strcmp((char *)a, (char *)b));
+}
+
+static void	sort_ascii(t_list **env)
+{
+	t_list	*node;
+	char	*content;
+	int		i;
+
+	*env = NULL;
+	i = 0;
+	while ((content = g_env[i++]))
+	{
+		if (!(node = ft_lstnew(content)))
+			exit_perror("ft_export", EXIT_FAILURE);
+		ft_lstadd_back(env, node);
+	}
+	ft_lstsort(env, cmp_content);
+}
+
+static void	export_item(char *item)
+{
+	ft_putstr_fd("declare -x ", STDOUT);
+	while (*item && *item != '=')
+		ft_putchar_fd(*(item++), STDOUT);
+	if (*(item++) == '=')
+		ft_putstr_fd("=\"", STDOUT);
+	else
+	{
+		ft_putchar_fd('\n', STDOUT);
+		return ;
+	}
+	while (*item)
+	{
+		if (*item == '$' || *item == '`' || *item == '\\' || *item == '"')
+			ft_putchar_fd('\\', STDOUT);
+		ft_putchar_fd(*(item++), STDOUT);
+	}
+	ft_putstr_fd("\"\n", STDOUT);
+}
+
 static void	export_list(void)
 {
-	int		i;
-	char	*item;
+	t_list	*env;
 
-	i = 0;
-	while ((item = g_env[i++]))
+	sort_ascii(&env);
+	while (env)
 	{
-		ft_putstr_fd("declare -x ", STDOUT);
-		while (*item && *item != '=')
-			ft_putchar_fd(*(item++), STDOUT);
-		if (*(item++) == '=')
-			ft_putstr_fd("=\"", STDOUT);
-		else
-		{
-			ft_putchar_fd('\n', STDOUT);
-			continue ;
-		}
-		while (*item)
-		{
-			if (*item == '$' || *item == '`' || *item == '\\' || *item == '"')
-				ft_putchar_fd('\\', STDOUT);
-			ft_putchar_fd(*(item++), STDOUT);
-		}
-		ft_putstr_fd("\"\n", STDOUT);
+		export_item(env->content);
+		env = env->next;
 	}
 }
 
