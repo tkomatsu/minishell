@@ -1,3 +1,5 @@
+echo -nnnnnnnnnnnnnnnnn hello
+echo -n -n -n -n -n hello
 echo hello
 echo "hello"
 echo 'hello'
