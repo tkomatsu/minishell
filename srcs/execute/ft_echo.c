@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 11:37:23 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 11:45:31 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int				ft_echo(char **args)
 		ft_putchar_fd('\n', STDOUT);
 		return (STAY_LOOP);
 	}
-	while ((noption = check_noption(args[i])))
+	while (check_noption(args[i]))
+	{
+		noption = true;
 		i++;
+	}
 	padding = false;
 	while (args[i])
 	{
@@ -49,7 +52,7 @@ int				ft_echo(char **args)
 		ft_putstr_fd(args[i++], STDOUT);
 		padding = true;
 	}
-	if (!noption)
+	if (noption == false)
 		ft_putchar_fd('\n', STDOUT);
 	g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);
