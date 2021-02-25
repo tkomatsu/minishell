@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_tokens.c                                     :+:      :+:    :+:   */
+/*   nop.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 21:56:59 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 17:59:19 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/02/25 17:54:48 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/02/25 18:00:10 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
-
-void	clear_tokens(void *tokens)
+void	nop(void *v)
 {
-	t_token	*now;
-	t_token	*next;
-
-	now = tokens;
-	while (now)
-	{
-		next = now->next;
-		del_token(now);
-		now = next;
-	}
-	tokens = NULL;
+	(void)v;
 }

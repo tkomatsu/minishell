@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 15:56:20 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:40:06 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	export_list(void)
 		export_item(env->content);
 		env = env->next;
 	}
+	ft_lstclear(&env, NULL);
 }
 
 int			ft_export(char **args)
