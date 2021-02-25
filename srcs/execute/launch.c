@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/25 17:27:09 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,46 @@ static int	is_exist(char *path, char *cmd)
 	return (0);
 }
 
-static char	*exec_path(char *cmd)
+static int	exec_item(char *item, char *cmd, char **args)
 {
 	char	*ret;
+	char	*tmp;
+
+	if (is_exist(item, cmd))
+	{
+		tmp = ft_strjoin("/", cmd);
+		ret = ft_strjoin(item, tmp);
+		free(tmp);
+		if (!execve(ret, args, g_env))
+		{
+			free(ret);
+			return (1);
+		}
+		free(ret);
+	}
+	return (0);
+}
+
+static int	exec_path(char *cmd, char **args)
+{
 	char	**path;
 	int		i;
 
 	path = ft_split(ft_getenv("PATH"), ':');
 	if (!path)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (path[i])
 	{
-		if (is_exist(path[i], cmd))
+		if (exec_item(path[i], cmd, args))
 		{
-			cmd = ft_strjoin("/", cmd);
-			ret = ft_strjoin(path[i], cmd);
-			free(cmd);
 			ft_free_split(path);
-			return (ret);
+			return (1);
 		}
 		i++;
 	}
 	ft_free_split(path);
-	return (NULL);
+	return (0);
 }
 
 static void	validate_cmd(char *path)
@@ -78,22 +94,21 @@ static void	validate_cmd(char *path)
 
 int			launch(char **args)
 {
-	char	*cmd_path;
-	int		is_error;
+	int	is_error;
 
 	is_error = 0;
 	validate_cmd(args[0]);
-	if ((cmd_path = exec_path(args[0])))
-		args[0] = cmd_path;
-	if (execve(args[0], args, g_env) == -1)
+	if (!exec_path(args[0], args))
 	{
-		is_error = 1;
-		errno = E_CMD;
-		ft_putstr_fd("minish: ", STDERR);
-		ft_perror(args[0]);
-		g_status = EX_ENOENT;
+		if (execve(args[0], args, g_env) == -1)
+		{
+			is_error = 1;
+			errno = E_CMD;
+			ft_putstr_fd("minish: ", STDERR);
+			ft_perror(args[0]);
+			g_status = EX_ENOENT;
+		}
 	}
-	free(cmd_path);
 	if (!is_error)
 		g_status = EXIT_SUCCESS;
 	return (STAY_LOOP);
