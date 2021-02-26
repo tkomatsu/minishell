@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:06:41 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 14:59:33 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:09:52 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ int			syntax_check(t_token *token)
 {
 	if (!token)
 		return (1);
-	if (*token->word == '\0' && token->type == PIPE)
+	if (*token->word == '\0' &&
+			(token->type == SEMICOLON || token->type == PIPE))
 		return (put_err(token));
 	while (token)
 	{
-		if ((token->type == SEMICOLON) && !token->prev)
-			return (put_err(token));
 		if (token->type != WORD && token->next && !*token->next->word
 				&& token->type == token->next->type)
 			return (put_err(token));
