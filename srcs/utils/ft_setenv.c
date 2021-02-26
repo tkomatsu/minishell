@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:51:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:31:46 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			ft_setenv(const char *name, const char *value, int is_overwrite)
 	i = 0;
 	while (g_env[i])
 	{
-		if (!ft_strncmp(name, g_env[i], namelen))
+		if (!ft_strncmp(name, g_env[i], namelen) && g_env[i][namelen] == '=')
 		{
 			if (is_overwrite)
 				return (overwrite(name, value, i));
