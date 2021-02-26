@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 21:13:41 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/27 08:41:52 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ int			is_ultimate_question(char **str)
 		return (0);
 	if (ft_strcasecmp(str[10], "Everything"))
 		return (0);
-	return (put_answer(str));
+	if (str[11])
+		return (put_answer(str));
+	return (0);
 }

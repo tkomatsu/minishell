@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 20:51:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 22:36:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/27 08:42:44 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ static void	help_prompt(void)
 
 int			help(char **args)
 {
-	if (!ft_strcasecmp(args[1], "prompt"))
+	if (!args[1])
+		ft_putendl_fd("Usage: help prompt or help ultimate", STDOUT);
+	else if (!ft_strcasecmp(args[1], "prompt"))
 		help_prompt();
 	else if (!ft_strcasecmp(args[1], "deepthought"))
 	{
