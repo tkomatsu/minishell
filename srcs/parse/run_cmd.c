@@ -6,21 +6,21 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 12:09:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 21:35:03 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:20:09 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void set_env_arg(char **args)
+static void	set_env_arg(char **args)
 {
-	while(*args)
+	while (*args)
 		args++;
 	args--;
 	ft_setenv("_", *args, 1);
 }
 
-int	run_cmd(void *content)
+int			run_cmd(void *content)
 {
 	char	**args;
 	int		status;
@@ -29,7 +29,7 @@ int	run_cmd(void *content)
 	original_fd[0] = dup(STDIN);
 	original_fd[1] = dup(STDOUT);
 	original_fd[2] = dup(STDERR);
-	status = set_redirect((t_token*)content);
+	status = set_redirect((t_token *)content);
 	args = token_to_args((t_token *)content);
 	set_env_arg(args);
 	if (!status)
