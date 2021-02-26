@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:54:18 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 17:31:27 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:45:42 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char		*ft_getenv(const char *name)
 	while (g_env[i])
 	{
 		if (!ft_strncmp(name, g_env[i], namelen) && g_env[i][namelen] == '=')
-			return (&(g_env[i][namelen - 1]));
+			return (&(g_env[i][namelen + sizeof("=") - 1]));
 		i++;
 	}
 	return (NULL);
