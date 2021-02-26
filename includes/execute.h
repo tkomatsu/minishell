@@ -38,7 +38,7 @@
 /*
 ** PROTOTYPE DECLARATION - EXECUTE
 */
-int		execmd(char **args, int flag);
+int		execmd(char **args);
 int		launch(char **args);
 
 /*
