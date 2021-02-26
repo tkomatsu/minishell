@@ -6,33 +6,20 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 21:40:39 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/26 21:47:18 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:27:39 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read.h"
 
-static void	sigint_process(char **str, char **line, int *is_sigint)
+static void	clear(char **p)
 {
-	clear(line);
-	free(*str);
-	if (!(*str = ft_strdup("")))
-		exit_perror("add_next_input", EXIT_FAILURE);
-	if (is_sigint)
-		*is_sigint = ON;
-	g_sigint = OFF;
+	free(*p);
+	*p = NULL;
 }
 
 static void	init(char **buf, char **str, char **line, int *is_sigint)
 {
-	char	*tmp;
-
-	if (line)
-	{
-		tmp = *line;
-		*line = ft_strjoin(tmp, "\n");
-		free(tmp);
-	}
 	if (buf)
 		if (!(*buf = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 			exit_perror("add_next_input", EXIT_FAILURE);
@@ -42,7 +29,15 @@ static void	init(char **buf, char **str, char **line, int *is_sigint)
 			exit_perror("add_next_input", EXIT_FAILURE);
 	}
 	else if (g_sigint == ON)
-		sigint_process(str, line, is_sigint);
+	{
+		clear(line);
+		free(*str);
+		if (!(*str = ft_strdup("")))
+			exit_perror("add_next_input", EXIT_FAILURE);
+		if (is_sigint)
+			*is_sigint = ON;
+		g_sigint = OFF;
+	}
 }
 
 static int	output(char **line, char **str)
@@ -81,6 +76,12 @@ static int	read_file(char **buf, char **str, char **line, int *is_sigint)
 
 	while ((ret = read(STDIN, *buf, BUFFER_SIZE)) >= 0)
 	{
+		if (ret)
+		{
+			tmp = *line;
+			*line = ft_strjoin(tmp, "\n");
+			free(tmp);
+		}
 		init(NULL, str, line, is_sigint);
 		(*buf)[ret] = '\0';
 		if (!(tmp = ft_strjoin(*str, *buf)))
