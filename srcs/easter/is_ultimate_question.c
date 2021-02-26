@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:17:27 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 15:51:14 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:13:41 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ static int	put_answer(char **str)
 {
 	if (str[11])
 		return (0);
-	write(STDOUT, "42\n", 3);
+	ft_putendl_fd(" _  _ ___", STDOUT);
+	ft_putendl_fd("| || |__ \\", STDOUT);
+	ft_putendl_fd("| || |_ ) |", STDOUT);
+	ft_putendl_fd("|__   _/ /", STDOUT);
+	ft_putendl_fd("   | |/ /_", STDOUT);
+	ft_putendl_fd("   |_|____|", STDOUT);
 	return (1);
 }
 
