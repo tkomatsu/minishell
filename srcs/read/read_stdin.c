@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 23:11:52 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:45:10 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,21 @@ static int	output_eof_err(int flag)
 
 static int	add_next_line(char **line, int flag)
 {
-	int		ret;
-	char	*new;
-	char	*put_nl;
-	char	*tmp;
+	int	ret;
+	int	is_sigint;
 
+	is_sigint = OFF;
 	if (flag == QUOTE || flag == DQUOTE)
 		put_prompt("PS2");
-	if ((ret = get_next_input(0, &tmp)) < 0)
-		exit_perror("get_next_input", EXIT_FAILURE);
-	if (!ret)
+	if ((ret = add_next_input(line, &is_sigint)) < 0)
+		exit_perror("add_next_input", EXIT_FAILURE);
+	if (!ret && is_sigint == OFF)
 		return (output_eof_err(flag));
-	put_nl = ft_strjoin("\n", tmp);
-	free(tmp);
-	new = ft_strjoin(*line, put_nl);
-	free(put_nl);
-	free(*line);
-	*line = new;
+	else if (!ret && is_sigint == ON)
+	{
+		ft_putendl_fd("exit", STDOUT);
+		exit(EXIT_SUCCESS);
+	}
 	return (VALID_INPUT);
 }
 
@@ -75,7 +73,7 @@ int			read_stdin(char **line)
 {
 	int	ret;
 
-	if ((ret = get_next_input(0, line)) < 0)
+	if ((ret = get_next_input(line)) < 0)
 		exit_perror("get_next_input", EXIT_FAILURE);
 	if (!ret)
 	{

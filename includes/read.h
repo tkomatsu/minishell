@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:23:22 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/24 22:57:59 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:46:24 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 /*
 ** PROTOTYPE DECLARATION
 */
-int		get_next_input(int fd, char **line);
+int		add_next_input(char **line, int *is_sigint);
+int		get_next_input(char **line);
 int		read_stdin(char **line);
 t_token	*tokenize(char *line);
 
