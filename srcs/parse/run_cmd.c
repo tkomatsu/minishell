@@ -6,21 +6,21 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 12:09:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 17:46:05 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:56:16 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void set_env_arg(char **args)
+static void	set_env_arg(char **args)
 {
-	while(*args)
+	while (*args)
 		args++;
 	args--;
 	ft_setenv("_", *args, 1);
 }
 
-int	run_cmd(void *content, int flag)
+int			run_cmd(void *content, int flag)
 {
 	char	**args;
 	int		status;
