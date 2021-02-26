@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 19:35:31 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/26 21:51:02 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 22:28:13 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static void	init(char **buf, char **str)
 			exit_perror("get_next_input", EXIT_FAILURE);
 		g_sigint = OFF;
 	}
+}
+
+static void	clear(char **p)
+{
+	free(*p);
+	*p = NULL;
 }
 
 static int	output(char **line, int ret, char **str)
