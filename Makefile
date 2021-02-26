@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/25 17:56:48 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/26 21:28:55 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ EXE_FILES = execmd.c \
 			ft_export.c \
 			ft_pwd.c \
 			ft_unset.c \
+			help.c \
 			launch.c
 
 EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))

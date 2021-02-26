@@ -37,7 +37,7 @@ static int		is_builtin(void *content)
 	t_token		*token;
 	int			i;
 	const char	*builtin[] = {
-		"cd", "env", "exit", "export", "unset", "echo", "pwd", NULL};
+		"cd", "env", "exit", "export", "unset", "echo", "pwd", "help", NULL};
 
 	token = content;
 	i = 0;
