@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 13:23:44 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:31:29 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ static t_token	*remove_empty(t_token *token)
 {
 	t_token	*tmp;
 	t_token	*head;
+	int		flag;
 
+	flag = 0;
 	while (token)
 	{
 		if (!token->next)
 			head = dlisthead(token);
-		if (*(token->word) == '\0' && token->type == WORD)
+		if (!ft_strcmp(token->word, "") && token->type == WORD)
 		{
 			tmp = token->next;
 			dlstextract(token);
@@ -78,10 +80,13 @@ static t_token	*remove_empty(t_token *token)
 		}
 		else
 		{
+			flag = 1;
 			token = token->next;
 		}
 	}
-	return (head);
+	if (flag)
+		return (head);
+	return (NULL);
 }
 
 static void		appending_redirect(t_token *token)

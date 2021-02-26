@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:06:41 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 15:57:04 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:58:22 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	put_err(t_token *token)
 
 int			syntax_check(t_token *token)
 {
+	if (!token)
+		return (1);
 	if (*token->word == '\0' && token->type == PIPE)
 		return (put_err(token));
 	while (token)
