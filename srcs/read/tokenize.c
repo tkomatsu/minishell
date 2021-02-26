@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 15:57:31 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:23:44 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static t_token	*remove_empty(t_token *token)
 
 	while (token)
 	{
+		if (!token->next)
+			head = dlisthead(token);
 		if (*(token->word) == '\0' && token->type == WORD)
 		{
 			tmp = token->next;
@@ -76,8 +78,6 @@ static t_token	*remove_empty(t_token *token)
 		}
 		else
 		{
-			if (!token->next)
-				head = dlisthead(token);
 			token = token->next;
 		}
 	}
@@ -127,7 +127,7 @@ t_token			*tokenize(char *line)
 	tokens = remove_empty(tokens);
 	if (syntax_check(tokens))
 	{
-		clear_tokens(&tokens);
+		clear_tokens(tokens);
 		return (NULL);
 	}
 	return (tokens);
