@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/26 21:43:25 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/26 21:48:35 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ READ_DIR = read/
 READ_FILES = read_stdin.c \
 			 tokenize.c \
 			 get_next_input.c \
-			 syntax_check.c
+			 syntax_check.c \
+			 add_next_input.c
 
 READ_SRCS = $(addprefix $(READ_DIR), $(READ_FILES))
 
