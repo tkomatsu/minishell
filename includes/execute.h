@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/21 15:32:31 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:34:28 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 /*
 ** PROTOTYPE DECLARATION - EXECUTE
 */
-int		execmd(char **args, int flag);
+int		execmd(char **args);
 int		launch(char **args);
 
 /*
@@ -51,5 +51,6 @@ int		ft_exit(char **args);
 int		ft_export(char **args);
 int		ft_pwd(void);
 int		ft_unset(char **args);
+int		help(char **args);
 
 #endif

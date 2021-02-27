@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 04:06:13 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:34:30 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	execmd(char **args, int executable)
+int	execmd(char **args)
 {
 	if (!args[0])
 		return (STAY_LOOP);
@@ -30,9 +30,9 @@ int	execmd(char **args, int executable)
 		return (ft_env());
 	else if (!ft_strcasecmp(args[0], "exit"))
 		return (ft_exit(args));
+	else if (!ft_strcasecmp(args[0], "help"))
+		return (help(args));
 	else if (is_ultimate_question(args))
 		return (STAY_LOOP);
-	if (executable)
-		return (launch(args));
 	return (launch(args));
 }

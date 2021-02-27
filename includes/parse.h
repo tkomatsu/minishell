@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:26:49 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 01:16:01 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:35:13 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 /*
 ** PROTOTYPE DECLARATION
 */
-int		run_cmd(void *content, int flag);
+int		run_cmd(void *content);
 int		run_pipeline(t_list *lst);
 int		parse_exec(t_token *tokens);
 void	expand_tokens(void *content);

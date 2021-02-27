@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 18:34:42 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/02/26 21:30:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	child_proc(t_list *head, t_list *cur, int oldp[2], int newp[2])
 		dup2(newp[1], STDOUT);
 		close(newp[1]);
 	}
-	run_cmd(cur->content, 1);
+	run_cmd(cur->content);
 	ft_lstclear(&head, clear_tokens);
 	ft_free_split(g_env);
 	exit(g_status);

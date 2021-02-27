@@ -80,6 +80,7 @@ EXE_FILES = execmd.c \
 			ft_export.c \
 			ft_pwd.c \
 			ft_unset.c \
+			help.c \
 			launch.c
 
 EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
