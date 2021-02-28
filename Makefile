@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/02/26 22:25:41 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/02/28 21:09:30 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ UTIL_FILES = exit_perror.c \
 			 ft_putenv.c \
 			 ft_setenv.c \
 			 ft_unsetenv.c \
+			 get_working_dir.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \

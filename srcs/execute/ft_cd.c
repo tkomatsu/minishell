@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 18:19:19 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/28 21:25:12 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@ static int	change_dir(char *dir)
 {
 	char	*path;
 	char	*tmp;
+	int		has_pwd;
 
+	has_pwd = 0;
 	if (chdir(dir) < 0)
 	{
 		ft_putstr_fd("minish: cd: ", STDERR);
 		ft_perror(dir);
 		return (EXIT_FAILURE);
 	}
+	if (ft_getenv("PWD"))
+		has_pwd = 1;
 	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-	if (!(path = getcwd(NULL, 0)))
+	if (!(path = get_working_dir("cd")))
 	{
-		ft_putstr_fd("cd: error retrieving current directory: ", STDERR);
-		ft_putstr_fd("getcwd: cannot access parent directories: ", STDERR);
-		ft_putstr_fd("No such file or directory\n", STDERR);
-		tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
+		if (has_pwd)
+			tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
+		else
+			tmp = ft_strdup("");
 		path = ft_strjoin(tmp, dir);
 		free(tmp);
 	}

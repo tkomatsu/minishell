@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   get_working_dir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 23:24:08 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/28 21:10:29 by tkomatsu         ###   ########.fr       */
+/*   Created: 2021/02/28 21:02:33 by tkomatsu          #+#    #+#             */
+/*   Updated: 2021/02/28 21:06:26 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "utils.h"
 
-int	ft_pwd(void)
+char	*get_working_dir(char *whom)
 {
 	char	*cwd;
 
-	cwd = ft_getenv("PWD");
+	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		if ((cwd = get_working_dir("pwd")))
-			ft_putendl_fd(cwd, STDOUT);
-		free(cwd);
+		ft_putstr_fd(whom, STDERR);
+		ft_putstr_fd(": error retrieving current directory: ", STDERR);
+		ft_putstr_fd("getcwd: cannot access parent directories: ", STDERR);
+		ft_putendl_fd(strerror(errno), STDERR);
+		return (NULL);
 	}
-	else
-		ft_putendl_fd(cwd, STDOUT);
-	g_status = EXIT_SUCCESS;
-	return (1);
+	return (cwd);
 }
