@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/28 21:25:12 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:51:00 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ static int	change_dir(char *dir)
 	if (ft_getenv("PWD"))
 		has_pwd = 1;
 	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-	if (!(path = get_working_dir("cd")))
+	if (has_pwd)
 	{
-		if (has_pwd)
-			tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
-		else
-			tmp = ft_strdup("");
+		tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
 		path = ft_strjoin(tmp, dir);
 		free(tmp);
 	}
+	else if (!(path = get_working_dir("cd")))
+		path = ft_strdup(dir);
 	ft_setenv("PWD", path, 1);
 	free(path);
 	return (EXIT_SUCCESS);
