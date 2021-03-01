@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:26:49 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/26 21:35:13 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:18:05 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*convert_dquotes(char *str, char **ptr);
 char	*convert_quotes(char *str, char **ptr);
 char	*convert_words(char *str, char **ptr, t_token *tokens);
 
+int		io_redirect(t_token *token);
 int		set_redirect(t_token *token);
 
 #endif
