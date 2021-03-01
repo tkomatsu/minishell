@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 23:16:39 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 17:15:19 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 18:35:53 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ static int	io_redirect(t_token *token)
 		ft_putstr_fd("minish: ", STDERR);
 		ft_putstr_fd(path = ft_itoa(wish_fd), STDERR);
 		ft_putstr_fd(": ", STDERR);
-		ft_putstr_fd(strerror(EBADF), STDERR);
+		ft_putendl_fd(strerror(EBADF), STDERR);
 		free(path);
+		return (EXIT_FAILURE);
 	}
 	close(file_fd);
 	return (EXIT_SUCCESS);
