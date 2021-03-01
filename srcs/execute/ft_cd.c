@@ -6,11 +6,24 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 19:09:37 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 20:31:50 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+
+static void	parent_dir(char **path)
+{
+	char	*tmp;
+
+	tmp = ft_strrchr(*path, '/');
+	while (!ft_strcmp(tmp + 1, "."))
+	{
+		*tmp = 0;
+		tmp = ft_strrchr(*path, '/');
+	}
+	*tmp = 0;
+}
 
 static void	set_cwd(char *dir)
 {
@@ -26,8 +39,7 @@ static void	set_cwd(char *dir)
 	{
 		if (!ft_strcmp(dest[i], ".."))
 		{
-			tmp = ft_strrchr(path, '/');
-			*tmp = 0;
+			parent_dir(&path);
 		}
 		else if (ft_strcmp(dest[i], "."))
 		{
