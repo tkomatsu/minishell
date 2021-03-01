@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:34:55 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ static char	*convert_escape(char *new, char *str)
 	{
 		if (*tmp == '\\')
 			tmp++;
-		ret[i++] = *(tmp++);
+		ret[i++] = *tmp;
+		if (*tmp)
+			tmp++;
 	}
 	free(new);
 	return (ret);
