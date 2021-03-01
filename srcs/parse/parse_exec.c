@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 21:33:37 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 21:36:58 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ static int		is_builtin(void *content)
 	token = content;
 	i = 0;
 	while (builtin[i])
-		if (!ft_strcmp(builtin[i++], token->word))
+	{
+		if (token->word && !ft_strcmp(builtin[i], token->word))
 			return (1);
+		i++;
+	}
 	return (0);
 }
 

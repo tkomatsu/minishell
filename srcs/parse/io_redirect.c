@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 19:16:51 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 20:54:49 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 21:39:36 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@ static int	strtofd(t_token *token)
 {
 	int	fd;
 
-	fd = ft_atoi(token->word);
+	if (token->word)
+		fd = ft_atoi(token->word);
+	else
+		fd = 0;
 	if (fd <= 0)
 	{
 		if (token->type == GREATER || token->type == GREATER2)
 			fd = STDOUT;
 		else if (token->type == LESS)
 			fd = STDIN;
-		if (!*token->word)
-		{
-			free(token->word);
-			token->word = NULL;
-		}
 	}
 	else
 	{
