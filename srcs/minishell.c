@@ -6,17 +6,17 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 16:45:22 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:33:24 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**g_env;
-pid_t	g_pid;
-int		g_status;
+char		**g_env;
+pid_t		g_pid;
+int			g_status;
 
-void	set_shlvl(void)
+static void	set_shlvl(void)
 {
 	int		shlvl;
 	char	*level;
@@ -41,12 +41,11 @@ void	set_shlvl(void)
 	}
 }
 
-void	ft_envcpy(void)
+static void	ft_envcpy(void)
 {
 	extern char	**environ;
 	int			i;
 	int			envlen;
-	char		*tmp;
 
 	envlen = 0;
 	while (environ[envlen])
@@ -60,6 +59,12 @@ void	ft_envcpy(void)
 			exit_perror("envcpy", EXIT_FAILURE);
 		i++;
 	}
+}
+
+static void	empty_env(void)
+{
+	char	*tmp;
+
 	if (ft_getenv("SHLVL"))
 		set_shlvl();
 	else
@@ -67,11 +72,12 @@ void	ft_envcpy(void)
 	tmp = getcwd(NULL, 0);
 	if (!ft_getenv("PWD"))
 		ft_setenv("PWD", tmp, 1);
-	ft_setenv("OLDPWD", NULL, 1);
+	if (!ft_getenv("OLDPWD"))
+		ft_setenv("OLDPWD", NULL, 1);
 	free(tmp);
 }
 
-void	minish_loop(void)
+static void	minish_loop(void)
 {
 	int		status;
 	char	*line;
@@ -96,9 +102,10 @@ void	minish_loop(void)
 	}
 }
 
-int		main(void)
+int			main(void)
 {
 	ft_envcpy();
+	empty_env();
 	g_status = EXIT_SUCCESS;
 	g_sigint = OFF;
 	minish_loop();

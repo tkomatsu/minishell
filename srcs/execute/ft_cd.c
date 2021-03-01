@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 16:35:09 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 19:09:37 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	set_cwd(char *dir)
 
 	dest = ft_split(dir, '/');
 	path = ft_strdup(ft_getenv("PWD"));
-	i = 0;
-	while (dest[i])
+	i = -1;
+	while (dest[++i])
 	{
 		if (!ft_strcmp(dest[i], ".."))
 		{
@@ -35,11 +35,17 @@ static void	set_cwd(char *dir)
 			free(path);
 			path = ft_strjoin(tmp, dest[i]);
 		}
-		i++;
 	}
 	ft_setenv("PWD", path, 1);
 	ft_free_split(dest);
 	free(path);
+}
+
+static int	chdir_err(char *dir)
+{
+		ft_putstr_fd("minish: cd: ", STDERR);
+		ft_perror(dir);
+		return (EXIT_FAILURE);
 }
 
 static int	change_dir(char *dir)
@@ -48,11 +54,7 @@ static int	change_dir(char *dir)
 	char	*tmp;
 
 	if (chdir(dir) < 0)
-	{
-		ft_putstr_fd("minish: cd: ", STDERR);
-		ft_perror(dir);
-		return (EXIT_FAILURE);
-	}
+		return (chdir_err(dir));
 	if (!(path = get_working_dir("cd")))
 	{
 		if (!ft_getenv("PWD"))
