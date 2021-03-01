@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 20:31:50 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 21:10:56 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	set_cwd(char *dir)
 
 static int	chdir_err(char *dir)
 {
-		ft_putstr_fd("minish: cd: ", STDERR);
-		ft_perror(dir);
-		return (EXIT_FAILURE);
+	ft_putstr_fd("minish: cd: ", STDERR);
+	ft_perror(dir);
+	return (EXIT_FAILURE);
 }
 
 static int	change_dir(char *dir)
