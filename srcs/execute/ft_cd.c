@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 13:29:51 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:35:09 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,36 @@ static void	set_cwd(char *dir)
 {
 	char	*path;
 	char	*tmp;
+	char	**dest;
+	int		i;
 
-	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-	if (ft_strcmp(dir, ".."))
+	dest = ft_split(dir, '/');
+	path = ft_strdup(ft_getenv("PWD"));
+	i = 0;
+	while (dest[i])
 	{
-		tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
-		path = ft_strjoin(tmp, dir);
-		free(tmp);
-	}
-	else
-	{
-		path = ft_getenv("PWD");
-		tmp = ft_strrchr(path, '/');
-		*tmp = '\0';
+		if (!ft_strcmp(dest[i], ".."))
+		{
+			tmp = ft_strrchr(path, '/');
+			*tmp = 0;
+		}
+		else if (ft_strcmp(dest[i], "."))
+		{
+			tmp = ft_strjoin(path, "/");
+			free(path);
+			path = ft_strjoin(tmp, dest[i]);
+		}
+		i++;
 	}
 	ft_setenv("PWD", path, 1);
+	ft_free_split(dest);
+	free(path);
 }
-
-/*
-static int	change_dir(char *dir)
-{
-	int		has_pwd;
-
-	has_pwd = 0;
-	if (ft_getenv("PWD"))
-		has_pwd = 1;
-	return (EXIT_SUCCESS);
-}
-*/
 
 static int	change_dir(char *dir)
 {
 	char	*path;
+	char	*tmp;
 
 	if (chdir(dir) < 0)
 	{
@@ -55,15 +53,24 @@ static int	change_dir(char *dir)
 		ft_perror(dir);
 		return (EXIT_FAILURE);
 	}
-	if (!ft_getenv("PWD"))
+	if (!(path = get_working_dir("cd")))
 	{
-		if (!(path = get_working_dir("cd")))
+		if (!ft_getenv("PWD"))
 			path = ft_strdup(dir);
+		else
+		{
+			tmp = ft_strjoin(ft_getenv("PWD"), "/");
+			path = ft_strjoin(tmp, dir);
+			free(tmp);
+		}
+		ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
 		ft_setenv("PWD", path, 1);
 		free(path);
-		return (EXIT_SUCCESS);
 	}
-	set_cwd(dir);
+	if (*dir == '/')
+		ft_setenv("PWD", dir, 1);
+	else
+		set_cwd(dir);
 	return (EXIT_SUCCESS);
 }
 

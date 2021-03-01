@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 18:28:20 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:45:22 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	ft_envcpy(void)
 		set_shlvl();
 	else
 		ft_setenv("SHLVL", "1", 1);
-	ft_setenv("PWD", (tmp = getcwd(NULL, 0)), 1);
+	tmp = getcwd(NULL, 0);
+	if (!ft_getenv("PWD"))
+		ft_setenv("PWD", tmp, 1);
 	ft_setenv("OLDPWD", NULL, 1);
 	free(tmp);
 }
