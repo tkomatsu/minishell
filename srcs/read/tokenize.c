@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 14:31:29 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:28:19 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ static int		tokenlen(char *line, int start)
 	end = start;
 	while (line[end])
 	{
+		if (line[end] == '\\')
+		{
+			end++;
+			if (line[end])
+				end++;
+		}
 		if (line[end] == '\'')
 		{
 			end++;
