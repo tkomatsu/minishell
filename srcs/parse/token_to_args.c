@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:36:17 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 15:33:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:20:02 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char		**token_to_args(t_token *tokens)
 	i = 0;
 	while (tokens)
 	{
-		if (*(tokens->word))
-			args[i++] = tokens->word;
+		args[i++] = tokens->word;
 		tokens = tokens->next;
 	}
 	return (args);
