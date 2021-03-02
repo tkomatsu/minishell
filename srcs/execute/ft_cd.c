@@ -6,59 +6,11 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 21:10:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:13:00 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-
-static void	parent_dir(char **path)
-{
-	char	*tmp;
-
-	tmp = ft_strrchr(*path, '/');
-	while (!ft_strcmp(tmp + 1, "."))
-	{
-		*tmp = 0;
-		tmp = ft_strrchr(*path, '/');
-	}
-	*tmp = 0;
-}
-
-static void	set_cwd(char *dir)
-{
-	char	*path;
-	char	*tmp;
-	char	**dest;
-	int		i;
-
-	dest = ft_split(dir, '/');
-	path = ft_strdup(ft_getenv("PWD"));
-	i = -1;
-	while (dest[++i])
-	{
-		if (!ft_strcmp(dest[i], ".."))
-		{
-			parent_dir(&path);
-		}
-		else if (ft_strcmp(dest[i], "."))
-		{
-			tmp = ft_strjoin(path, "/");
-			free(path);
-			path = ft_strjoin(tmp, dest[i]);
-		}
-	}
-	ft_setenv("PWD", path, 1);
-	ft_free_split(dest);
-	free(path);
-}
-
-static int	chdir_err(char *dir)
-{
-	ft_putstr_fd("minish: cd: ", STDERR);
-	ft_perror(dir);
-	return (EXIT_FAILURE);
-}
 
 static int	change_dir(char *dir)
 {
@@ -66,25 +18,23 @@ static int	change_dir(char *dir)
 	char	*tmp;
 
 	if (chdir(dir) < 0)
-		return (chdir_err(dir));
-	if (!(path = get_working_dir("cd")))
 	{
-		if (!ft_getenv("PWD"))
-			path = ft_strdup(dir);
-		else
-		{
-			tmp = ft_strjoin(ft_getenv("PWD"), "/");
-			path = ft_strjoin(tmp, dir);
-			free(tmp);
-		}
-		ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
-		ft_setenv("PWD", path, 1);
-		free(path);
+		ft_putstr_fd("minish: cd: ", STDERR);
+		ft_perror(dir);
+		return (EXIT_FAILURE);
 	}
-	if (*dir == '/')
-		ft_setenv("PWD", dir, 1);
-	else
-		set_cwd(dir);
+	ft_setenv("OLDPWD", ft_getenv("PWD"), 1);
+	if (!(path = getcwd(NULL, 0)))
+	{
+		ft_putstr_fd("cd: error retrieving current directory: ", STDERR);
+		ft_putstr_fd("getcwd: cannot access parent directories: ", STDERR);
+		ft_putstr_fd("No such file or directory\n", STDERR);
+		tmp = ft_strjoin(ft_getenv("OLDPWD"), "/");
+		path = ft_strjoin(tmp, dir);
+		free(tmp);
+	}
+	ft_setenv("PWD", path, 1);
+	free(path);
 	return (EXIT_SUCCESS);
 }
 
@@ -92,7 +42,7 @@ int			ft_cd(char **args)
 {
 	char	*dir;
 
-	if (!args[1])
+	if (!args[1] || !ft_strcmp(args[1], "~"))
 	{
 		if (!(dir = ft_getenv("HOME")))
 		{
