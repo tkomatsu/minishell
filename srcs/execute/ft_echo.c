@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 22:26:33 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 18:47:14 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/02 10:36:57 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static _Bool	check_noption(char *s)
 		return (false);
 	if (*s != '-')
 		return (false);
-	s++;
+	if (*(s + 1))
+		s++;
 	while (*s)
 	{
 		if (*s != 'n')
