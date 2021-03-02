@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 21:10:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/02 11:32:08 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	parent_dir(char **path)
 	*tmp = 0;
 }
 
-static void	set_cwd(char *dir)
+static void	set_cwd(char *dir, char *cwd)
 {
 	char	*path;
 	char	*tmp;
@@ -33,19 +33,25 @@ static void	set_cwd(char *dir)
 	int		i;
 
 	dest = ft_split(dir, '/');
-	path = ft_strdup(ft_getenv("PWD"));
-	i = -1;
-	while (dest[++i])
+	tmp = ft_getenv("PWD");
+	if (!tmp)
+		path = ft_strdup(cwd);
+	else
 	{
-		if (!ft_strcmp(dest[i], ".."))
+		path = ft_strdup(tmp);
+		i = -1;
+		while (dest[++i])
 		{
-			parent_dir(&path);
-		}
-		else if (ft_strcmp(dest[i], "."))
-		{
-			tmp = ft_strjoin(path, "/");
-			free(path);
-			path = ft_strjoin(tmp, dest[i]);
+			if (!ft_strcmp(dest[i], ".."))
+			{
+				parent_dir(&path);
+			}
+			else if (ft_strcmp(dest[i], "."))
+			{
+				tmp = ft_strjoin(path, "/");
+				free(path);
+				path = ft_strjoin(tmp, dest[i]);
+			}
 		}
 	}
 	ft_setenv("PWD", path, 1);
@@ -84,7 +90,7 @@ static int	change_dir(char *dir)
 	if (*dir == '/')
 		ft_setenv("PWD", dir, 1);
 	else
-		set_cwd(dir);
+		set_cwd(dir, path);
 	return (EXIT_SUCCESS);
 }
 

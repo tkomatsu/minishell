@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/22 18:32:56 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/02 11:02:11 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ static void	putdir(char c)
 	char	*cwd;
 	int		len;
 
-	cwd = ft_getenv("PWD");
+	if (!(cwd = ft_getenv("PWD")))
+		return ;
 	if (c == 'w')
 	{
-		home = ft_getenv("HOME");
+		if (!(home = ft_getenv("HOME")))
+			return ;
 		len = ft_strlen(home);
 		if (ft_strncmp(home, cwd, len))
 			ft_putstr_fd(cwd, STDERR);
