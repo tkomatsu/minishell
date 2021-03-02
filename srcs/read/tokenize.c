@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 20:04:14 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:38:44 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,10 @@ static int		is_metachar(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\0')
 		return (WORD);
-	else if (c == '\n')
-		return (NEWLINE);
 	else if (c == '|')
 		return (PIPE);
-	else if (c == '&')
-		return (AND);
 	else if (c == ';')
 		return (SEMICOLON);
-	else if (c == '(')
-		return (P_OPEN);
-	else if (c == ')')
-		return (P_CLOSE);
 	else if (c == '>')
 		return (GREATER);
 	else if (c == '<')
