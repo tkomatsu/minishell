@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 19:16:51 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 21:39:36 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/02 09:21:49 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static int	dup_failure(int fd)
 	char	*path;
 
 	g_status = EXIT_FAILURE;
+	ft_putstr_fd("minish: ", STDERR);
 	ft_putstr_fd(path = ft_itoa(fd), STDERR);
 	ft_putstr_fd(": ", STDERR);
 	ft_putendl_fd(strerror(EBADF), STDERR);
