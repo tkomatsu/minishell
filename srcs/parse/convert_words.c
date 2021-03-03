@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/01 16:34:55 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:14:21 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,6 @@ static char	*convert_escape(char *new, char *str)
 	}
 	free(new);
 	return (ret);
-}
-
-static void	validate_escape(char c, int *flag)
-{
-	if (c == '\\')
-		*flag ^= ESC;
-	else
-		*flag = 0;
 }
 
 char		*convert_words(char *str, char **ptr, t_token *tokens)

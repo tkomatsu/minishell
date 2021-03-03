@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 01:07:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:13:14 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void	put_prompt(char *ps);
 void	signal_handler(int sig);
 void	signal_ignore(int sig);
 void	nop(void *v);
+void	validate_escape(char c, int *flag);
 
 #endif

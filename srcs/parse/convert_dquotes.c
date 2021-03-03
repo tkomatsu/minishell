@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:00:19 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 16:48:35 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:14:52 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ char		*convert_dquotes(char *str, char **ptr)
 			*str = '\0';
 			new = expand_environ(str + 1, new, &head, &str);
 		}
-		if (*(str++) == '\\')
-			flag ^= ESC;
-		else
-			flag = 0;
+		validate_escape(*(str++), &flag);
 	}
 	*str = '\0';
 	new = convert_escape(new, head);
