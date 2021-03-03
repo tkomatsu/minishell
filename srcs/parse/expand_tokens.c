@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/01 21:32:03 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:55:14 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ void		expand_tokens(void *content)
 	tokens = (t_token*)content;
 	while (tokens)
 	{
+		expand_token(tokens);
 		if (!*tokens->word)
 		{
 			free(tokens->word);
 			tokens->word = NULL;
 		}
-		else
-			expand_token(tokens);
 		tokens = tokens->next;
 	}
 }
