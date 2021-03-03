@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 17:27:09 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/03 14:48:41 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_exist(char *path, char *cmd)
 	if (!(dir = opendir(path)))
 		return (0);
 	while ((dent = readdir(dir)))
-		if (!strcmp(cmd, dent->d_name))
+		if (!strcasecmp(cmd, dent->d_name))
 			return (1);
 	closedir(dir);
 	return (0);
