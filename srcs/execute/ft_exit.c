@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/03 13:48:18 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:03:51 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ static int	is_numeric(char *str)
 	int		is_negative;
 	char	*num;
 
-	if (!*str)
-		return (0);
 	is_negative = 0;
 	str = ft_strtrim(str, " ");
-	if ((*str == '-' || *str == '+') && *(str + 1))
+	if (*str == '-' || *str == '+')
 	{
 		is_negative = (*str == '-' ? 1 : 0);
 		str++;
 	}
+	if (!*str)
+		return (0);
 	num = str;
 	while (*str)
 		if (!ft_isdigit(*str++))
