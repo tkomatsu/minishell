@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:31:54 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/21 15:32:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:04:54 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** SELF-MADE HEADER FILES
 */
 # include "libft.h"
-# include "minishell.h"
 
 /*
 ** EXTERNAL LIBRARIES

@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/28 21:09:10 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:07:21 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@
 ** MACRO DECLARATION - PID
 */
 # define INITIAL -1
+
+/*
+** MACRO DECLARATION - BIT MASK FLAG
+*/
+# define QUOTE 0x01
+# define DQUOTE 0x02
+# define ESC 0x04
 
 /*
 ** GLOBAL VARIABLES
