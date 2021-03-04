@@ -6,11 +6,17 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/01 21:32:03 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 01:29:31 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
+
+static void	remove_word(t_token *token)
+{
+	free(token->word);
+	token->word = NULL;
+}
 
 static char	*strjoin_free(char *new, char *str, int type)
 {
@@ -41,11 +47,12 @@ static void	expand_token(t_token *tokens)
 		else if (*str == '\"' && !flag)
 			new = strjoin_free(new, convert_dquotes(str + 1, &str), T_DQUOTE);
 		else
+		{
 			new = strjoin_free(new, convert_words(str, &str, tokens), T_WORDS);
-		if (*str == '\\')
-			flag ^= ESC;
-		else
-			flag = 0;
+			if (!*new)
+				return (remove_word(tokens));
+		}
+		validate_escape(*str, &flag);
 	}
 	free(tokens->word);
 	tokens->word = new;
@@ -59,10 +66,7 @@ void		expand_tokens(void *content)
 	while (tokens)
 	{
 		if (!*tokens->word)
-		{
-			free(tokens->word);
-			tokens->word = NULL;
-		}
+			remove_word(tokens);
 		else
 			expand_token(tokens);
 		tokens = tokens->next;

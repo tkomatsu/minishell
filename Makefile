@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/03/01 19:18:26 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/03/04 01:13:35 by kefujiwa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ UTIL_FILES = exit_perror.c \
 			 put_prompt.c \
 			 signal_handler.c \
 			 signal_ignore.c \
-			 nop.c
+			 nop.c \
+			 validate_escape.c
 
 UTIL_SRCS = $(addprefix $(UTIL_DIR), $(UTIL_FILES))
 

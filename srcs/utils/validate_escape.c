@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easter.h                                           :+:      :+:    :+:   */
+/*   validate_escape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/18 19:31:54 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 01:04:54 by kefujiwa         ###   ########.fr       */
+/*   Created: 2021/03/04 01:12:04 by kefujiwa          #+#    #+#             */
+/*   Updated: 2021/03/04 01:15:47 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASTER_H
-# define EASTER_H
+#include "utils.h"
 
-/*
-** SELF-MADE HEADER FILES
-*/
-# include "libft.h"
-
-/*
-** EXTERNAL LIBRARIES
-*/
-# include <unistd.h>
-
-/*
-** PROTOTYPE DECLARATION - EASTER EGG
-*/
-int		is_ultimate_question(char **args);
-
-#endif
+void	validate_escape(char c, int *flag)
+{
+	if (c == '\\')
+		*flag ^= ESC;
+	else
+		*flag = 0;
+}
