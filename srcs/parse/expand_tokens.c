@@ -6,16 +6,18 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 01:29:31 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 13:18:23 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void	remove_word(t_token *token)
+static void	remove_word(t_token *token, char *new)
 {
 	free(token->word);
 	token->word = NULL;
+	if (new)
+		free(new);
 }
 
 static char	*strjoin_free(char *new, char *str, int type)
@@ -50,7 +52,7 @@ static void	expand_token(t_token *tokens)
 		{
 			new = strjoin_free(new, convert_words(str, &str, tokens), T_WORDS);
 			if (!*new)
-				return (remove_word(tokens));
+				return (remove_word(tokens, new));
 		}
 		validate_escape(*str, &flag);
 	}
@@ -66,7 +68,7 @@ void		expand_tokens(void *content)
 	while (tokens)
 	{
 		if (!*tokens->word)
-			remove_word(tokens);
+			remove_word(tokens, NULL);
 		else
 			expand_token(tokens);
 		tokens = tokens->next;
