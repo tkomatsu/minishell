@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/03/04 11:25:09 by tkomatsu         ###   ########.fr        #
+#    Updated: 2021/03/04 11:36:28 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -193,6 +193,7 @@ debug: re
 leak: CFLAGS += $(DEBUG_CFLAGS)
 leak: re
 	@echo "$(_BLUE)Debug build for valgrind done$(_END)"
+	@echo "$(_GREEN)Try \"valgrind --leak-check=full ./$(NAME)\"$(_END)"
 
 PHONY: all clean fclean re test debug leak
 
