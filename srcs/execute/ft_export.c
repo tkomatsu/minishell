@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:25:58 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/25 19:06:08 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 22:41:01 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,16 @@ static void	export_item(char *item)
 static void	export_list(void)
 {
 	t_list	*env;
+	t_list	*head;
 
 	sort_ascii(&env);
+	head = env;
 	while (env)
 	{
 		export_item(env->content);
 		env = env->next;
 	}
-	ft_lstclear(&env, nop);
+	ft_lstclear(&head, nop);
 }
 
 int			ft_export(char **args)
