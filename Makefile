@@ -6,7 +6,7 @@
 #    By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/08 20:22:12 by tkomatsu          #+#    #+#              #
-#    Updated: 2021/03/04 01:13:35 by kefujiwa         ###   ########.fr        #
+#    Updated: 2021/03/04 11:25:09 by tkomatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,10 +169,6 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)$(TOKEN_DIR)
 	@mkdir -p $(OBJ_DIR)$(EASTER_DIR)
 
-debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
-debug: re
-	@echo "$(_BLUE)Debug build done$(_END)"
-
 clean:
 	@echo "$(_YELLOW)Removing object files ...$(_END)"
 	@make clean -C $(LIB)libft
@@ -185,10 +181,18 @@ fclean:
 	@rm -rf $(NAME) $(OBJ_DIR)
 	@rm -fr *.dSYM
 
+re: fclean all
+
 test: all
 	@cd test && bash grademe.sh
 
-re: fclean all
+debug: CFLAGS += -fsanitize=address $(DEBUG_CFLAGS)
+debug: re
+	@echo "$(_BLUE)Debug build done$(_END)"
 
-PHONY: all clean fclean re
+leak: CFLAGS += $(DEBUG_CFLAGS)
+leak: re
+	@echo "$(_BLUE)Debug build for valgrind done$(_END)"
+
+PHONY: all clean fclean re test debug leak
 
