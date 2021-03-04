@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:26:45 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/23 04:50:02 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 09:17:25 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_unset(char **args)
 	i = 1;
 	while (args[i])
 	{
-		if (ft_unsetenv(args[i]) == INVALID_NAME)
+		if (args[i][0] == '\0' || ft_unsetenv(args[i]) == INVALID_NAME)
 		{
 			is_error = 1;
 			g_status = EXIT_FAILURE;
