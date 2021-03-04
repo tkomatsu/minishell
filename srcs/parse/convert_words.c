@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 03:12:38 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 01:14:21 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 22:09:54 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	words_to_tokens(char *new, char *str, char **ptr, t_token *tokens)
 {
 	char	**words;
 	char	*tmp;
+	int		i;
 
 	while (*new && *new != ' ')
 		new++;
@@ -27,12 +28,13 @@ static void	words_to_tokens(char *new, char *str, char **ptr, t_token *tokens)
 	*(new++) = '\0';
 	if (!(words = ft_split(new, ' ')))
 		exit_perror("convert_words", EXIT_FAILURE);
-	while (*words)
+	i = 0;
+	while (words[i])
 	{
-		dlist_insert(tokens, dlistnew(*words, WORD));
+		dlist_insert(tokens, dlistnew(words[i++], WORD));
 		tokens = tokens->next;
-		words++;
 	}
+	free(words);
 	if (!(tmp = ft_strdup(str)))
 		exit_perror("convert_words", EXIT_FAILURE);
 	dlist_insert(tokens, dlistnew(tmp, WORD));
