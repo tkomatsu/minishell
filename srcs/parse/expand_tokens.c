@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 18:17:47 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 13:18:23 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 22:57:49 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	expand_token(t_token *tokens)
 		else
 		{
 			new = strjoin_free(new, convert_words(str, &str, tokens), T_WORDS);
-			if (!*new)
+			if (!*new && !*str)
 				return (remove_word(tokens, new));
 		}
 		validate_escape(*str, &flag);
