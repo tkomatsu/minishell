@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/03 15:03:51 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/04 23:19:29 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,23 @@ static int	within_range(char *str, int is_negative)
 	unsigned long long	num;
 	unsigned long long	max;
 	int					digit;
+	int					i;
 
 	num = 0;
 	max = 9223372036854775807;
 	digit = 7;
 	if (is_negative)
 		digit = 8;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if (num < max / 10 || (num == max / 10 && *str - '0' <= digit))
-			num = num * 10 + (*str - '0');
+		if (num < max / 10 || (num == max / 10 && str[i] - '0' <= digit))
+			num = num * 10 + (str[i] - '0');
 		else
 			return (0);
-		str++;
+		i++;
 	}
+	free(str);
 	return (1);
 }
 

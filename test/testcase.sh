@@ -55,5 +55,6 @@ echo "$"HOME
 echo "$HOME"
 echo "$H"OME
 export
+exit 100 100
 
 exit
