@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/02 13:38:44 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:17:28 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,30 @@ static int		is_metachar(char c)
 	return (0);
 }
 
-static int		tokenlen(char *line, int start)
+static int		tokenlen(char *line, int begin)
 {
-	int	end;
+	int	i;
+	int	flag;
 
-	end = start;
-	while (line[end])
+	i = begin;
+	flag = 0;
+	while (line[i])
 	{
-		if (line[end] == '\\')
+		if (line[i] == '\\' && !(flag && QUOTE))
 		{
-			if (line[++end])
-				end++;
+			if (line[++i])
+				i++;
 			continue ;
 		}
-		if (line[end] == '\'')
-			while (line[++end] && line[end] != '\'')
-				;
-		else if (line[end] == '\"')
-			while (line[++end] && line[end] != '\"')
-				;
-		if (is_metachar(line[end]))
+		if (line[i] == '\'')
+			flag ^= QUOTE;
+		else if (line[i] == '\"')
+			flag ^= DQUOTE;
+		if (is_metachar(line[i]) && !(flag & DQUOTE) && !(flag && QUOTE))
 			break ;
-		end++;
+		i++;
 	}
-	return (end - start);
+	return (i - begin + 1);
 }
 
 static t_token	*remove_empty(t_token *token)
@@ -129,3 +129,28 @@ t_token			*tokenize(char *line)
 	}
 	return (tokens);
 }
+
+/*
+int	main(int ac, char **av)
+{
+	int len;
+	char *str;
+	int start;
+
+	if (ac == 1 || 2 < ac)
+	{
+		printf("Need args!\n");
+		return (1);
+	}
+	len = tokenlen(av[1], 0);
+	str = ft_substr(av[1], 0, len);
+	ft_putendl_fd(av[1], 1);
+	ft_putstr_fd("len: ", 1);
+	ft_putnbr_fd(len, 1);
+	ft_putstr_fd("strlen: ", 1);
+	ft_putnbr_fd(ft_strlen(str), 1);
+	ft_putstr_fd(", str: ", 1);
+	ft_putendl_fd(str, 1);
+	return (0);
+}
+*/
