@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/04 23:19:29 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/06 14:57:25 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,19 @@ static int	within_range(char *str, int is_negative)
 			return (0);
 		i++;
 	}
-	free(str);
 	return (1);
 }
 
 static int	is_numeric(char *str)
 {
 	int		is_negative;
+	char	*head;
 	char	*num;
+	int		ret;
 
 	is_negative = 0;
 	str = ft_strtrim(str, " ");
+	head = str;
 	if (*str == '-' || *str == '+')
 	{
 		is_negative = (*str == '-' ? 1 : 0);
@@ -74,7 +76,9 @@ static int	is_numeric(char *str)
 	while (*str)
 		if (!ft_isdigit(*str++))
 			return (0);
-	return (within_range(num, is_negative));
+	ret = within_range(num, is_negative);
+	free(head);
+	return (ret);
 }
 
 int			ft_exit(char **args)
