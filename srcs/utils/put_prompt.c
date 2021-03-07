@@ -6,11 +6,21 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/02 11:02:11 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/07 11:38:29 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+static void putversion(char c)
+{
+	if (c == 'v' || c == 'V')
+	{
+		ft_putstr_fd(VERSION, STDERR);
+		if (c == 'V')
+			ft_putstr_fd(PATCHVERSION, STDERR);
+	}
+}
 
 static void	putdir(char c)
 {
@@ -40,6 +50,19 @@ static void	putdir(char c)
 	}
 }
 
+static void	putstatus(char c)
+{
+	char	*exit_status;
+
+	if (c == 'x')
+	{
+		if (!(exit_status = ft_itoa(g_status)))
+			exit_perror("ft_itoa", EXIT_FAILURE);
+		ft_putstr_fd(exit_status, STDERR);
+		free(exit_status);
+	}
+}
+
 static void	putformat(char c)
 {
 	if (c == 'a')
@@ -51,13 +74,11 @@ static void	putformat(char c)
 	else if (c == 'u')
 		ft_putstr_fd(ft_getenv("USER"), STDERR);
 	else if (c == 'v' || c == 'V')
-	{
-		ft_putstr_fd("1.0", STDERR);
-		if (c == 'V')
-			ft_putstr_fd(".0", STDERR);
-	}
+		putversion(c);
 	else if (c == 'w' || c == 'W')
 		putdir(c);
+	else if (c == 'x')
+		putstatus(c);
 	else if (c == '\\')
 		ft_putchar_fd('\\', STDERR);
 	else
