@@ -6,33 +6,33 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/03 14:48:11 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/07 10:23:31 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
 
-int	execmd(char **args)
+int	execmd(int argc, char **argv)
 {
-	if (!args[0])
+	if (!argv[0])
 		return (STAY_LOOP);
-	else if (!ft_strcmp(args[0], "echo"))
-		return (ft_echo(args));
-	else if (!ft_strcmp(args[0], "cd"))
-		return (ft_cd(args));
-	else if (!ft_strcmp(args[0], "pwd"))
+	else if (!ft_strcmp(argv[0], "echo"))
+		return (ft_echo(argv));
+	else if (!ft_strcmp(argv[0], "cd"))
+		return (ft_cd(argv));
+	else if (!ft_strcmp(argv[0], "pwd"))
 		return (ft_pwd());
-	else if (!ft_strcmp(args[0], "export"))
-		return (ft_export(args));
-	else if (!ft_strcmp(args[0], "unset"))
-		return (ft_unset(args));
-	else if (!ft_strcmp(args[0], "env"))
-		return (ft_env());
-	else if (!ft_strcmp(args[0], "exit"))
-		return (ft_exit(args));
-	else if (!ft_strcmp(args[0], "help"))
-		return (help(args));
-	else if (is_ultimate_question(args))
+	else if (!ft_strcmp(argv[0], "export"))
+		return (ft_export(argv));
+	else if (!ft_strcmp(argv[0], "unset"))
+		return (ft_unset(argv));
+	else if (!ft_strcmp(argv[0], "env"))
+		return (ft_env(argc));
+	else if (!ft_strcmp(argv[0], "exit"))
+		return (ft_exit(argv));
+	else if (!ft_strcmp(argv[0], "help"))
+		return (help(argv));
+	else if (is_ultimate_question(argv))
 		return (STAY_LOOP);
-	return (launch(args));
+	return (launch(argv));
 }

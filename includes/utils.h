@@ -92,5 +92,6 @@ void	signal_handler(int sig);
 void	signal_ignore(int sig);
 void	nop(void *v);
 void	validate_escape(char c, int *flag);
+int		argslen(char **args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 12:09:35 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 17:37:40 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/07 10:21:12 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			run_cmd(void *content)
 	status = set_redirect((t_token *)content);
 	args = token_to_args((t_token *)content);
 	if (!status)
-		status = execmd(args);
+		status = execmd(argslen(args), args);
 	free(args);
 	dup2(original_fd[0], STDIN);
 	close(original_fd[0]);
