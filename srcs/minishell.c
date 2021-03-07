@@ -6,11 +6,35 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 21:12:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/01 19:33:24 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/07 09:35:21 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+** void	test_tokens(t_token *tokens)
+** {
+** 	const char	*type[] = {"word",
+** 							"newline",
+** 							"pipe",
+** 							"and",
+** 							"semicolon",
+** 							"p_open",
+** 							"p_close",
+** 							"greater",
+** 							"greater2",
+** 							"less"};
+** 	for (int i = 0; tokens; i++)
+** 	{
+** 		printf("[%2d]%s, type:%s\n",
+** 				i,
+** 				tokens->word,
+** 				type[(tokens->type - 1)]);
+** 		tokens = tokens->next;
+** 	}
+** }
+*/
 
 char		**g_env;
 pid_t		g_pid;
