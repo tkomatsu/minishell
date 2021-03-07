@@ -131,6 +131,7 @@ t_token			*tokenize(char *line)
 }
 
 /*
+** gcc -g -I ../../includes -L ../../lib/libft -lft tokenize.c
 ** int	main(int ac, char **av)
 ** {
 ** 	int len;
