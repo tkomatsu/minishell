@@ -95,10 +95,9 @@ void		put_prompt(char *ps)
 	if (!(format = ft_getenv(ps)))
 	{
 		if (!strcmp(ps, "PS1"))
-			ft_putstr_fd("minishell$ ", STDERR);
+			format = "\\s-\\v$ ";
 		else if (!strcmp(ps, "PS2"))
-			ft_putstr_fd("> ", STDERR);
-		return ;
+			format = "> ";
 	}
 	while (*format)
 	{
