@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/08 13:35:12 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:51:26 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ int			ft_exit(char **args)
 {
 	int	len;
 
-	len = 0;
 	if (g_pid)
 		ft_putendl_fd("exit", STDERR);
+	if (args[1] && !ft_strcmp(args[1], "--"))
+		args++;
+	len = 0;
 	while (args[len])
 	{
 		if (len == 1 && !is_numeric(args[len]))
