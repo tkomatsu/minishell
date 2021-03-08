@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/07 11:23:52 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:16:30 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define EX_SIGNAL 128
 # define EX_CTRLC 130
 # define EX_OUTRANGE 255
-# define EX_EINPUT 258
 
 /*
 ** MACRO DECLARATION - LOOP STATUS
@@ -70,7 +69,7 @@
 # define ESC 0x04
 
 /*
-** MACRO DECLARATION - BIT MASK FLAG
+** MACRO DECLARATION - VERSION
 */
 # define VERSION "1.3"
 # define PATCHVERSION ".0"
