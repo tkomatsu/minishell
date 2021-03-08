@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/04 23:19:29 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:37:09 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	exit_error(char **args, int len, int num)
 	errno = num;
 	if (num == E_NUMERIC)
 	{
-		g_status = EX_OUTRANGE;
+		g_status = EX_EBUILTIN;
 		ft_putstr_fd("minish: exit: ", STDERR);
 		ft_perror(args[len]);
 		return (EXIT_LOOP);
@@ -39,7 +39,7 @@ static int	within_range(char *str, int is_negative)
 	int					i;
 
 	num = 0;
-	max = 9223372036854775807;
+	max = LLONG_MAX;
 	digit = 7;
 	if (is_negative)
 		digit = 8;
@@ -52,17 +52,19 @@ static int	within_range(char *str, int is_negative)
 			return (0);
 		i++;
 	}
-	free(str);
 	return (1);
 }
 
 static int	is_numeric(char *str)
 {
 	int		is_negative;
+	char	*head;
 	char	*num;
+	int		ret;
 
 	is_negative = 0;
 	str = ft_strtrim(str, " ");
+	head = str;
 	if (*str == '-' || *str == '+')
 	{
 		is_negative = (*str == '-' ? 1 : 0);
@@ -74,16 +76,20 @@ static int	is_numeric(char *str)
 	while (*str)
 		if (!ft_isdigit(*str++))
 			return (0);
-	return (within_range(num, is_negative));
+	ret = within_range(num, is_negative);
+	free(head);
+	return (ret);
 }
 
 int			ft_exit(char **args)
 {
 	int	len;
 
-	len = 0;
 	if (g_pid)
 		ft_putendl_fd("exit", STDERR);
+	if (args[1] && !ft_strcmp(args[1], "--"))
+		args++;
+	len = 0;
 	while (args[len])
 	{
 		if (len == 1 && !is_numeric(args[len]))

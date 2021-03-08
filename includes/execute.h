@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/26 21:34:28 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:12:16 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 ** EXTERNAL LIBRARIES
 */
 # include <dirent.h>
+# include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <sys/stat.h>
