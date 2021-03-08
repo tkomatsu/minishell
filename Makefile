@@ -89,7 +89,8 @@ EXE_SRCS = $(addprefix $(EXE_DIR), $(EXE_FILES))
 # utility
 
 UTIL_DIR = utils/
-UTIL_FILES = exit_perror.c \
+UTIL_FILES = argslen.c \
+			 exit_perror.c \
 			 ft_getenv.c \
 			 ft_perror.c \
 			 ft_putenv.c \
