@@ -6,13 +6,13 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 17:38:30 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/07 11:38:29 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:21:57 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-static void putversion(char c)
+static void	putversion(char c)
 {
 	if (c == 'v' || c == 'V')
 	{
