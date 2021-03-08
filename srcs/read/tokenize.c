@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/07 09:33:37 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:11:04 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static int		tokenlen(char *line, int begin)
 		}
 		if (is_metachar(line[i]) && !flag)
 			break ;
-		if (line[i] == '\'')
+		if (line[i] == '\'' && !flag)
 			flag ^= QUOTE;
-		else if (line[i] == '\"')
+		else if (line[i] == '\"' && !flag)
 			flag ^= DQUOTE;
 		i++;
 	}
