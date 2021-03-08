@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 23:23:13 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/06 14:57:25 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/08 13:35:12 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	within_range(char *str, int is_negative)
 	int					i;
 
 	num = 0;
-	max = 9223372036854775807;
+	max = LLONG_MAX;
 	digit = 7;
 	if (is_negative)
 		digit = 8;
