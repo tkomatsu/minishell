@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 15:29:24 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 18:20:53 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/08 14:03:02 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static char	*get_var(char *str, int len)
 static char	*deploy_var(char *str, int len)
 {
 	char	*ret;
-	char	*status;
 
 	if (len == 0)
 	{
@@ -60,12 +59,7 @@ static char	*deploy_var(char *str, int len)
 			exit_perror("deploy_var", EXIT_FAILURE);
 	}
 	else if (len == 1 && *str == '?')
-	{
-		status = ft_itoa(g_status);
-		if (!(ret = ft_strdup(status)))
-			exit_perror("deploy_var", EXIT_FAILURE);
-		free(status);
-	}
+		ret = ft_itoa(g_status);
 	else
 		ret = get_var(str, len);
 	return (ret);
