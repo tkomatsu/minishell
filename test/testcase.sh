@@ -55,6 +55,13 @@ echo "$"HOME
 echo "$HOME"
 echo "$H"OME
 export
+echo "\"|"
+echo "\">"
+echo "\"<"
+echo "\">>"
+echo "\";"
+echo '\'|cat
+echo '\';ls
 exit 100 100
 
 exit
