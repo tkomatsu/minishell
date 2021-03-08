@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 22:34:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/02/26 21:45:10 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:17:32 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	output_eof_err(int flag)
 				, STDERR);
 	errno = E_EOF;
 	ft_perror("minish: syntax error");
-	g_status = EX_EINPUT;
+	g_status = EX_EBUILTIN;
 	return (INVALID_INPUT);
 }
 
