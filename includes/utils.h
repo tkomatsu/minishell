@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:30:32 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/04 01:13:14 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/07 11:23:52 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@
 # define QUOTE 0x01
 # define DQUOTE 0x02
 # define ESC 0x04
+
+/*
+** MACRO DECLARATION - BIT MASK FLAG
+*/
+# define VERSION "1.3"
+# define PATCHVERSION ".0"
 
 /*
 ** GLOBAL VARIABLES
