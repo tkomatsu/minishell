@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/08 13:11:04 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:47:40 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,19 @@ static int		tokenlen(char *line, int begin)
 	flag = 0;
 	while (line[i])
 	{
-		if (line[i] == '\\' && !(flag & QUOTE))
-		{
-			if (line[++i])
-				i++;
-			continue ;
-		}
-		if (is_metachar(line[i]) && !flag)
-			break ;
 		if (line[i] == '\'' && !flag)
 			flag ^= QUOTE;
 		else if (line[i] == '\"' && !flag)
 			flag ^= DQUOTE;
+		else if ((line[i] == '\'' && (flag & QUOTE)) ||
+				(line[i] == '\"' && (flag & DQUOTE) && !(flag & ESC)))
+			flag = 0;
+		if (line[i] == '\\')
+			flag ^= ESC;
+		else
+			flag &= (QUOTE | DQUOTE);
+		if (is_metachar(line[i]) && !flag)
+			break ;
 		i++;
 	}
 	return (i - begin);
