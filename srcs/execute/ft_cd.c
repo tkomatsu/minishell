@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/02 13:13:00 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:39:55 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,19 @@ static int	change_dir(char *dir)
 	return (EXIT_SUCCESS);
 }
 
-int			ft_cd(char **args)
+static int	many_args(void)
+{
+	g_status = EX_EBUILTIN;
+	ft_putendl_fd("minish: cd: too many arguments", STDERR);
+	return (STAY_LOOP);
+}
+
+int			ft_cd(int argc, char **args)
 {
 	char	*dir;
 
+	if (argc > 2)
+		return (many_args());
 	if (!args[1] || !ft_strcmp(args[1], "~"))
 	{
 		if (!(dir = ft_getenv("HOME")))
@@ -62,6 +71,7 @@ int			ft_cd(char **args)
 	}
 	else
 		dir = args[1];
-	g_status = change_dir(dir);
+	if (*args[1])
+		g_status = change_dir(dir);
 	return (STAY_LOOP);
 }

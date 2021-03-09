@@ -6,7 +6,7 @@
 /*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:28:37 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/03/08 13:12:16 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:35:28 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		launch(char **args);
 /*
 ** PROTOTYPE DECLARATION - BUILTIN COMMANDS
 */
-int		ft_cd(char **args);
+int		ft_cd(int argc, char **argv);
 int		ft_echo(char **args);
 int		ft_env(int ac);
 int		ft_exit(char **args);
