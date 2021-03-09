@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:06:41 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/09 14:48:58 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 15:25:34 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int			syntax_check(t_token *token)
 		return (put_err(token));
 	while (token)
 	{
-		if (!istype(token, WORD) && token->next && !*token->next->word
-				&& istype(token->next, token->type))
-			return (put_err(token));
-		if ((istype(token, GREAT) || istype(token, DGREAT)) && token->next
-				&& !*token->next->word
-				&& (istype(token, GREAT) || istype(token, DGREAT)))
-			return (put_err(token));
+		if (!istype(token, WORD) && token->next && !*(token->next->word))
+		{
+			if (!istype(token->next, GREAT)
+					&& !istype(token->next, DGREAT)
+					&& !istype(token->next, LESS))
+				return (put_err(token));
+		}
 		token = token->next;
 	}
 	return (0);
