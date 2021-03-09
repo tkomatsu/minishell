@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 19:16:51 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/08 16:17:12 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/09 11:56:44 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			io_redirect(t_token *token)
 	char	*path;
 
 	wish_fd = strtofd(token);
-	if (!token->next || !*(token->next->word))
+	if (!token->next || !token->next->word || !*(token->next->word))
 	{
 		g_status = EX_EBUILTIN;
 		ft_putendl_fd("minish: syntax error near unexpected token `newline'",
