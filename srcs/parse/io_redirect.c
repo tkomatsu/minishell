@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 19:16:51 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/09 11:56:44 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	strtofd(t_token *token)
 		fd = 0;
 	if (fd <= 0)
 	{
-		if (token->type == GREATER || token->type == GREATER2)
+		if (token->type == GREAT || token->type == DGREAT)
 			fd = STDOUT;
 		else if (token->type == LESS)
 			fd = STDIN;
@@ -40,9 +40,9 @@ static int	open_redirect(t_token *token, char *path)
 	int	file_fd;
 
 	file_fd = -1;
-	if (token->type == GREATER)
+	if (token->type == GREAT)
 		file_fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
-	else if (token->type == GREATER2)
+	else if (token->type == DGREAT)
 		file_fd = open(path, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 	else if (token->type == LESS)
 		file_fd = open(path, O_RDONLY);

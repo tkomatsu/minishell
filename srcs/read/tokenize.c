@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:29 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/08 15:47:40 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		is_metachar(char c)
 	else if (c == ';')
 		return (SEMICOLON);
 	else if (c == '>')
-		return (GREATER);
+		return (GREAT);
 	else if (c == '<')
 		return (LESS);
 	return (0);
@@ -88,13 +88,13 @@ static void		appending_redirect(t_token *token)
 
 	while (token)
 	{
-		if (token->type == GREATER)
+		if (token->type == GREAT)
 		{
 			if ((tmp = token->next) != NULL)
 			{
-				if (!(*tmp->word) && tmp->type == GREATER)
+				if (!(*tmp->word) && tmp->type == GREAT)
 				{
-					token->type = GREATER2;
+					token->type = DGREAT;
 					dlstextract(tmp);
 				}
 			}
