@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:15 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/02 13:13:00 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:50:42 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,46 @@ static int	change_dir(char *dir)
 	return (EXIT_SUCCESS);
 }
 
-int			ft_cd(char **args)
+static int	many_arg(void)
+{
+	g_status = EX_EBUILTIN;
+	ft_putendl_fd("minish: cd: too many arguments", STDERR);
+	return (STAY_LOOP);
+}
+
+static char	*get_var(char *name)
 {
 	char	*dir;
 
-	if (!args[1] || !ft_strcmp(args[1], "~"))
+	if (!(dir = ft_getenv(name)))
 	{
-		if (!(dir = ft_getenv("HOME")))
-		{
-			g_status = EXIT_FAILURE;
-			ft_putendl_fd("minish: cd: HOME not set", STDERR);
-			return (STAY_LOOP);
-		}
+		g_status = EXIT_FAILURE;
+		ft_putstr_fd("minish: cd: ", STDERR);
+		ft_putstr_fd(name, STDERR);
+		ft_putendl_fd(" not set", STDERR);
 	}
-	else if (!ft_strcmp(args[1], "-"))
+	return (dir);
+}
+
+int			ft_cd(int argc, char **argv)
+{
+	char	*dir;
+
+	if (argc > 2)
+		return (many_arg());
+	if (!argv[1] || !ft_strcmp(argv[1], "~"))
 	{
-		if (!(dir = ft_getenv("OLDPWD")))
-		{
-			g_status = EXIT_FAILURE;
-			ft_putendl_fd("minish: cd: OLDPWD not set", STDERR);
+		if (!(dir = get_var("HOME")))
 			return (STAY_LOOP);
-		}
+	}
+	else if (!ft_strcmp(argv[1], "-"))
+	{
+		if (!(dir = get_var("OLDPWD")))
+			return (STAY_LOOP);
 	}
 	else
-		dir = args[1];
-	g_status = change_dir(dir);
+		dir = argv[1];
+	if ((argc == 2 && *argv[1]) || argc == 1)
+		g_status = change_dir(dir);
 	return (STAY_LOOP);
 }

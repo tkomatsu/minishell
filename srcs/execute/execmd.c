@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:24:24 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/07 10:23:31 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:30:16 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	execmd(int argc, char **argv)
 	else if (!ft_strcmp(argv[0], "echo"))
 		return (ft_echo(argv));
 	else if (!ft_strcmp(argv[0], "cd"))
-		return (ft_cd(argv));
+		return (ft_cd(argc, argv));
 	else if (!ft_strcmp(argv[0], "pwd"))
 		return (ft_pwd());
 	else if (!ft_strcmp(argv[0], "export"))
