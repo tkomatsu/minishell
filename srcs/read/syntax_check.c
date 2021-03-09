@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:06:41 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/08 16:17:49 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ static int	put_err(t_token *token)
 	return (1);
 }
 
+static int	istype(t_token *token, int type)
+{
+	if (token->type == type)
+		return (1);
+	return (0);
+}
+
 int			syntax_check(t_token *token)
 {
 	if (!token)
@@ -33,13 +40,12 @@ int			syntax_check(t_token *token)
 		return (put_err(token));
 	while (token)
 	{
-		if (token->type != WORD && token->next && !*token->next->word
-				&& token->type == token->next->type)
+		if (!istype(token, WORD) && token->next && !*token->next->word
+				&& istype(token->next, token->type))
 			return (put_err(token));
-		if ((token->type == GREATER || token->type == GREATER2) && token->next
+		if ((istype(token, GREAT) || istype(token, DGREAT)) && token->next
 				&& !*token->next->word
-				&& (token->next->type == GREATER
-					|| token->next->type == GREATER2))
+				&& (istype(token, GREAT) || istype(token, DGREAT)))
 			return (put_err(token));
 		token = token->next;
 	}

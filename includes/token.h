@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kefujiwa <kefujiwa@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 19:10:08 by kefujiwa          #+#    #+#             */
-/*   Updated: 2021/02/25 17:59:51 by kefujiwa         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:58 by tkomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define SEMICOLON 5
 # define P_OPEN 6
 # define P_CLOSE 7
-# define GREATER 8
-# define GREATER2 9
+# define GREAT 8
+# define DGREAT 9
 # define LESS 10
 
 /*
