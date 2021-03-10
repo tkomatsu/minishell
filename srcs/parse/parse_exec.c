@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 11:35:03 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/03 15:13:21 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/10 11:48:54 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int		is_builtin(void *content)
 
 	token = content;
 	i = 0;
+	while (token->type != WORD && token->next && token->next->next)
+		token = token->next->next;
 	while (builtin[i])
 	{
 		if (token->word && !ft_strcmp(builtin[i], token->word))
