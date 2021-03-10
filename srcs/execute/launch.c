@@ -6,7 +6,7 @@
 /*   By: tkomatsu <tkomatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 22:52:44 by tkomatsu          #+#    #+#             */
-/*   Updated: 2021/03/03 14:48:41 by tkomatsu         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:59:57 by kefujiwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			launch(char **args)
 	validate_cmd(args[0]);
 	if (!exec_path(args[0], args))
 	{
-		if (execve(args[0], args, g_env) == -1)
+		if (!ft_strchr(args[0], '/') || (execve(args[0], args, g_env) == -1))
 		{
 			is_error = 1;
 			errno = E_CMD;
