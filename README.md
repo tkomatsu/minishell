@@ -1,4 +1,5 @@
 # minishell
+![demo](demo.png)
 ## Description
 simple shell like bash
 
